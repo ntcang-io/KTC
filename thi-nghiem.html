@@ -83,9 +83,9 @@
       }
 
       .eyebrow--light {
-        color: rgba(255, 255, 255, 0.82);
-        background: rgba(255, 255, 255, 0.08);
-        border-color: rgba(255, 255, 255, 0.12);
+        color: #fff;
+        background: rgba(10, 38, 71, 0.42);
+        border-color: rgba(255, 255, 255, 0.2);
       }
 
       .section-title {
@@ -170,53 +170,70 @@
       }
 
       .header__inner {
-        min-height: 88px;
+        min-height: 78px;
         display: grid;
         grid-template-columns: auto 1fr auto;
         align-items: center;
-        gap: 24px;
+        gap: 34px;
       }
 
       .brand {
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
       }
 
       .brand-copy {
         min-width: 0;
       }
 
+      .brand-logo-frame {
+        width: 112px;
+        height: 112px;
+        padding: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 18px;
+        background: linear-gradient(180deg, #cf2027 0%, #af161f 100%);
+        box-shadow: 0 14px 30px rgba(175, 22, 31, 0.18);
+        flex-shrink: 0;
+      }
+
       .brand-logo {
-        width: 132px;
-        height: 132px;
+        width: 100%;
+        height: 100%;
         object-fit: contain;
-        padding: 12px;
+        padding: 10px;
         background: #fff;
-        border-radius: 26px;
+        border-radius: 12px;
         border: 1px solid rgba(14, 26, 43, 0.08);
-        box-shadow: var(--shadow-soft);
       }
 
       .brand-mark {
-        font-size: 0.78rem;
-        letter-spacing: 0.25em;
-        font-weight: 800;
+        font-size: 1.18rem;
+        letter-spacing: 0.18em;
+        font-weight: 900;
         color: var(--primary);
         text-transform: uppercase;
+        line-height: 1;
       }
 
       .brand-text {
-        margin: 8px 0 0;
-        max-width: 390px;
+        margin: 6px 0 0;
+        max-width: 440px;
         color: var(--muted);
-        font-size: 0.94rem;
+        font-size: 0.84rem;
+        line-height: 1.35;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
 
       .nav {
         display: flex;
         justify-content: center;
-        gap: 20px;
+        gap: 28px;
         flex-wrap: wrap;
       }
 
@@ -228,6 +245,11 @@
 
       .nav a:hover {
         color: var(--primary);
+      }
+
+      .header__action .button {
+        min-height: 44px;
+        padding: 0 20px;
       }
 
       .hero {
@@ -285,8 +307,8 @@
         bottom: 24px;
         padding: 22px;
         border-radius: 22px;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(10, 38, 71, 0.56);
+        border: 1px solid rgba(255, 255, 255, 0.18);
         backdrop-filter: blur(12px);
         color: #fff;
       }
@@ -466,7 +488,19 @@
         bottom: 18px;
         padding: 16px 18px;
         border-radius: 18px;
-        background: linear-gradient(180deg, rgba(9, 26, 48, 0.12), rgba(9, 26, 48, 0.78));
+        background: linear-gradient(180deg, rgba(9, 26, 48, 0.26), rgba(9, 26, 48, 0.88));
+        color: #fff;
+      }
+
+      .ghost-button--on-dark {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.24);
+        color: #fff;
+      }
+
+      .ghost-button--on-dark:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.32);
         color: #fff;
       }
 
@@ -718,13 +752,12 @@
         }
 
         .brand-logo {
-          width: 98px;
-          height: 98px;
-          padding: 10px;
+          padding: 8px;
         }
 
-        .brand {
-          gap: 0;
+        .brand-logo-frame {
+          width: 92px;
+          height: 92px;
         }
 
         .brand-copy {
@@ -773,10 +806,12 @@
         <div class="header__inner">
           <a class="brand" href="./index.html">
             <!-- TODO: thay logo nếu cần -->
-            <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
+            <span class="brand-logo-frame">
+              <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
+            </span>
             <div class="brand-copy">
-              <div class="brand-mark">TRUNG AN</div>
-              <p class="brand-text">Năng lực thí nghiệm chuyên ngành xây dựng và hồ sơ công bố liên quan.</p>
+              <div class="brand-mark">CÔNG TY CP ĐTXD TMDV TRUNG AN</div>
+              <p class="brand-text">Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</p>
             </div>
           </a>
 
@@ -788,7 +823,7 @@
             <a href="#lien-he">Liên hệ</a>
           </nav>
 
-          <div>
+          <div class="header__action">
             <a class="button" href="#lien-he">Liên hệ</a>
           </div>
         </div>
@@ -1118,7 +1153,7 @@
           </div>
           <div style="display: grid; gap: 12px; justify-items: start">
             <a class="button button--light" href="tel:02923646646">0292 3646 646</a>
-            <a class="ghost-button" style="background: transparent; color: #fff; border-color: rgba(255,255,255,0.18)" href="mailto:trungan.las1469@gmail.com">trungan.las1469@gmail.com</a>
+            <a class="ghost-button ghost-button--on-dark" href="mailto:trungan.las1469@gmail.com">trungan.las1469@gmail.com</a>
           </div>
         </div>
       </section>
