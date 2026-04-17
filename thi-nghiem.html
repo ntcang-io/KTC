@@ -438,15 +438,9 @@
 
       .lab-gallery {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 18px;
         margin-top: 30px;
-      }
-
-      .lab-gallery__main,
-      .lab-gallery__stack {
-        display: grid;
-        gap: 18px;
       }
 
       .lab-shot {
@@ -487,6 +481,11 @@
         margin-top: 4px;
         color: rgba(255, 255, 255, 0.82);
         font-size: 0.9rem;
+      }
+
+      .lab-gallery-intro {
+        margin-top: 20px;
+        color: var(--muted);
       }
 
       .docs-layout {
@@ -703,6 +702,10 @@
         .grid-4 {
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
+
+        .lab-gallery {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
       }
 
       @media (max-width: 760px) {
@@ -743,7 +746,6 @@
         .stats,
         .grid-3,
         .grid-4,
-        .lab-gallery,
         .docs-grid,
         .doc-card,
         .footer-grid {
@@ -753,6 +755,10 @@
         .docs-section,
         .cta-bar {
           padding: 28px 20px;
+        }
+
+        .lab-gallery {
+          grid-template-columns: 1fr;
         }
 
         .viewer-frame {
@@ -807,12 +813,11 @@
 
             <div class="card hero-visual">
               <div class="hero-frame">
-                <!-- TODO: thay ảnh hero của trang thí nghiệm nếu có -->
-                <img src="./img/ptn/z7727376253795_c7cdb280ad09ebab1a99079bf534a5d2.jpg" alt="Phòng thí nghiệm xây dựng và công tác kiểm tra hiện trường" />
+                <img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
                 <div class="hero-overlay"></div>
                 <div class="hero-caption">
                   <span class="eyebrow eyebrow--light">LAS-XD 13.004</span>
-                  <p>Phục vụ thí nghiệm chuyên ngành xây dựng, kiểm tra hiện trường và hồ sơ công bố liên quan.</p>
+                  <p>Triển khai kiểm tra cấu kiện, thí nghiệm vật liệu, thử tải và các công tác hiện trường phục vụ kiểm soát chất lượng công trình.</p>
                 </div>
               </div>
             </div>
@@ -842,6 +847,9 @@
           <p class="section-copy">
             Trung An triển khai hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được chứng nhận, đồng thời công bố các văn bản và tài liệu liên quan đến điều kiện hoạt động và năng lực chuyên môn.
           </p>
+          <p class="lab-gallery-intro">
+            Hình ảnh dưới đây thể hiện một số nội dung công việc tiêu biểu tại hiện trường và trong phòng thí nghiệm, bao gồm kiểm tra cấu kiện, thí nghiệm vật liệu, lưu mẫu và thử tải theo yêu cầu kỹ thuật.
+          </p>
 
           <div class="grid-3" style="margin-top: 30px">
             <article class="soft-card info-card">
@@ -862,31 +870,104 @@
           </div>
 
           <div class="lab-gallery">
-            <div class="lab-gallery__main">
-              <figure class="lab-shot">
-                <img src="./img/ptn/lay mau.jpg" alt="Công tác lấy mẫu phục vụ thí nghiệm xây dựng" />
-                <figcaption class="lab-shot__caption">
-                  <strong>Lấy mẫu và kiểm tra theo yêu cầu công trình</strong>
-                  <span>Tổ chức lấy mẫu, kiểm tra và ghi nhận thông tin kỹ thuật tại công trình.</span>
-                </figcaption>
-              </figure>
-            </div>
-            <div class="lab-gallery__stack">
-              <figure class="lab-shot">
-                <img src="./img/ptn/laymau (1).jpg" alt="Nhân sự thực hiện công tác lấy mẫu thí nghiệm ngoài hiện trường" />
-                <figcaption class="lab-shot__caption">
-                  <strong>Phối hợp ngoài hiện trường</strong>
-                  <span>Tổ chức lấy mẫu, kiểm tra và ghi nhận thông tin kỹ thuật tại hiện trường.</span>
-                </figcaption>
-              </figure>
-              <figure class="lab-shot">
-                <img src="./img/ptn/laymau (2).jpg" alt="Công tác thí nghiệm và hỗ trợ kiểm soát chất lượng xây dựng" />
-                <figcaption class="lab-shot__caption">
-                  <strong>Hỗ trợ kiểm soát chất lượng</strong>
-                  <span>Láy mẫu tại hiện trường</span>
-                </figcaption>
-              </figure>
-            </div>
+            <figure class="lab-shot">
+              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra kết cấu cấu kiện cọc bê tông dự ứng lực" />
+              <figcaption class="lab-shot__caption">
+                <strong>Kiểm tra kết cấu cấu kiện cọc BT DUL</strong>
+                <span>Đánh giá tình trạng và chất lượng cấu kiện cọc bê tông dự ứng lực phục vụ nghiệm thu và kiểm soát kỹ thuật.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-dam-super-t.jpg" alt="Kiểm tra kết cấu cấu kiện dầm Super T" />
+              <figcaption class="lab-shot__caption">
+                <strong>Kiểm tra kết cấu cấu kiện dầm Super T</strong>
+                <span>Kiểm tra hiện trạng cấu kiện dầm Super T, hỗ trợ đánh giá chất lượng và mức độ đáp ứng yêu cầu thiết kế.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan mẫu bê tông tại công trình" />
+              <figcaption class="lab-shot__caption">
+                <strong>Khoan mẫu bê tông</strong>
+                <span>Thực hiện khoan lấy mẫu bê tông hiện trường để phục vụ thí nghiệm và đối chiếu chất lượng kết cấu.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/luu-mau-be-tong.jpg" alt="Lưu mẫu bê tông trong quá trình kiểm soát chất lượng" />
+              <figcaption class="lab-shot__caption">
+                <strong>Lưu mẫu bê tông</strong>
+                <span>Bảo quản và lưu trữ mẫu bê tông theo quy trình để phục vụ theo dõi chất lượng và đối chứng khi cần thiết.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm tra kết cấu cấu kiện cống bê tông cốt thép" />
+              <figcaption class="lab-shot__caption">
+                <strong>Kiểm tra kết cấu cấu kiện cống BTCT</strong>
+                <span>Kiểm tra hình học, bề mặt và tình trạng làm việc của cấu kiện cống bê tông cốt thép trước khi đưa vào sử dụng.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Thí nghiệm kéo thép trong phòng thí nghiệm" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thí nghiệm kéo thép</strong>
+                <span>Xác định khả năng chịu kéo, giới hạn bền và đặc trưng cơ lý của thép dùng trong xây dựng.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Thí nghiệm nén bê tông" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thí nghiệm nén BT</strong>
+                <span>Đánh giá cường độ chịu nén của mẫu bê tông phục vụ nghiệm thu vật liệu và kết cấu công trình.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thi-nghiem-nhua-bitum.jpg" alt="Thí nghiệm nhựa bitum" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thí nghiệm nhựa bitum</strong>
+                <span>Kiểm tra các chỉ tiêu kỹ thuật của nhựa bitum phục vụ công tác giao thông và kết cấu mặt đường.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Thí nghiệm độ chặt hiện trường" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thí nghiệm độ chặt hiện trường</strong>
+                <span>Đo kiểm độ chặt nền, móng và lớp vật liệu tại hiện trường để kiểm soát chất lượng thi công.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thí nghiệm vải địa</strong>
+                <span>Kiểm tra các chỉ tiêu kỹ thuật của vải địa kỹ thuật phục vụ thiết kế và kiểm soát vật liệu đầu vào.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thu-tai-cong-btct.jpg" alt="Thử tải cống bê tông cốt thép" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thử tải cống BTCT</strong>
+                <span>Thực hiện thử tải nhằm đánh giá khả năng làm việc và độ an toàn của cấu kiện cống bê tông cốt thép.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thu-tai-nap-ho-ga.jpg" alt="Thử tải nắp hố ga" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thử tải nắp hố ga</strong>
+                <span>Kiểm tra khả năng chịu tải của nắp hố ga trong điều kiện khai thác và yêu cầu kỹ thuật thực tế.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc bê tông cốt thép" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thử tĩnh cọc BTCT</strong>
+                <span>Đánh giá sức chịu tải của cọc bê tông cốt thép bằng phương pháp thử tĩnh theo yêu cầu thiết kế.</span>
+              </figcaption>
+            </figure>
+            <figure class="lab-shot">
+              <img src="./img/ptn/thu-tinh-cu-tram.jpg" alt="Thử tĩnh cừ tràm" />
+              <figcaption class="lab-shot__caption">
+                <strong>Thử tĩnh cừ tràm</strong>
+                <span>Thực hiện thử tải tĩnh cừ tràm nhằm kiểm tra khả năng chịu lực và phục vụ đánh giá nền móng công trình.</span>
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
