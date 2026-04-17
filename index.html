@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trung An | Doanh nghiệp xây dựng và dịch vụ kỹ thuật công trình tại Cần Thơ</title>
+    <meta
+      name="description"
+      content="Trung An là doanh nghiệp hoạt động trong lĩnh vực xây dựng, dịch vụ kỹ thuật công trình và kiểm soát chất lượng xây dựng tại Cần Thơ, với hồ sơ pháp lý và năng lực hoạt động được công bố rõ ràng."
+    />
+    <style>
+      :root {
+        --bg: #f2f6fb;
+        --bg-soft: #f7faff;
+        --surface: rgba(255, 255, 255, 0.94);
+        --surface-strong: #ffffff;
+        --surface-muted: #edf3fa;
+        --text: #0e1a2b;
+        --muted: #607086;
+        --primary: #103d73;
+        --primary-strong: #0a2647;
+        --primary-soft: #dceafb;
+        --line: rgba(14, 26, 43, 0.1);
+        --shadow: 0 18px 46px rgba(14, 26, 43, 0.08);
+        --shadow-soft: 0 10px 24px rgba(14, 26, 43, 0.06);
+        --radius: 26px;
+        --radius-sm: 20px;
+        --header-height: 88px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(16, 61, 115, 0.08), transparent 28%),
+          linear-gradient(180deg, #f8fbff 0%, #f2f6fb 52%, #eef3f8 100%);
+        line-height: 1.65;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      .container {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 92px 0;
+        scroll-margin-top: calc(var(--header-height) + 18px);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(16, 61, 115, 0.06);
+        border: 1px solid rgba(16, 61, 115, 0.1);
+        color: var(--primary);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow--light {
+        color: rgba(255, 255, 255, 0.84);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.14);
+      }
+
+      .section-title {
+        margin: 18px 0 0;
+        font-size: clamp(2rem, 3vw, 3.2rem);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .section-copy {
+        max-width: 780px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .soft-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface-strong);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .button,
+      .ghost-button,
+      .chip-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 48px;
+        padding: 0 22px;
+        border-radius: 999px;
+        transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+        font-weight: 700;
+      }
+
+      .button:hover,
+      .ghost-button:hover,
+      .chip-button:hover,
+      .mobile-toggle:hover,
+      .doc-action:hover {
+        transform: translateY(-1px);
+      }
+
+      .button {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .button:hover {
+        background: var(--primary-strong);
+      }
+
+      .ghost-button,
+      .chip-button {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--text);
+      }
+
+      .ghost-button:hover,
+      .chip-button:hover {
+        border-color: rgba(16, 61, 115, 0.24);
+        color: var(--primary);
+      }
+
+      .button--light {
+        background: #fff;
+        color: var(--primary);
+      }
+
+      .button--light:hover {
+        background: var(--primary-soft);
+      }
+
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: 1px solid rgba(14, 26, 43, 0.06);
+        background: rgba(248, 251, 255, 0.84);
+        backdrop-filter: blur(16px);
+      }
+
+      .topbar.is-scrolled {
+        box-shadow: 0 10px 28px rgba(14, 26, 43, 0.08);
+      }
+
+      .topbar__inner {
+        min-height: var(--header-height);
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        min-width: 0;
+      }
+
+      .brand-logo {
+        width: 96px;
+        height: 96px;
+        object-fit: contain;
+        padding: 10px;
+        border-radius: 22px;
+        background: #fff;
+        border: 1px solid rgba(14, 26, 43, 0.08);
+        box-shadow: var(--shadow-soft);
+        flex-shrink: 0;
+      }
+
+      .brand-mark {
+        font-size: 0.78rem;
+        color: var(--primary);
+        font-weight: 800;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .brand-text {
+        margin: 8px 0 0;
+        max-width: 350px;
+        color: var(--muted);
+        font-size: 0.94rem;
+        line-height: 1.55;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      .nav a:hover {
+        color: var(--primary);
+      }
+
+      .topbar__actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .mobile-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        height: 48px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        color: var(--primary);
+        font-size: 0.95rem;
+        font-weight: 800;
+      }
+
+      .mobile-menu {
+        display: none;
+        padding: 0 0 18px;
+      }
+
+      .mobile-menu.is-open {
+        display: block;
+      }
+
+      .mobile-menu__panel {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .mobile-menu__panel a {
+        padding: 10px 4px;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding-top: 56px;
+      }
+
+      .hero-glow {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(54px);
+        pointer-events: none;
+      }
+
+      .hero-glow--left {
+        left: -110px;
+        top: 40px;
+        width: 400px;
+        height: 400px;
+        background: rgba(16, 61, 115, 0.16);
+      }
+
+      .hero-glow--right {
+        right: -70px;
+        top: 110px;
+        width: 360px;
+        height: 360px;
+        background: rgba(142, 190, 232, 0.28);
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.02fr 0.98fr;
+        align-items: center;
+        gap: 50px;
+      }
+
+      .hero h1 {
+        margin: 22px 0 0;
+        font-size: clamp(2.8rem, 5vw, 5rem);
+        line-height: 1.04;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-lead {
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: 1.12rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+
+      .hero-note {
+        margin: 26px 0 0;
+        color: var(--muted);
+        max-width: 760px;
+      }
+
+      .badge-row {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 26px;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 11px 16px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: linear-gradient(90deg, rgba(16, 61, 115, 0.06), rgba(255, 255, 255, 0.94));
+        font-size: 0.92rem;
+      }
+
+      .badge::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--primary);
+        box-shadow: 0 0 0 5px rgba(16, 61, 115, 0.12);
+      }
+
+      .hero-visual {
+        padding: 14px;
+      }
+
+      .hero-frame {
+        position: relative;
+        min-height: 550px;
+        overflow: hidden;
+        border-radius: calc(var(--radius) - 6px);
+      }
+
+      .hero-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(24deg, rgba(10, 38, 71, 0.78), rgba(16, 61, 115, 0.16), transparent 72%);
+      }
+
+      .hero-caption {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+        padding: 24px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(12px);
+        color: #fff;
+      }
+
+      .hero-caption h2 {
+        margin: 10px 0 0;
+        font-size: 1.6rem;
+        line-height: 1.2;
+      }
+
+      .hero-caption p {
+        margin: 12px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 28px;
+      }
+
+      .stat-card {
+        padding: 24px;
+      }
+
+      .stat-card strong {
+        display: block;
+        color: var(--primary);
+        font-size: 1.45rem;
+      }
+
+      .stat-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 0.96fr 1.04fr;
+        gap: 28px;
+      }
+
+      .panel {
+        padding: 40px;
+      }
+
+      .prose p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 1.02rem;
+      }
+
+      .grid-3,
+      .grid-4,
+      .clients-grid,
+      .workflow-grid,
+      .docs-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .clients-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        margin-top: 30px;
+      }
+
+      .workflow-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-top: 30px;
+      }
+
+      .docs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 32px;
+      }
+
+      .info-card,
+      .workflow-card,
+      .client-card,
+      .doc-card {
+        padding: 26px;
+        background: var(--surface-strong);
+      }
+
+      .icon-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        background: rgba(16, 61, 115, 0.1);
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .info-card h3,
+      .workflow-card h3,
+      .doc-card h3 {
+        margin: 18px 0 0;
+        font-size: 1.2rem;
+        line-height: 1.35;
+      }
+
+      .info-card p,
+      .workflow-card p,
+      .doc-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .section-note {
+        margin: 18px 0 0;
+        color: var(--muted);
+      }
+
+      .docs-section {
+        position: relative;
+      }
+
+      .docs-highlight {
+        padding: 42px;
+        background:
+          linear-gradient(180deg, rgba(10, 38, 71, 0.96), rgba(16, 61, 115, 0.94)),
+          #0a2647;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #fff;
+      }
+
+      .docs-highlight .section-copy {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .doc-card {
+        display: grid;
+        grid-template-columns: 144px 1fr;
+        gap: 22px;
+        align-items: start;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.96);
+      }
+
+      .doc-thumb {
+        aspect-ratio: 4 / 5;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background:
+          linear-gradient(180deg, rgba(16, 61, 115, 0.08), rgba(16, 61, 115, 0.02)),
+          #fff;
+      }
+
+      .doc-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .doc-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        margin-top: 14px;
+        border-radius: 999px;
+        background: rgba(16, 61, 115, 0.08);
+        color: var(--primary);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      .doc-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .doc-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--text);
+        font-size: 0.92rem;
+        font-weight: 700;
+        transition: transform 180ms ease, color 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .doc-action--primary {
+        background: rgba(16, 61, 115, 0.08);
+        color: var(--primary);
+        border-color: rgba(16, 61, 115, 0.16);
+      }
+
+      .doc-action:hover {
+        border-color: rgba(16, 61, 115, 0.24);
+        color: var(--primary);
+      }
+
+      .docs-footnote {
+        margin-top: 22px;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.94rem;
+      }
+
+      .support-panel {
+        display: grid;
+        gap: 28px;
+      }
+
+      .cta-panel {
+        padding: 38px 40px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: center;
+        background: linear-gradient(180deg, rgba(10, 38, 71, 0.96), rgba(16, 61, 115, 0.94));
+        color: #fff;
+      }
+
+      .cta-panel .section-copy {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .step-number {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        background: var(--primary);
+        color: #fff;
+        font-weight: 800;
+      }
+
+      .client-card {
+        font-size: 1.12rem;
+        font-weight: 800;
+        background: linear-gradient(90deg, rgba(16, 61, 115, 0.05), rgba(255, 255, 255, 0.97));
+      }
+
+      .contact-wrap {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        overflow: hidden;
+      }
+
+      .contact-info {
+        padding: 42px;
+        background: linear-gradient(180deg, rgba(10, 38, 71, 0.98), rgba(16, 61, 115, 0.96));
+        color: #fff;
+      }
+
+      .contact-info .section-copy {
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .contact-lines {
+        display: grid;
+        gap: 10px;
+        margin-top: 26px;
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .contact-form {
+        padding: 42px;
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      .form-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .form-field {
+        display: block;
+      }
+
+      .form-field span {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 700;
+      }
+
+      .form-field input,
+      .form-field textarea {
+        width: 100%;
+        min-height: 52px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface-muted);
+        color: var(--text);
+        outline: none;
+        transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      }
+
+      .form-field textarea {
+        min-height: 160px;
+        resize: vertical;
+        padding-top: 14px;
+      }
+
+      .form-field input:focus,
+      .form-field textarea:focus {
+        background: #fff;
+        border-color: rgba(16, 61, 115, 0.26);
+        box-shadow: 0 0 0 4px rgba(16, 61, 115, 0.12);
+      }
+
+      .form-tip {
+        border: 1px dashed rgba(16, 61, 115, 0.2);
+        border-radius: 22px;
+        background: rgba(16, 61, 115, 0.05);
+        padding: 18px;
+      }
+
+      .form-tip strong {
+        display: block;
+        color: var(--primary);
+      }
+
+      .form-tip p {
+        margin: 8px 0 0;
+        color: var(--muted);
+      }
+
+      .form-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+        margin-top: 22px;
+      }
+
+      .form-actions p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .footer {
+        padding: 64px 0;
+        background: var(--primary-strong);
+        color: #fff;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.9fr 0.7fr;
+        gap: 24px;
+      }
+
+      .footer h2,
+      .footer h3 {
+        margin: 0 0 14px;
+      }
+
+      .footer p,
+      .footer a {
+        display: block;
+        margin: 0 0 10px;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .footer a:hover {
+        color: #fff;
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 520ms ease, transform 520ms ease;
+      }
+
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 980px) {
+        .topbar__inner {
+          grid-template-columns: auto auto;
+          justify-content: space-between;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .mobile-toggle {
+          display: inline-flex;
+        }
+
+        .topbar__actions .chip-button {
+          display: none;
+        }
+
+        .hero-grid,
+        .split,
+        .contact-wrap,
+        .footer-grid,
+        .cta-panel {
+          grid-template-columns: 1fr;
+        }
+
+        .grid-4,
+        .workflow-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 820px) {
+        :root {
+          --header-height: 80px;
+        }
+
+        .section {
+          padding: 74px 0;
+        }
+
+        .container {
+          width: min(100%, calc(100% - 20px));
+        }
+
+        .brand-logo {
+          width: 78px;
+          height: 78px;
+          padding: 8px;
+        }
+
+        .brand-text {
+          max-width: 240px;
+        }
+
+        .hero h1 {
+          font-size: 2.45rem;
+        }
+
+        .hero-frame {
+          min-height: 430px;
+        }
+
+        .stats,
+        .grid-3,
+        .grid-4,
+        .docs-grid,
+        .clients-grid,
+        .workflow-grid,
+        .form-grid,
+        .doc-card {
+          grid-template-columns: 1fr;
+        }
+
+        .panel,
+        .docs-highlight,
+        .contact-info,
+        .contact-form {
+          padding: 28px 20px;
+        }
+
+        .doc-thumb {
+          max-width: 180px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar" id="header">
+      <div class="container">
+        <div class="topbar__inner">
+          <a class="brand" href="#top">
+            <!-- TODO: thay logo tại đường dẫn bên dưới nếu cần -->
+            <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
+            <div>
+              <div class="brand-mark">TRUNG AN</div>
+              <p class="brand-text">Doanh nghiệp xây dựng và dịch vụ kỹ thuật công trình tại Cần Thơ, định hướng làm việc rõ năng lực, rõ phạm vi và rõ hồ sơ pháp lý.</p>
+            </div>
+          </a>
+
+          <nav class="nav" aria-label="Điều hướng chính">
+            <a href="#gioi-thieu">Giới thiệu</a>
+            <a href="#linh-vuc">Lĩnh vực</a>
+            <a href="#nang-luc">Năng lực</a>
+            <a href="#van-ban">Văn bản</a>
+            <a href="#lien-he">Liên hệ</a>
+          </nav>
+
+          <div class="topbar__actions">
+            <!-- TODO: thay link thật của trang phòng thí nghiệm -->
+            <a class="button" href="./thi-nghiem.html" aria-label="Trang thí nghiệm">Trang thí nghiệm</a>
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Mở menu">☰ Menu</button>
+          </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <div class="mobile-menu__panel">
+            <a href="#gioi-thieu">Giới thiệu</a>
+            <a href="#linh-vuc">Lĩnh vực</a>
+            <a href="#nang-luc">Năng lực</a>
+            <a href="#van-ban">Văn bản</a>
+            <a href="#lien-he">Liên hệ</a>
+            <!-- TODO: thay link thật của trang phòng thí nghiệm -->
+            <a href="./thi-nghiem.html">Trang thí nghiệm</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="hero-glow hero-glow--left"></div>
+        <div class="hero-glow hero-glow--right"></div>
+        <div class="container">
+          <div class="hero-grid">
+            <div data-reveal>
+              <span class="eyebrow">Doanh nghiệp xây dựng và kỹ thuật công trình</span>
+              <h1>Giải pháp xây dựng và dịch vụ kỹ thuật công trình rõ năng lực, rõ phạm vi</h1>
+              <p class="hero-lead">
+                Trung An cung cấp các hoạt động xây dựng, phối hợp kỹ thuật công trình và dịch vụ chuyên môn phục vụ triển khai, kiểm tra, giám sát và quản lý chất lượng theo phạm vi năng lực đã được chứng nhận.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#lien-he">Liên hệ tư vấn</a>
+                <a class="ghost-button" href="#van-ban">Xem văn bản năng lực</a>
+              </div>
+              <p class="hero-note">
+                Doanh nghiệp định hướng làm việc rõ đầu việc, rõ phạm vi, thuận tiện cho quá trình phối hợp giữa chủ đầu tư, nhà thầu và đơn vị tư vấn trong thực tế triển khai công trình.
+              </p>
+              <div class="badge-row">
+                <span class="badge">Hồ sơ pháp lý rõ ràng</span>
+                <span class="badge">Năng lực hoạt động xây dựng đã được chứng nhận</span>
+                <span class="badge">Hỗ trợ công trình dân dụng, hạ tầng và kỹ thuật công trình</span>
+              </div>
+            </div>
+
+            <div class="card hero-visual" data-reveal>
+              <div class="hero-frame">
+                <!-- TODO: thay ảnh hero doanh nghiệp hoặc công trình thực tế -->
+                <img src="./public/hero-industrial.svg" alt="Công trình hạ tầng, kỹ sư hiện trường và công tác kỹ thuật công trình" />
+                <div class="hero-overlay"></div>
+                <div class="hero-caption">
+                  <span class="eyebrow eyebrow--light">Hình ảnh doanh nghiệp</span>
+                  <h2>Hình ảnh xây dựng, kỹ thuật hiện trường và năng lực phối hợp thực tế</h2>
+                  <p>Có thể thay bằng ảnh công trình dân dụng, hạ tầng kỹ thuật, giám sát hiện trường hoặc bản vẽ kỹ thuật.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats" data-reveal>
+            <article class="soft-card stat-card">
+              <strong>Hồ sơ pháp lý</strong>
+              <span>Văn bản năng lực và tài liệu công bố rõ ràng</span>
+            </article>
+            <article class="soft-card stat-card">
+              <strong>Phạm vi hoạt động rõ ràng</strong>
+              <span>Thiết kế, giám sát, thi công lắp đặt thiết bị và khảo sát địa hình</span>
+            </article>
+            <article class="soft-card stat-card">
+              <strong>Hỗ trợ kỹ thuật công trình</strong>
+              <span>Phối hợp cho kiểm tra, giám sát và kiểm soát chất lượng</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gioi-thieu" class="section">
+        <div class="container split">
+          <div class="card panel" data-reveal>
+            <span class="eyebrow">Giới thiệu doanh nghiệp</span>
+            <h2 class="section-title">Giới thiệu về Trung An</h2>
+            <div class="prose">
+              <p>
+                Công ty Cổ phần Đầu tư Xây dựng Thương mại Dịch vụ Trung An hoạt động trong lĩnh vực xây dựng và dịch vụ kỹ thuật công trình tại Cần Thơ. Với định hướng làm việc thực tế, rõ phạm vi và bám sát yêu cầu của từng hạng mục, doanh nghiệp tập trung phát triển năng lực theo hướng vừa đáp ứng yêu cầu triển khai công việc xây dựng, vừa hỗ trợ các nội dung kỹ thuật phục vụ kiểm tra, đánh giá và kiểm soát chất lượng công trình.
+              </p>
+              <p>
+                Trung An xây dựng hình ảnh doanh nghiệp trên nền tảng hồ sơ pháp lý minh bạch, phạm vi hoạt động được xác lập rõ ràng và cách phối hợp phù hợp với nhu cầu của chủ đầu tư, nhà thầu và đơn vị tư vấn trong quá trình thực hiện dự án.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid-3" data-reveal>
+            <article class="soft-card info-card">
+              <div class="icon-badge">XD</div>
+              <h3>Doanh nghiệp xây dựng</h3>
+              <p>Hoạt động trong lĩnh vực xây dựng với phạm vi công việc được xác lập theo chứng chỉ năng lực đã được cấp.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">KT</div>
+              <h3>Dịch vụ kỹ thuật công trình</h3>
+              <p>Hỗ trợ các đầu việc kỹ thuật liên quan đến kiểm tra, giám sát, đánh giá và phối hợp công trình.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">PH</div>
+              <h3>Phối hợp triển khai thực tế</h3>
+              <p>Ưu tiên phương thức làm việc gọn, rõ trách nhiệm và phù hợp với nhu cầu phối hợp thực tế tại dự án.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="linh-vuc" class="section">
+        <div class="container">
+          <div data-reveal>
+            <span class="eyebrow">Lĩnh vực hoạt động chính</span>
+            <h2 class="section-title">Lĩnh vực hoạt động chính</h2>
+            <p class="section-copy">
+              Trung An tập trung vào các nhóm hoạt động phù hợp với nhu cầu thực tế của công trình, từ công tác xây dựng đến các nội dung hỗ trợ kỹ thuật và kiểm soát chất lượng.
+            </p>
+          </div>
+
+          <div class="grid-4" style="margin-top: 30px" data-reveal>
+            <article class="soft-card info-card">
+              <div class="icon-badge">01</div>
+              <h3>Hoạt động xây dựng</h3>
+              <p>Triển khai các nội dung thuộc phạm vi hoạt động xây dựng theo năng lực đã được chứng nhận, phục vụ quá trình chuẩn bị, tổ chức và thực hiện công trình.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">02</div>
+              <h3>Dịch vụ kỹ thuật công trình</h3>
+              <p>Hỗ trợ các công việc mang tính kỹ thuật trong quá trình thi công, kiểm tra, giám sát và phối hợp giữa các bên liên quan.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">03</div>
+              <h3>Kiểm soát chất lượng xây dựng</h3>
+              <p>Tham gia hỗ trợ các nội dung liên quan đến kiểm tra vật liệu, đánh giá chỉ tiêu kỹ thuật, phục vụ nghiệm thu và quản lý chất lượng công trình.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">04</div>
+              <h3>Phối hợp hiện trường và hồ sơ kỹ thuật</h3>
+              <p>Tăng tính thuận tiện trong quá trình làm việc nhờ cách tiếp cận rõ đầu việc, rõ phạm vi và bám sát yêu cầu thực tế của từng dự án.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="nang-luc" class="section">
+        <div class="container">
+          <div data-reveal>
+            <span class="eyebrow">Năng lực hoạt động xây dựng</span>
+            <h2 class="section-title">Năng lực hoạt động xây dựng</h2>
+            <p class="section-copy">
+              Phạm vi hoạt động xây dựng của doanh nghiệp được giới thiệu theo hướng ngắn gọn, dễ hiểu để khách hàng thuận tiện theo dõi và lựa chọn nội dung phối hợp phù hợp.
+            </p>
+          </div>
+
+          <div class="grid-4" style="margin-top: 30px" data-reveal>
+            <article class="soft-card info-card">
+              <div class="icon-badge">TK</div>
+              <h3>Thiết kế công trình hạ tầng kỹ thuật</h3>
+              <p>Thực hiện thiết kế công trình hạ tầng kỹ thuật thuộc lĩnh vực cấp thoát nước và thủy lợi theo phạm vi năng lực được chứng nhận.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">GS</div>
+              <h3>Giám sát công tác xây dựng</h3>
+              <p>Tham gia giám sát công tác xây dựng công trình hạ tầng kỹ thuật, đặc biệt trong lĩnh vực cấp thoát nước, góp phần đảm bảo việc thi công bám sát yêu cầu kỹ thuật.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">TC</div>
+              <h3>Thi công lắp đặt thiết bị công trình</h3>
+              <p>Triển khai công tác thi công lắp đặt thiết bị công trình và công nghệ theo nội dung năng lực được xác lập.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">KS</div>
+              <h3>Khảo sát địa hình công trình xây dựng</h3>
+              <p>Thực hiện khảo sát địa hình phục vụ công tác chuẩn bị đầu tư, thiết kế và triển khai xây dựng công trình.</p>
+            </article>
+          </div>
+
+          <p class="section-note" data-reveal>
+            Nội dung trên được trình bày theo hướng giới thiệu năng lực để khách hàng dễ hình dung phạm vi phối hợp; khi cần có thể dẫn sang hồ sơ pháp lý chi tiết ở mục công bố văn bản năng lực.
+          </p>
+        </div>
+      </section>
+
+      <section id="van-ban" class="section docs-section">
+        <div class="container">
+          <div class="card docs-highlight" data-reveal>
+            <span class="eyebrow eyebrow--light">Công bố văn bản năng lực</span>
+            <h2 class="section-title">Công bố văn bản năng lực</h2>
+            <p class="section-copy">
+              Trung An công bố các văn bản, chứng nhận và hồ sơ liên quan đến năng lực hoạt động nhằm giúp khách hàng thuận tiện tra cứu, đối chiếu và yên tâm trong quá trình làm việc.
+            </p>
+
+            <div class="docs-grid">
+              <article class="soft-card doc-card">
+                <div class="doc-thumb">
+                  <!-- TODO: thay ảnh scan văn bản thật -->
+                  <img src="./public/cert-scan-1.svg" alt="Chứng chỉ năng lực hoạt động xây dựng" />
+                </div>
+                <div>
+                  <h3>Chứng chỉ năng lực hoạt động xây dựng</h3>
+                  <p>Văn bản thể hiện phạm vi năng lực hoạt động xây dựng của doanh nghiệp, bao gồm các nội dung về thiết kế, giám sát, thi công lắp đặt thiết bị công trình và khảo sát địa hình.</p>
+                  <div class="doc-meta">Hiệu lực đến 09/04/2030</div>
+                  <div class="doc-actions">
+                    <!-- TODO: thay link xem văn bản / PDF thật -->
+                    <a class="doc-action doc-action--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/5. CHỨNG CHỈ NLHD LẦN 4.pdf" target="_blank" rel="noopener">Xem trực tiếp PDF</a>
+                    <a class="doc-action" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/5. CHỨNG CHỈ NLHD LẦN 4.pdf" download>Tải PDF</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="soft-card doc-card">
+                <div class="doc-thumb">
+                  <!-- TODO: thay ảnh scan văn bản thật -->
+                  <img src="./public/cert-scan-2.svg" alt="Giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng" />
+                </div>
+                <div>
+                  <h3>Giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng</h3>
+                  <p>Văn bản xác nhận doanh nghiệp đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng theo danh mục được chứng nhận.</p>
+                  <div class="doc-meta">Ký ngày 19/07/2024</div>
+                  <div class="doc-actions">
+                    <!-- TODO: thay link xem văn bản / PDF thật -->
+                    <a class="doc-action doc-action--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" target="_blank" rel="noopener">Xem trực tiếp PDF</a>
+                    <a class="doc-action" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" download>Tải PDF</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="soft-card doc-card">
+                <div class="doc-thumb">
+                  <!-- TODO: thay ảnh danh mục phép thử hoặc scan tài liệu -->
+                  <img src="./public/cert-scan-3.svg" alt="Danh mục phép thử được công nhận" />
+                </div>
+                <div>
+                  <h3>Danh mục phép thử được công nhận</h3>
+                  <p>Tài liệu tổng hợp danh mục các phép thử chuyên ngành xây dựng mà phòng thí nghiệm của doanh nghiệp có khả năng triển khai theo phạm vi chứng nhận.</p>
+                  <div class="doc-actions">
+                    <!-- TODO: thay link xem danh mục / PDF thật -->
+                    <a class="doc-action doc-action--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" target="_blank" rel="noopener">Xem trực tiếp PDF</a>
+                    <a class="doc-action" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" download>Tải PDF</a>
+                  </div>
+                </div>
+              </article>
+
+              <article class="soft-card doc-card">
+                <div class="doc-thumb">
+                  <!-- TODO: thay ảnh scan hồ sơ năng lực doanh nghiệp -->
+                  <img src="./public/cert-scan-1.svg" alt="Hồ sơ năng lực doanh nghiệp" />
+                </div>
+                <div>
+                  <h3>Hồ sơ năng lực doanh nghiệp</h3>
+                  <p>Tổng hợp thông tin giới thiệu doanh nghiệp, lĩnh vực hoạt động, năng lực pháp lý, phạm vi công việc và thông tin liên hệ.</p>
+                  <div class="doc-actions">
+                    <!-- TODO: thay link xem hồ sơ / PDF thật -->
+                    <a class="doc-action doc-action--primary" href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf" target="_blank" rel="noopener">Xem trực tiếp PDF</a>
+                    <a class="doc-action" href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf" download>Tải PDF</a>
+                  </div>
+                </div>
+              </article>
+            </div>
+
+            <p class="docs-footnote">
+              Các liên kết tài liệu có thể được cập nhật bổ sung theo từng thời điểm để phù hợp với tình trạng hồ sơ công bố thực tế. Hiện doanh nghiệp đã có thư mục tài liệu công khai để tham chiếu và gắn link chính thức sau này.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container support-panel">
+          <div data-reveal>
+            <span class="eyebrow">Hỗ trợ kỹ thuật và kiểm soát chất lượng</span>
+            <h2 class="section-title">Năng lực hỗ trợ kỹ thuật và kiểm soát chất lượng</h2>
+            <p class="section-copy">
+              Bên cạnh hoạt động xây dựng, Trung An còn có nền tảng hỗ trợ các công tác kỹ thuật liên quan đến kiểm tra, đánh giá và kiểm soát chất lượng công trình.
+            </p>
+          </div>
+
+          <div class="grid-4" data-reveal>
+            <article class="soft-card info-card">
+              <div class="icon-badge">VL</div>
+              <h3>Hỗ trợ kiểm tra vật liệu và chỉ tiêu kỹ thuật</h3>
+              <p>Phối hợp thực hiện các nội dung phục vụ đánh giá vật liệu, nền đất, kết cấu và các hạng mục kỹ thuật liên quan đến chất lượng công trình.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">HT</div>
+              <h3>Kết hợp trong phòng và ngoài hiện trường</h3>
+              <p>Tổ chức công việc linh hoạt giữa hoạt động chuyên môn trong phòng và công tác kiểm tra, đánh giá ngoài hiện trường khi cần thiết.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">NT</div>
+              <h3>Phục vụ công tác nghiệm thu và quản lý chất lượng</h3>
+              <p>Hỗ trợ các bên liên quan trong quá trình kiểm tra, đối chiếu chỉ tiêu kỹ thuật và hoàn thiện hồ sơ phục vụ nghiệm thu.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">LAS</div>
+              <h3>Có trang thí nghiệm riêng để tra cứu chuyên sâu</h3>
+              <p>Doanh nghiệp có năng lực liên quan đến hoạt động thí nghiệm chuyên ngành xây dựng. Trang riêng về phòng thí nghiệm sẽ được dùng để tra cứu sâu hơn khi cần.</p>
+            </article>
+          </div>
+
+          <div data-reveal>
+            <!-- TODO: thay link thật của trang phòng thí nghiệm -->
+            <a class="ghost-button" href="./thi-nghiem.html">Xem trang phòng thí nghiệm</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card panel" data-reveal>
+          <span class="eyebrow">Quy trình phối hợp</span>
+          <h2 class="section-title">Quy trình phối hợp làm việc</h2>
+          <div class="workflow-grid">
+            <article class="soft-card workflow-card">
+              <span class="step-number">1</span>
+              <h3>Tiếp nhận nhu cầu</h3>
+              <p>Ghi nhận thông tin công trình, nội dung công việc, nhóm yêu cầu kỹ thuật và mục tiêu phối hợp.</p>
+            </article>
+            <article class="soft-card workflow-card">
+              <span class="step-number">2</span>
+              <h3>Rà soát phạm vi phù hợp</h3>
+              <p>Xác định nội dung thuộc phạm vi hoạt động xây dựng hoặc nội dung kỹ thuật liên quan để đề xuất hướng xử lý phù hợp.</p>
+            </article>
+            <article class="soft-card workflow-card">
+              <span class="step-number">3</span>
+              <h3>Tổ chức triển khai</h3>
+              <p>Phối hợp thực hiện công việc theo kế hoạch thống nhất, bảo đảm rõ đầu việc, rõ trách nhiệm và thuận tiện trong quá trình làm việc.</p>
+            </article>
+            <article class="soft-card workflow-card">
+              <span class="step-number">4</span>
+              <h3>Hoàn thiện kết quả và hỗ trợ tiếp theo</h3>
+              <p>Bàn giao thông tin, hồ sơ hoặc tài liệu liên quan và tiếp tục hỗ trợ trong quá trình phối hợp thực tế nếu cần.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container" data-reveal>
+          <span class="eyebrow">Đối tượng khách hàng</span>
+          <h2 class="section-title">Đối tượng khách hàng phù hợp</h2>
+          <p class="section-copy">
+            Dịch vụ và phạm vi hoạt động của Trung An phù hợp với nhiều nhóm khách hàng trong lĩnh vực xây dựng và hạ tầng kỹ thuật.
+          </p>
+          <div class="clients-grid">
+            <article class="soft-card client-card">Chủ đầu tư</article>
+            <article class="soft-card client-card">Nhà thầu thi công</article>
+            <article class="soft-card client-card">Đơn vị tư vấn</article>
+            <article class="soft-card client-card">Ban quản lý dự án</article>
+            <article class="soft-card client-card">Công trình dân dụng</article>
+            <article class="soft-card client-card">Công trình hạ tầng kỹ thuật</article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container card cta-panel" data-reveal>
+          <div>
+            <span class="eyebrow eyebrow--light">Trang phòng thí nghiệm</span>
+            <h2 class="section-title">Cần xem chi tiết về năng lực thí nghiệm chuyên ngành xây dựng?</h2>
+            <p class="section-copy">
+              Trang phòng thí nghiệm riêng được xây dựng để người xem tra cứu rõ hơn về danh mục phép thử, phạm vi chuyên môn và các nội dung kỹ thuật chuyên sâu liên quan.
+            </p>
+          </div>
+          <div>
+            <!-- TODO: thay link thật của trang phòng thí nghiệm -->
+            <a class="button button--light" href="./thi-nghiem.html">Xem trang phòng thí nghiệm</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="lien-he" class="section">
+        <div class="container card contact-wrap" data-reveal>
+          <div class="contact-info">
+            <span class="eyebrow eyebrow--light">Liên hệ tư vấn</span>
+            <h2 class="section-title">Liên hệ Trung An để trao đổi nhu cầu phối hợp</h2>
+            <p class="section-copy">
+              Doanh nghiệp sẵn sàng tiếp nhận thông tin, rà soát phạm vi công việc và hỗ trợ khách hàng lựa chọn phương án phù hợp với nhu cầu thực tế của công trình.
+            </p>
+            <div class="hero-actions">
+              <button class="button button--light" type="button" onclick="window.location.href='tel:02923646646'">Gọi ngay</button>
+            </div>
+            <div class="contact-lines">
+              <p>Địa chỉ: Số 10, Tổ 1, Khu vực Qui Thạnh 1, phường Trung Kiên, quận Thốt Nốt, TP. Cần Thơ</p>
+              <p>Điện thoại: 0292 3646 646</p>
+              <!-- TODO: thay email nếu cần -->
+              <p>Email: trungan.las1469@gmail.com</p>
+              <!-- TODO: thay website placeholder -->
+              <p>Website: https://your-domain.vn</p>
+              <!-- TODO: thay hotline nếu cần -->
+              <p>Hotline: 09xx xxx xxx</p>
+            </div>
+          </div>
+
+          <form class="contact-form" onsubmit="event.preventDefault(); alert('Biểu mẫu đang là giao diện mẫu. Có thể gắn email service hoặc API xử lý sau.');">
+            <div class="form-grid">
+              <label class="form-field">
+                <span>Họ và tên</span>
+                <input type="text" placeholder="Nguyễn Văn A" />
+              </label>
+              <label class="form-field">
+                <span>Số điện thoại</span>
+                <input type="tel" placeholder="09xx xxx xxx" />
+              </label>
+              <label class="form-field">
+                <span>Email</span>
+                <input type="email" placeholder="ten@congty.vn" />
+              </label>
+              <div class="form-tip">
+                <strong>Gợi ý nội dung gửi yêu cầu</strong>
+                <p>Nêu loại công trình, nhóm đầu việc và nhu cầu phối hợp để việc rà soát phạm vi phù hợp được nhanh hơn.</p>
+              </div>
+            </div>
+            <label class="form-field" style="margin-top: 16px">
+              <span>Nội dung yêu cầu</span>
+              <textarea rows="5" placeholder="Mô tả hạng mục công trình, nội dung kỹ thuật hoặc nhu cầu phối hợp..."></textarea>
+            </label>
+            <div class="form-actions">
+              <button class="button" type="submit">Gửi yêu cầu</button>
+              <p>Biểu mẫu hiện là giao diện tĩnh, mở file lên là dùng được ngay.</p>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h2>CÔNG TY CỔ PHẦN ĐẦU TƯ XÂY DỰNG THƯƠNG MẠI DỊCH VỤ TRUNG AN</h2>
+          <p>Doanh nghiệp hoạt động trong lĩnh vực xây dựng, dịch vụ kỹ thuật công trình và các hoạt động chuyên môn phục vụ kiểm soát chất lượng xây dựng tại Cần Thơ.</p>
+        </div>
+        <div>
+          <h3>Thông tin</h3>
+          <p>Địa chỉ: Số 10, Tổ 1, Khu vực Qui Thạnh 1, phường Trung Kiên, quận Thốt Nốt, TP. Cần Thơ</p>
+          <p>Điện thoại: 0292 3646 646</p>
+          <!-- TODO: thay email nếu cần -->
+          <p>Email: trungan.las1469@gmail.com</p>
+          <!-- TODO: thay website placeholder -->
+          <p>Website: https://your-domain.vn</p>
+          <!-- TODO: thay link trang phòng thí nghiệm -->
+          <p>Link trang thí nghiệm: ./thi-nghiem.html</p>
+        </div>
+        <div>
+          <h3>Liên kết nhanh</h3>
+          <a href="#gioi-thieu">Giới thiệu</a>
+          <a href="#linh-vuc">Lĩnh vực</a>
+          <a href="#nang-luc">Năng lực</a>
+          <a href="#van-ban">Văn bản</a>
+          <a href="#lien-he">Liên hệ</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const header = document.getElementById("header");
+      const mobileToggle = document.getElementById("mobileToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+      const revealItems = document.querySelectorAll("[data-reveal]");
+
+      function updateHeaderState() {
+        header.classList.toggle("is-scrolled", window.scrollY > 8);
+      }
+
+      function toggleMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.toggle("is-open");
+      }
+
+      function closeMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove("is-open");
+      }
+
+      if (mobileToggle) {
+        mobileToggle.addEventListener("click", toggleMobileMenu);
+      }
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.14,
+        }
+      );
+
+      revealItems.forEach((item) => revealObserver.observe(item));
+
+      updateHeaderState();
+      window.addEventListener("scroll", updateHeaderState, { passive: true });
+    </script>
+  </body>
+</html>

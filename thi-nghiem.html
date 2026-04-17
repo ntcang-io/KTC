@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trung An | Năng lực thí nghiệm chuyên ngành xây dựng và công bố tài liệu</title>
+    <meta
+      name="description"
+      content="Trang giới thiệu năng lực thí nghiệm chuyên ngành xây dựng của Trung An, kèm khu vực công bố công khai các tài liệu, chứng nhận và danh mục phép thử liên quan."
+    />
+    <style>
+      :root {
+        --bg: #f3f7fb;
+        --surface: rgba(255, 255, 255, 0.95);
+        --surface-muted: #eef3fa;
+        --text: #0e1a2b;
+        --muted: #617289;
+        --primary: #103d73;
+        --primary-strong: #0a2647;
+        --line: rgba(14, 26, 43, 0.1);
+        --shadow: 0 18px 40px rgba(14, 26, 43, 0.08);
+        --shadow-soft: 0 10px 24px rgba(14, 26, 43, 0.06);
+        --radius: 24px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(16, 61, 115, 0.08), transparent 28%),
+          linear-gradient(180deg, #f8fbff 0%, #f2f6fb 52%, #eef3f8 100%);
+        color: var(--text);
+        line-height: 1.65;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .section {
+        padding: 86px 0;
+        scroll-margin-top: 96px;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border-radius: 999px;
+        background: rgba(16, 61, 115, 0.06);
+        border: 1px solid rgba(16, 61, 115, 0.1);
+        color: var(--primary);
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow--light {
+        color: rgba(255, 255, 255, 0.82);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.12);
+      }
+
+      .section-title {
+        margin: 18px 0 0;
+        font-size: clamp(2rem, 3vw, 3rem);
+        line-height: 1.12;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      .section-copy {
+        max-width: 760px;
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+      }
+
+      .card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: var(--shadow);
+      }
+
+      .soft-card {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fff;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .button,
+      .ghost-button,
+      .doc-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-height: 46px;
+        padding: 0 20px;
+        border-radius: 999px;
+        font-weight: 700;
+        transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+      }
+
+      .button:hover,
+      .ghost-button:hover,
+      .doc-link:hover,
+      .accordion-trigger:hover {
+        transform: translateY(-1px);
+      }
+
+      .button {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .button:hover {
+        background: var(--primary-strong);
+      }
+
+      .ghost-button,
+      .doc-link {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--text);
+      }
+
+      .ghost-button:hover,
+      .doc-link:hover {
+        color: var(--primary);
+        border-color: rgba(16, 61, 115, 0.24);
+      }
+
+      .header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: 1px solid rgba(14, 26, 43, 0.06);
+        background: rgba(248, 251, 255, 0.84);
+        backdrop-filter: blur(16px);
+      }
+
+      .header__inner {
+        min-height: 88px;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        align-items: center;
+        gap: 24px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .brand-logo {
+        width: 92px;
+        height: 92px;
+        object-fit: contain;
+        padding: 10px;
+        background: #fff;
+        border-radius: 22px;
+        border: 1px solid rgba(14, 26, 43, 0.08);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .brand-mark {
+        font-size: 0.78rem;
+        letter-spacing: 0.25em;
+        font-weight: 800;
+        color: var(--primary);
+        text-transform: uppercase;
+      }
+
+      .brand-text {
+        margin: 8px 0 0;
+        max-width: 340px;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+
+      .nav a {
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+
+      .nav a:hover {
+        color: var(--primary);
+      }
+
+      .hero {
+        padding-top: 58px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px;
+        align-items: center;
+      }
+
+      .hero h1 {
+        margin: 22px 0 0;
+        font-size: clamp(2.6rem, 5vw, 4.5rem);
+        line-height: 1.04;
+        font-weight: 800;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .hero-visual {
+        padding: 14px;
+      }
+
+      .hero-frame {
+        position: relative;
+        min-height: 520px;
+        overflow: hidden;
+        border-radius: calc(var(--radius) - 4px);
+      }
+
+      .hero-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(28deg, rgba(10, 38, 71, 0.78), rgba(16, 61, 115, 0.16), transparent 72%);
+      }
+
+      .hero-caption {
+        position: absolute;
+        left: 24px;
+        right: 24px;
+        bottom: 24px;
+        padding: 22px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(12px);
+        color: #fff;
+      }
+
+      .hero-caption p {
+        margin: 10px 0 0;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+        margin-top: 26px;
+      }
+
+      .stat-card {
+        padding: 22px 24px;
+      }
+
+      .stat-card strong {
+        display: block;
+        color: var(--primary);
+        font-size: 1.4rem;
+      }
+
+      .stat-card span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+      }
+
+      .grid-3,
+      .grid-4,
+      .docs-grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .docs-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 30px;
+      }
+
+      .info-card,
+      .doc-card {
+        padding: 26px;
+      }
+
+      .icon-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 18px;
+        background: rgba(16, 61, 115, 0.1);
+        color: var(--primary);
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .info-card h3,
+      .doc-card h3 {
+        margin: 18px 0 0;
+        font-size: 1.18rem;
+        line-height: 1.35;
+      }
+
+      .info-card p,
+      .doc-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .docs-section {
+        padding: 42px;
+        background:
+          linear-gradient(180deg, rgba(10, 38, 71, 0.97), rgba(16, 61, 115, 0.95)),
+          #0a2647;
+        color: #fff;
+      }
+
+      .docs-section .section-copy {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .doc-card {
+        display: grid;
+        grid-template-columns: 136px 1fr;
+        gap: 22px;
+        align-items: start;
+      }
+
+      .doc-thumb {
+        aspect-ratio: 4 / 5;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .doc-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .doc-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+
+      .doc-link--primary {
+        background: rgba(16, 61, 115, 0.08);
+        color: var(--primary);
+        border-color: rgba(16, 61, 115, 0.16);
+      }
+
+      .doc-meta {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        margin-top: 14px;
+        border-radius: 999px;
+        background: rgba(16, 61, 115, 0.08);
+        color: var(--primary);
+        font-size: 0.86rem;
+        font-weight: 700;
+      }
+
+      .docs-note {
+        margin-top: 22px;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.94rem;
+      }
+
+      .accordion-list {
+        display: grid;
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .accordion-item {
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: #fff;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .accordion-trigger {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        text-align: left;
+        padding: 22px 24px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+        color: var(--text);
+        font-weight: 800;
+      }
+
+      .accordion-trigger::after {
+        content: "+";
+        font-size: 1.4rem;
+        color: var(--primary);
+      }
+
+      .accordion-item.is-open .accordion-trigger::after {
+        content: "–";
+      }
+
+      .accordion-panel {
+        display: none;
+        padding: 0 24px 24px;
+        border-top: 1px solid rgba(14, 26, 43, 0.08);
+        background: rgba(238, 243, 250, 0.6);
+      }
+
+      .accordion-item.is-open .accordion-panel {
+        display: block;
+      }
+
+      .doc-list {
+        display: grid;
+        gap: 10px;
+        padding-top: 18px;
+      }
+
+      .doc-list a {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        padding: 14px 16px;
+        border: 1px solid rgba(14, 26, 43, 0.08);
+        border-radius: 16px;
+        background: #fff;
+        color: var(--text);
+      }
+
+      .doc-list a span {
+        color: var(--primary);
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .cta-bar {
+        padding: 36px 40px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 18px;
+        align-items: center;
+        background: linear-gradient(180deg, rgba(10, 38, 71, 0.96), rgba(16, 61, 115, 0.94));
+        color: #fff;
+      }
+
+      .cta-bar .section-copy {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .footer {
+        padding: 64px 0;
+        background: var(--primary-strong);
+        color: #fff;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr;
+        gap: 24px;
+      }
+
+      .footer h2,
+      .footer h3 {
+        margin: 0 0 14px;
+      }
+
+      .footer p,
+      .footer a {
+        display: block;
+        margin: 0 0 10px;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .footer a:hover {
+        color: #fff;
+      }
+
+      @media (max-width: 1120px) {
+        .header__inner,
+        .hero-grid,
+        .cta-bar,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .nav {
+          justify-content: flex-start;
+          gap: 14px;
+        }
+
+        .grid-4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .container {
+          width: min(100%, calc(100% - 20px));
+        }
+
+        .section {
+          padding: 72px 0;
+        }
+
+        .brand-logo {
+          width: 76px;
+          height: 76px;
+          padding: 8px;
+        }
+
+        .brand-text {
+          max-width: 240px;
+        }
+
+        .hero h1 {
+          font-size: 2.35rem;
+        }
+
+        .hero-frame {
+          min-height: 420px;
+        }
+
+        .stats,
+        .grid-3,
+        .grid-4,
+        .docs-grid,
+        .doc-card,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .docs-section,
+        .cta-bar {
+          padding: 28px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <a class="brand" href="./index.html">
+            <!-- TODO: thay logo nếu cần -->
+            <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
+            <div>
+              <div class="brand-mark">TRUNG AN</div>
+              <p class="brand-text">Năng lực thí nghiệm chuyên ngành xây dựng và khu vực công bố công khai tài liệu liên quan.</p>
+            </div>
+          </a>
+
+          <nav class="nav" aria-label="Điều hướng trang thí nghiệm">
+            <a href="#gioi-thieu">Giới thiệu</a>
+            <a href="#nang-luc">Năng lực</a>
+            <a href="#cong-bo">Công bố tài liệu</a>
+            <a href="#thu-muc">Thư mục tài liệu</a>
+            <a href="#lien-he">Liên hệ</a>
+          </nav>
+
+          <div>
+            <a class="button" href="./index.html">Về trang doanh nghiệp</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero section">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <span class="eyebrow">Trang thí nghiệm riêng</span>
+              <h1>Năng lực thí nghiệm chuyên ngành xây dựng và công bố công khai tài liệu liên quan</h1>
+              <p class="section-copy">
+                Trung An có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và mã số phòng thí nghiệm LAS-XD 13.004 đã được chuyển đổi thành LAS-XD 1469. Trang này dùng để giới thiệu ngắn gọn năng lực chuyên môn và công bố các tài liệu, văn bản liên quan đang được lưu trong thư mục công khai.
+              </p>
+              <div class="hero-actions">
+                <a class="button" href="#cong-bo">Xem tài liệu công khai</a>
+                <a class="ghost-button" href="./index.html">Quay lại trang doanh nghiệp</a>
+              </div>
+            </div>
+
+            <div class="card hero-visual">
+              <div class="hero-frame">
+                <!-- TODO: thay ảnh hero của trang thí nghiệm nếu có -->
+                <img src="./public/hero-industrial.svg" alt="Phòng thí nghiệm xây dựng và công tác kiểm tra hiện trường" />
+                <div class="hero-overlay"></div>
+                <div class="hero-caption">
+                  <span class="eyebrow eyebrow--light">LAS-XD 1469</span>
+                  <p>Trang được thiết kế theo hướng cung cấp thông tin rõ ràng, gọn, ưu tiên năng lực liên quan và tài liệu công bố công khai.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="stats">
+            <article class="soft-card stat-card">
+              <strong>LAS-XD 1469</strong>
+              <span>Mã số phòng thí nghiệm hiện hành</span>
+            </article>
+            <article class="soft-card stat-card">
+              <strong>Giấy chứng nhận đủ điều kiện</strong>
+              <span>Hoạt động thí nghiệm chuyên ngành xây dựng</span>
+            </article>
+            <article class="soft-card stat-card">
+              <strong>Công bố hồ sơ</strong>
+              <span>Văn bản, quyết định, thiết bị và tài liệu tham chiếu</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gioi-thieu" class="section">
+        <div class="container">
+          <span class="eyebrow">Giới thiệu năng lực</span>
+          <h2 class="section-title">Giới thiệu ngắn gọn về năng lực thí nghiệm</h2>
+          <p class="section-copy">
+            Đây là trang thí nghiệm riêng nhằm giới thiệu ngắn gọn năng lực liên quan đến hoạt động thí nghiệm chuyên ngành xây dựng của Trung An. Nội dung trên trang không đi theo hướng landing page quảng bá, mà tập trung vào việc công khai năng lực, văn bản, tài liệu tham chiếu và các thông tin phục vụ tra cứu.
+          </p>
+
+          <div class="grid-3" style="margin-top: 30px">
+            <article class="soft-card info-card">
+              <div class="icon-badge">GCN</div>
+              <h3>Đủ điều kiện hoạt động thí nghiệm</h3>
+              <p>Doanh nghiệp có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được công nhận.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">LAS</div>
+              <h3>Mã số LAS-XD rõ ràng</h3>
+              <p>Phòng thí nghiệm mang mã số LAS-XD 13.004 và đã được chuyển đổi thành LAS-XD 1469 để phục vụ quá trình xác lập và tra cứu năng lực.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">HS</div>
+              <h3>Hồ sơ công khai theo thư mục</h3>
+              <p>Các tài liệu trong thư mục `tai-lieu` được nhóm lại theo từng mục để thuận tiện cho việc công bố công khai và đối chiếu khi cần.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="nang-luc" class="section">
+        <div class="container">
+          <span class="eyebrow">Năng lực liên quan</span>
+          <h2 class="section-title">Các nhóm năng lực được giới thiệu trên trang</h2>
+          <p class="section-copy">
+            Phần này chỉ trình bày ngắn gọn các năng lực liên quan để người xem hiểu phạm vi hoạt động và mục đích của trang công bố tài liệu.
+          </p>
+
+          <div class="grid-4" style="margin-top: 30px">
+            <article class="soft-card info-card">
+              <div class="icon-badge">TN</div>
+              <h3>Thí nghiệm chuyên ngành xây dựng</h3>
+              <p>Thực hiện các nội dung thí nghiệm theo danh mục được chứng nhận, phục vụ kiểm soát chất lượng trong xây dựng.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">PTN</div>
+              <h3>Tổ chức phòng thí nghiệm</h3>
+              <p>Có tài liệu liên quan đến tổ chức phòng thí nghiệm, sơ đồ tổ chức, quyết định thành lập và vận hành.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">TB</div>
+              <h3>Thiết bị và tài liệu tham chiếu</h3>
+              <p>Có tài liệu thiết bị thí nghiệm, hồ sơ tham chiếu, hiệu chuẩn và các tài liệu phục vụ chứng minh năng lực.</p>
+            </article>
+            <article class="soft-card info-card">
+              <div class="icon-badge">CB</div>
+              <h3>Công bố công khai hồ sơ</h3>
+              <p>Trang này là nơi tập hợp các file công khai để khách hàng, đơn vị tư vấn hoặc cơ quan liên quan thuận tiện tra cứu.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="cong-bo" class="section">
+        <div class="container card docs-section">
+          <span class="eyebrow eyebrow--light">Công bố công khai</span>
+          <h2 class="section-title">Một số tài liệu công khai nổi bật</h2>
+          <p class="section-copy">
+            Các tài liệu dưới đây được chọn từ thư mục `tai-lieu` để công bố công khai theo nhóm nội dung quan trọng, phục vụ tra cứu nhanh.
+          </p>
+
+          <div class="docs-grid">
+            <article class="soft-card doc-card">
+              <div class="doc-thumb">
+                <!-- TODO: thay ảnh scan chứng nhận nếu có -->
+                <img src="./public/cert-scan-2.svg" alt="Công bố năng lực phòng thí nghiệm" />
+              </div>
+              <div>
+                <h3>Công bố năng lực PTN LAS-XD 13.004</h3>
+                <p>Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD trước khi chuyển đổi sang LAS-XD 1469.</p>
+                <div class="doc-actions">
+                  <a class="doc-link doc-link--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
+                  <a class="doc-link" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" download>Tải PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="soft-card doc-card">
+              <div class="doc-thumb">
+                <!-- TODO: thay ảnh scan chứng nhận nếu có -->
+                <img src="./public/cert-scan-1.svg" alt="Giấy chứng nhận hoạt động thí nghiệm" />
+              </div>
+              <div>
+                <h3>Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử</h3>
+                <p>Tài liệu thể hiện điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và danh mục các phép thử liên quan.</p>
+                <div class="doc-actions">
+                  <a class="doc-link doc-link--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
+                  <a class="doc-link" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" download>Tải PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="soft-card doc-card">
+              <div class="doc-thumb">
+                <!-- TODO: thay ảnh scan sơ đồ tổ chức nếu có -->
+                <img src="./public/cert-scan-3.svg" alt="Bản vẽ sơ đồ tổ chức phòng thí nghiệm" />
+              </div>
+              <div>
+                <h3>Bản vẽ sơ đồ tổ chức phòng thí nghiệm</h3>
+                <p>Tài liệu mô tả cách tổ chức nhân sự và mô hình vận hành của phòng thí nghiệm trong quá trình triển khai công việc.</p>
+                <div class="doc-actions">
+                  <a class="doc-link doc-link--primary" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
+                  <a class="doc-link" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" download>Tải PDF</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="soft-card doc-card">
+              <div class="doc-thumb">
+                <!-- TODO: thay ảnh scan thiết bị hoặc danh mục -->
+                <img src="./public/cert-scan-1.svg" alt="Thiết bị thí nghiệm" />
+              </div>
+              <div>
+                <h3>Thiết bị thí nghiệm</h3>
+                <p>Tài liệu công khai về thiết bị thí nghiệm phục vụ cho việc chứng minh điều kiện và năng lực triển khai công việc chuyên môn.</p>
+                <div class="doc-actions">
+                  <a class="doc-link doc-link--primary" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
+                  <a class="doc-link" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" download>Tải PDF</a>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <p class="docs-note">
+            Các liên kết trên đang dẫn trực tiếp tới các file trong thư mục `tai-lieu`. Có thể thay thumbnail, tên hiển thị hoặc bổ sung file mới khi cần công bố thêm.
+          </p>
+        </div>
+      </section>
+
+      <section id="thu-muc" class="section">
+        <div class="container">
+          <span class="eyebrow">Thư mục tài liệu</span>
+          <h2 class="section-title">Danh mục tài liệu công khai theo nhóm thư mục</h2>
+          <p class="section-copy">
+            Các nhóm dưới đây phản ánh cấu trúc tài liệu đang lưu trong thư mục công khai. Mỗi mục bên dưới đều mở trực tiếp file PDF cụ thể để thuận tiện cho việc xem và đối chiếu.
+          </p>
+
+          <div class="accordion-list">
+            <article class="accordion-item is-open">
+              <button class="accordion-trigger" type="button">Chứng chỉ và quyết định hoạt động</button>
+              <div class="accordion-panel">
+                <div class="doc-list">
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" target="_blank" rel="noopener">1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/2. CHỨNG CHỈ NLHD LẦN 1.pdf" target="_blank" rel="noopener">2. CHỨNG CHỈ NLHD LẦN 1.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/3. CHỨNG CHỈ NLHD LẦN 2.pdf" target="_blank" rel="noopener">3. CHỨNG CHỈ NLHD LẦN 2.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/4. CHỨNG CHỈ NLHD LẦN 3.pdf" target="_blank" rel="noopener">4. CHỨNG CHỈ NLHD LẦN 3.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/5. CHỨNG CHỈ NLHD LẦN 4.pdf" target="_blank" rel="noopener">5. CHỨNG CHỈ NLHD LẦN 4.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/6. Quyết định thành lập phòng TN.pdf" target="_blank" rel="noopener">6. Quyết định thành lập phòng TN.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" target="_blank" rel="noopener">7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf <span>Mở file</span></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-trigger" type="button">Biểu mẫu và quy trình tiếp nhận</button>
+              <div class="accordion-panel">
+                <div class="doc-list">
+                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf" target="_blank" rel="noopener">1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" target="_blank" rel="noopener">2. THIẾT BỊ THÍ NGHIỆM.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" target="_blank" rel="noopener">3. BAN VE SO DO TO CHUC PTN.pdf <span>Mở file</span></a>
+                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf" target="_blank" rel="noopener">MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf <span>Mở file</span></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-trigger" type="button">Danh mục tài liệu tham chiếu</button>
+              <div class="accordion-panel">
+                <div class="doc-list">
+                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf" target="_blank" rel="noopener">1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf <span>Mở PDF</span></a>
+                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf" target="_blank" rel="noopener">2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf <span>Mở PDF</span></a>
+                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf" target="_blank" rel="noopener">3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf <span>Mở PDF</span></a>
+                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf" target="_blank" rel="noopener">3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf <span>Mở PDF</span></a>
+                </div>
+              </div>
+            </article>
+
+            <article class="accordion-item">
+              <button class="accordion-trigger" type="button">Thông báo và cập nhật vận hành</button>
+              <div class="accordion-panel">
+                <div class="doc-list">
+                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/1. QD bổ nhiệm truong PTN.pdf" target="_blank" rel="noopener">1. QD bổ nhiệm truong PTN.pdf <span>Mở PDF</span></a>
+                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - Bằng Đại Học.pdf" target="_blank" rel="noopener">2. DS NHAN SU/Nguyễn Duy Thanh - Bằng Đại Học.pdf <span>Mở PDF</span></a>
+                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - ISO 17025-2017.pdf" target="_blank" rel="noopener">2. DS NHAN SU/Nguyễn Duy Thanh - ISO 17025-2017.pdf <span>Mở PDF</span></a>
+                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - QL PTN.pdf" target="_blank" rel="noopener">2. DS NHAN SU/Nguyễn Duy Thanh - QL PTN.pdf <span>Mở PDF</span></a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="lien-he" class="section">
+        <div class="container card cta-bar">
+          <div>
+            <span class="eyebrow eyebrow--light">Liên hệ</span>
+            <h2 class="section-title">Liên hệ Trung An để trao đổi thêm về năng lực và tài liệu công bố</h2>
+            <p class="section-copy">
+              Trang này phục vụ mục tiêu công bố và tra cứu. Khi cần trao đổi cụ thể hơn về tài liệu hoặc phạm vi thí nghiệm, có thể liên hệ trực tiếp với doanh nghiệp.
+            </p>
+          </div>
+          <div style="display: grid; gap: 12px; justify-items: start">
+            <a class="button button--light" href="tel:02923646646">0292 3646 646</a>
+            <a class="ghost-button" style="background: transparent; color: #fff; border-color: rgba(255,255,255,0.18)" href="mailto:trungan.las1469@gmail.com">trungan.las1469@gmail.com</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h2>TRUNG AN | TRANG THÍ NGHIỆM</h2>
+          <p>Giới thiệu ngắn gọn năng lực thí nghiệm chuyên ngành xây dựng và khu vực công bố công khai tài liệu liên quan từ thư mục `tai-lieu`.</p>
+        </div>
+        <div>
+          <h3>Liên kết</h3>
+          <a href="./index.html">Trang doanh nghiệp</a>
+          <a href="#cong-bo">Tài liệu nổi bật</a>
+          <a href="#thu-muc">Thư mục tài liệu</a>
+          <a href="#lien-he">Liên hệ</a>
+        </div>
+        <div>
+          <h3>Thông tin</h3>
+          <p>Địa chỉ: Số 10, Tổ 1, Khu vực Qui Thạnh 1, phường Trung Kiên, quận Thốt Nốt, TP. Cần Thơ</p>
+          <p>Điện thoại: 0292 3646 646</p>
+          <p>Email: trungan.las1469@gmail.com</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const item = trigger.parentElement;
+          item.classList.toggle("is-open");
+        });
+      });
+    </script>
+  </body>
+</html>
