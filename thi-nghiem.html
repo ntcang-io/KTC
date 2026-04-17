@@ -332,6 +332,8 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: scale(1);
+        transition: transform 420ms ease;
       }
 
       .hero-overlay {
@@ -519,6 +521,15 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+        transform: scale(1);
+        transition: transform 420ms ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .hero-frame:hover img,
+        .lab-shot:hover img {
+          transform: scale(1.05);
+        }
       }
 
       .lab-shot__caption {
@@ -863,7 +874,6 @@
       <div class="container">
         <div class="header__inner">
           <a class="brand" href="./index.html">
-            <!-- TODO: thay logo nếu cần -->
             <span class="brand-logo-frame">
               <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
             </span>
