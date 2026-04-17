@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trung An | Năng lực thí nghiệm chuyên ngành xây dựng và công bố tài liệu</title>
+      <title>Trung An | Thí nghiệm chuyên ngành xây dựng và tài liệu công bố</title>
     <meta
       name="description"
-      content="Trang giới thiệu năng lực thí nghiệm chuyên ngành xây dựng của Trung An, kèm khu vực công bố công khai các tài liệu, chứng nhận và danh mục phép thử liên quan."
+      content="Giới thiệu năng lực thí nghiệm chuyên ngành xây dựng của Trung An, kèm tài liệu công bố, chứng nhận và danh mục phép thử liên quan."
     />
     <style>
       :root {
@@ -430,6 +430,87 @@
         font-size: 0.94rem;
       }
 
+      .docs-layout {
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+        gap: 22px;
+        margin-top: 30px;
+        align-items: start;
+      }
+
+      .docs-browser {
+        padding: 22px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .docs-viewer {
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .viewer-meta {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        padding: 8px 6px 18px;
+      }
+
+      .viewer-meta h3 {
+        margin: 0;
+        color: var(--text);
+        font-size: 1.1rem;
+      }
+
+      .viewer-meta p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+      }
+
+      .viewer-frame {
+        width: 100%;
+        height: 820px;
+        border: 1px solid rgba(14, 26, 43, 0.08);
+        border-radius: 18px;
+        background: #fff;
+      }
+
+      .quick-docs {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 18px;
+      }
+
+      .quick-doc-button {
+        display: flex;
+        justify-content: space-between;
+        gap: 14px;
+        width: 100%;
+        padding: 14px 16px;
+        border: 1px solid rgba(14, 26, 43, 0.08);
+        border-radius: 16px;
+        background: #fff;
+        color: var(--text);
+        text-align: left;
+        font-weight: 700;
+        transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+      }
+
+      .quick-doc-button:hover,
+      .quick-doc-button.is-active {
+        border-color: rgba(16, 61, 115, 0.24);
+        background: rgba(16, 61, 115, 0.06);
+        color: var(--primary);
+        transform: translateY(-1px);
+      }
+
       .accordion-list {
         display: grid;
         gap: 14px;
@@ -550,7 +631,8 @@
         .header__inner,
         .hero-grid,
         .cta-bar,
-        .footer-grid {
+        .footer-grid,
+        .docs-layout {
           grid-template-columns: 1fr;
         }
 
@@ -604,6 +686,10 @@
         .cta-bar {
           padding: 28px 20px;
         }
+
+        .viewer-frame {
+          height: 560px;
+        }
       }
     </style>
   </head>
@@ -616,20 +702,20 @@
             <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
             <div>
               <div class="brand-mark">TRUNG AN</div>
-              <p class="brand-text">Năng lực thí nghiệm chuyên ngành xây dựng và khu vực công bố công khai tài liệu liên quan.</p>
+              <p class="brand-text">Giới thiệu năng lực thí nghiệm chuyên ngành xây dựng và các tài liệu công bố liên quan.</p>
             </div>
           </a>
 
-          <nav class="nav" aria-label="Điều hướng trang thí nghiệm">
-            <a href="#gioi-thieu">Giới thiệu</a>
-            <a href="#nang-luc">Năng lực</a>
-            <a href="#cong-bo">Công bố tài liệu</a>
-            <a href="#thu-muc">Thư mục tài liệu</a>
+          <nav class="nav" aria-label="Điều hướng chính">
+            <a href="./index.html#gioi-thieu">Giới thiệu</a>
+            <a href="./index.html#linh-vuc">Lĩnh vực</a>
+            <a href="./index.html#nang-luc">Năng lực</a>
+            <a href="#gioi-thieu">Thí nghiệm</a>
             <a href="#lien-he">Liên hệ</a>
           </nav>
 
           <div>
-            <a class="button" href="./index.html">Về trang doanh nghiệp</a>
+            <a class="button" href="#lien-he">Liên hệ</a>
           </div>
         </div>
       </div>
@@ -640,14 +726,14 @@
         <div class="container">
           <div class="hero-grid">
             <div>
-              <span class="eyebrow">Trang thí nghiệm riêng</span>
-              <h1>Năng lực thí nghiệm chuyên ngành xây dựng và công bố công khai tài liệu liên quan</h1>
+              <span class="eyebrow">Thí nghiệm chuyên ngành xây dựng</span>
+              <h1>Năng lực thí nghiệm chuyên ngành xây dựng và tài liệu công bố liên quan</h1>
               <p class="section-copy">
-                Trung An có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và mã số phòng thí nghiệm LAS-XD 13.004 đã được chuyển đổi thành LAS-XD 1469. Trang này dùng để giới thiệu ngắn gọn năng lực chuyên môn và công bố các tài liệu, văn bản liên quan đang được lưu trong thư mục công khai.
+                Trung An có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và mã số phòng thí nghiệm LAS-XD 13.004 đã được chuyển đổi thành LAS-XD 1469. Nội dung dưới đây giới thiệu ngắn gọn năng lực chuyên môn và các tài liệu, văn bản liên quan đang được công bố.
               </p>
               <div class="hero-actions">
-                <a class="button" href="#cong-bo">Xem tài liệu công khai</a>
-                <a class="ghost-button" href="./index.html">Quay lại trang doanh nghiệp</a>
+                <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
+                <a class="ghost-button" href="#lien-he">Liên hệ</a>
               </div>
             </div>
 
@@ -658,7 +744,7 @@
                 <div class="hero-overlay"></div>
                 <div class="hero-caption">
                   <span class="eyebrow eyebrow--light">LAS-XD 1469</span>
-                  <p>Trang được thiết kế theo hướng cung cấp thông tin rõ ràng, gọn, ưu tiên năng lực liên quan và tài liệu công bố công khai.</p>
+                  <p>Thông tin được trình bày gọn, rõ và ưu tiên các nội dung liên quan đến năng lực chuyên môn cùng tài liệu công bố.</p>
                 </div>
               </div>
             </div>
@@ -686,7 +772,7 @@
           <span class="eyebrow">Giới thiệu năng lực</span>
           <h2 class="section-title">Giới thiệu ngắn gọn về năng lực thí nghiệm</h2>
           <p class="section-copy">
-            Đây là trang thí nghiệm riêng nhằm giới thiệu ngắn gọn năng lực liên quan đến hoạt động thí nghiệm chuyên ngành xây dựng của Trung An. Nội dung trên trang không đi theo hướng landing page quảng bá, mà tập trung vào việc công khai năng lực, văn bản, tài liệu tham chiếu và các thông tin phục vụ tra cứu.
+            Trang này giới thiệu ngắn gọn năng lực liên quan đến hoạt động thí nghiệm chuyên ngành xây dựng của Trung An, đồng thời tập hợp các văn bản, tài liệu tham chiếu và thông tin phục vụ tra cứu.
           </p>
 
           <div class="grid-3" style="margin-top: 30px">
@@ -702,8 +788,8 @@
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">HS</div>
-              <h3>Hồ sơ công khai theo thư mục</h3>
-              <p>Các tài liệu trong thư mục `tai-lieu` được nhóm lại theo từng mục để thuận tiện cho việc công bố công khai và đối chiếu khi cần.</p>
+              <h3>Hồ sơ được sắp xếp theo nhóm tài liệu</h3>
+              <p>Các tài liệu trong thư mục `tai-lieu` được nhóm lại theo từng mục để thuận tiện cho việc theo dõi, đối chiếu và cập nhật khi cần.</p>
             </article>
           </div>
         </div>
@@ -735,8 +821,8 @@
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">CB</div>
-              <h3>Công bố công khai hồ sơ</h3>
-              <p>Trang này là nơi tập hợp các file công khai để khách hàng, đơn vị tư vấn hoặc cơ quan liên quan thuận tiện tra cứu.</p>
+              <h3>Tài liệu được công bố để tra cứu</h3>
+              <p>Các tài liệu được tập hợp theo hướng thuận tiện cho khách hàng, đơn vị tư vấn hoặc cơ quan liên quan khi cần tra cứu.</p>
             </article>
           </div>
         </div>
@@ -744,100 +830,45 @@
 
       <section id="cong-bo" class="section">
         <div class="container card docs-section">
-          <span class="eyebrow eyebrow--light">Công bố công khai</span>
-          <h2 class="section-title">Một số tài liệu công khai nổi bật</h2>
+          <span class="eyebrow eyebrow--light">Tài liệu công bố</span>
+          <h2 class="section-title">Một số tài liệu nổi bật</h2>
           <p class="section-copy">
-            Các tài liệu dưới đây được chọn từ thư mục `tai-lieu` để công bố công khai theo nhóm nội dung quan trọng, phục vụ tra cứu nhanh.
+            Các tài liệu dưới đây được chọn từ thư mục `tai-lieu` theo nhóm nội dung quan trọng, phục vụ tra cứu nhanh.
           </p>
 
-          <div class="docs-grid">
-            <article class="soft-card doc-card">
-              <div class="doc-thumb">
-                <!-- TODO: thay ảnh scan chứng nhận nếu có -->
-                <img src="./public/cert-scan-2.svg" alt="Công bố năng lực phòng thí nghiệm" />
+          <div class="docs-layout">
+            <div class="docs-browser">
+              <div class="quick-docs">
+                <button class="quick-doc-button is-active" type="button" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" data-title="Công bố năng lực PTN LAS-XD 13.004" data-desc="Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD trước khi chuyển đổi sang LAS-XD 1469.">
+                  <span>Công bố năng lực PTN LAS-XD 13.004</span>
+                  <span>Xem</span>
+                </button>
+                <button class="quick-doc-button" type="button" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" data-title="Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử" data-desc="Tài liệu thể hiện điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và danh mục các phép thử liên quan.">
+                  <span>Giấy chứng nhận hoạt động thí nghiệm</span>
+                  <span>Xem</span>
+                </button>
+                <button class="quick-doc-button" type="button" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" data-title="Bản vẽ sơ đồ tổ chức phòng thí nghiệm" data-desc="Tài liệu mô tả cách tổ chức nhân sự và mô hình vận hành của phòng thí nghiệm trong quá trình triển khai công việc.">
+                  <span>Sơ đồ tổ chức phòng thí nghiệm</span>
+                  <span>Xem</span>
+                </button>
+                <button class="quick-doc-button" type="button" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" data-title="Thiết bị thí nghiệm" data-desc="Tài liệu về thiết bị thí nghiệm phục vụ cho việc chứng minh điều kiện và năng lực triển khai công việc chuyên môn.">
+                  <span>Thiết bị thí nghiệm</span>
+                  <span>Xem</span>
+                </button>
               </div>
-              <div>
-                <h3>Công bố năng lực PTN LAS-XD 13.004</h3>
-                <p>Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD trước khi chuyển đổi sang LAS-XD 1469.</p>
-                <div class="doc-actions">
-                  <a class="doc-link doc-link--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
-                  <a class="doc-link" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" download>Tải PDF</a>
-                </div>
-              </div>
-            </article>
 
-            <article class="soft-card doc-card">
-              <div class="doc-thumb">
-                <!-- TODO: thay ảnh scan chứng nhận nếu có -->
-                <img src="./public/cert-scan-1.svg" alt="Giấy chứng nhận hoạt động thí nghiệm" />
-              </div>
-              <div>
-                <h3>Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử</h3>
-                <p>Tài liệu thể hiện điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và danh mục các phép thử liên quan.</p>
-                <div class="doc-actions">
-                  <a class="doc-link doc-link--primary" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
-                  <a class="doc-link" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" download>Tải PDF</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="soft-card doc-card">
-              <div class="doc-thumb">
-                <!-- TODO: thay ảnh scan sơ đồ tổ chức nếu có -->
-                <img src="./public/cert-scan-3.svg" alt="Bản vẽ sơ đồ tổ chức phòng thí nghiệm" />
-              </div>
-              <div>
-                <h3>Bản vẽ sơ đồ tổ chức phòng thí nghiệm</h3>
-                <p>Tài liệu mô tả cách tổ chức nhân sự và mô hình vận hành của phòng thí nghiệm trong quá trình triển khai công việc.</p>
-                <div class="doc-actions">
-                  <a class="doc-link doc-link--primary" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
-                  <a class="doc-link" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" download>Tải PDF</a>
-                </div>
-              </div>
-            </article>
-
-            <article class="soft-card doc-card">
-              <div class="doc-thumb">
-                <!-- TODO: thay ảnh scan thiết bị hoặc danh mục -->
-                <img src="./public/cert-scan-1.svg" alt="Thiết bị thí nghiệm" />
-              </div>
-              <div>
-                <h3>Thiết bị thí nghiệm</h3>
-                <p>Tài liệu công khai về thiết bị thí nghiệm phục vụ cho việc chứng minh điều kiện và năng lực triển khai công việc chuyên môn.</p>
-                <div class="doc-actions">
-                  <a class="doc-link doc-link--primary" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" target="_blank" rel="noopener">Xem tài liệu</a>
-                  <a class="doc-link" href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" download>Tải PDF</a>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <p class="docs-note">
-            Các liên kết trên đang dẫn trực tiếp tới các file trong thư mục `tai-lieu`. Có thể thay thumbnail, tên hiển thị hoặc bổ sung file mới khi cần công bố thêm.
-          </p>
-        </div>
-      </section>
-
-      <section id="thu-muc" class="section">
-        <div class="container">
-          <span class="eyebrow">Thư mục tài liệu</span>
-          <h2 class="section-title">Danh mục tài liệu công khai theo nhóm thư mục</h2>
-          <p class="section-copy">
-            Các nhóm dưới đây phản ánh cấu trúc tài liệu đang lưu trong thư mục công khai. Mỗi mục bên dưới đều mở trực tiếp file PDF cụ thể để thuận tiện cho việc xem và đối chiếu.
-          </p>
-
-          <div class="accordion-list">
+              <div class="accordion-list" style="margin-top: 0">
             <article class="accordion-item is-open">
               <button class="accordion-trigger" type="button">Chứng chỉ và quyết định hoạt động</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" target="_blank" rel="noopener">1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/2. CHỨNG CHỈ NLHD LẦN 1.pdf" target="_blank" rel="noopener">2. CHỨNG CHỈ NLHD LẦN 1.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/3. CHỨNG CHỈ NLHD LẦN 2.pdf" target="_blank" rel="noopener">3. CHỨNG CHỈ NLHD LẦN 2.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/4. CHỨNG CHỈ NLHD LẦN 3.pdf" target="_blank" rel="noopener">4. CHỨNG CHỈ NLHD LẦN 3.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/5. CHỨNG CHỈ NLHD LẦN 4.pdf" target="_blank" rel="noopener">5. CHỨNG CHỈ NLHD LẦN 4.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/6. Quyết định thành lập phòng TN.pdf" target="_blank" rel="noopener">6. Quyết định thành lập phòng TN.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" target="_blank" rel="noopener">7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf <span>Mở file</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" data-title="Công bố năng lực PTN LAS-XD 13.004" data-desc="Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD trước khi chuyển đổi sang LAS-XD 1469.">1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/2. CHỨNG CHỈ NLHD LẦN 1.pdf" data-title="Chứng chỉ NLHD lần 1" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 1 liên quan đến hồ sơ doanh nghiệp.">2. CHỨNG CHỈ NLHD LẦN 1.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/3. CHỨNG CHỈ NLHD LẦN 2.pdf" data-title="Chứng chỉ NLHD lần 2" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 2 liên quan đến hồ sơ doanh nghiệp.">3. CHỨNG CHỈ NLHD LẦN 2.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/4. CHỨNG CHỈ NLHD LẦN 3.pdf" data-title="Chứng chỉ NLHD lần 3" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 3 liên quan đến hồ sơ doanh nghiệp.">4. CHỨNG CHỈ NLHD LẦN 3.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/5. CHỨNG CHỈ NLHD LẦN 4.pdf" data-title="Chứng chỉ NLHD lần 4" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 4 đang được lưu trong bộ hồ sơ công khai.">5. CHỨNG CHỈ NLHD LẦN 4.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/6. Quyết định thành lập phòng TN.pdf" data-title="Quyết định thành lập phòng thí nghiệm" data-desc="Quyết định liên quan đến việc thành lập phòng thí nghiệm và tổ chức vận hành.">6. Quyết định thành lập phòng TN.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf" data-title="Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử" data-desc="Tài liệu thể hiện điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và danh mục các phép thử liên quan.">7. GIAY CHUNG NHAN HOAT DONG TN 2123 + DANH MUC CAC PHEP THU.pdf <span>Xem PDF</span></a>
                 </div>
               </div>
             </article>
@@ -846,10 +877,10 @@
               <button class="accordion-trigger" type="button">Biểu mẫu và quy trình tiếp nhận</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf" target="_blank" rel="noopener">1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" target="_blank" rel="noopener">2. THIẾT BỊ THÍ NGHIỆM.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" target="_blank" rel="noopener">3. BAN VE SO DO TO CHUC PTN.pdf <span>Mở file</span></a>
-                  <a href="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf" target="_blank" rel="noopener">MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf <span>Mở file</span></a>
+                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf" data-title="Tiêu chuẩn QLCL theo ISO/IEC 17025:2017" data-desc="Tài liệu tham chiếu liên quan đến hệ thống quản lý chất lượng trong hoạt động phòng thí nghiệm.">1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" data-title="Thiết bị thí nghiệm" data-desc="Tài liệu về thiết bị thí nghiệm phục vụ cho việc chứng minh điều kiện và năng lực triển khai công việc chuyên môn.">2. THIẾT BỊ THÍ NGHIỆM.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" data-title="Bản vẽ sơ đồ tổ chức phòng thí nghiệm" data-desc="Tài liệu mô tả cách tổ chức nhân sự và mô hình vận hành của phòng thí nghiệm trong quá trình triển khai công việc.">3. BAN VE SO DO TO CHUC PTN.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf" data-title="Danh sách máy thi công" data-desc="Tài liệu liên quan đến máy thi công và danh mục thiết bị hỗ trợ trong quá trình triển khai công việc.">MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf <span>Xem PDF</span></a>
                 </div>
               </div>
             </article>
@@ -858,10 +889,10 @@
               <button class="accordion-trigger" type="button">Danh mục tài liệu tham chiếu</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf" target="_blank" rel="noopener">1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf <span>Mở PDF</span></a>
-                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf" target="_blank" rel="noopener">2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf <span>Mở PDF</span></a>
-                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf" target="_blank" rel="noopener">3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf <span>Mở PDF</span></a>
-                  <a href="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf" target="_blank" rel="noopener">3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf <span>Mở PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf" data-title="Giấy chứng nhận ĐKKD lần 4" data-desc="Tài liệu tham chiếu liên quan đến đăng ký kinh doanh của doanh nghiệp.">1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf" data-title="Giấy CNHC thiết bị 2025-2026" data-desc="Tài liệu hiệu chuẩn thiết bị được dùng trong bộ hồ sơ tham chiếu liên quan đến năng lực phòng thí nghiệm.">2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf" data-title="Hóa đơn thiết bị thí nghiệm" data-desc="Tài liệu tham chiếu về thiết bị thí nghiệm được lưu trong bộ hồ sơ công khai.">3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf" data-title="Hóa đơn cân điện tử" data-desc="Tài liệu tham chiếu liên quan đến thiết bị cân điện tử trong danh mục thiết bị.">3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf <span>Xem PDF</span></a>
                 </div>
               </div>
             </article>
@@ -870,13 +901,31 @@
               <button class="accordion-trigger" type="button">Thông báo và cập nhật vận hành</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/1. QD bổ nhiệm truong PTN.pdf" target="_blank" rel="noopener">1. QD bổ nhiệm truong PTN.pdf <span>Mở PDF</span></a>
-                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - Bằng Đại Học.pdf" target="_blank" rel="noopener">2. DS NHAN SU/Nguyễn Duy Thanh - Bằng Đại Học.pdf <span>Mở PDF</span></a>
-                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - ISO 17025-2017.pdf" target="_blank" rel="noopener">2. DS NHAN SU/Nguyễn Duy Thanh - ISO 17025-2017.pdf <span>Mở PDF</span></a>
-                  <a href="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - QL PTN.pdf" target="_blank" rel="noopener">2. DS NHAN SU/Nguyễn Duy Thanh - QL PTN.pdf <span>Mở PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/1. QD bổ nhiệm truong PTN.pdf" data-title="Quyết định bổ nhiệm trưởng PTN" data-desc="Tài liệu vận hành liên quan đến chức danh phụ trách phòng thí nghiệm.">1. QD bổ nhiệm truong PTN.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - Bằng Đại Học.pdf" data-title="Bằng đại học - Nguyễn Duy Thanh" data-desc="Tài liệu thuộc nhóm danh sách nhân sự, văn bằng và chứng chỉ chuyên môn.">2. DS NHAN SU/Nguyễn Duy Thanh - Bằng Đại Học.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - ISO 17025-2017.pdf" data-title="ISO 17025:2017 - Nguyễn Duy Thanh" data-desc="Tài liệu thuộc nhóm chứng chỉ chuyên môn liên quan đến hoạt động phòng thí nghiệm.">2. DS NHAN SU/Nguyễn Duy Thanh - ISO 17025-2017.pdf <span>Xem PDF</span></a>
+                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU + VAN BANG, CHUNG CHI/Nguyễn Duy Thanh - QL PTN.pdf" data-title="Quản lý phòng thí nghiệm - Nguyễn Duy Thanh" data-desc="Tài liệu chứng minh năng lực quản lý liên quan đến tổ chức phòng thí nghiệm.">2. DS NHAN SU/Nguyễn Duy Thanh - QL PTN.pdf <span>Xem PDF</span></a>
                 </div>
               </div>
             </article>
+              </div>
+            </div>
+
+            <div class="docs-viewer">
+              <div class="viewer-meta">
+                <div>
+                  <h3 id="viewerTitle">Công bố năng lực PTN LAS-XD 13.004</h3>
+                  <p id="viewerDesc">Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD trước khi chuyển đổi sang LAS-XD 1469.</p>
+                </div>
+                <a class="doc-link doc-link--primary" id="viewerDownload" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" download>Tải PDF</a>
+              </div>
+              <iframe
+                id="pdfViewer"
+                class="viewer-frame"
+                src="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf"
+                title="Khung xem PDF tài liệu thí nghiệm"
+              ></iframe>
+            </div>
           </div>
         </div>
       </section>
@@ -887,7 +936,7 @@
             <span class="eyebrow eyebrow--light">Liên hệ</span>
             <h2 class="section-title">Liên hệ Trung An để trao đổi thêm về năng lực và tài liệu công bố</h2>
             <p class="section-copy">
-              Trang này phục vụ mục tiêu công bố và tra cứu. Khi cần trao đổi cụ thể hơn về tài liệu hoặc phạm vi thí nghiệm, có thể liên hệ trực tiếp với doanh nghiệp.
+              Khi cần trao đổi cụ thể hơn về tài liệu hoặc phạm vi thí nghiệm, có thể liên hệ trực tiếp với doanh nghiệp.
             </p>
           </div>
           <div style="display: grid; gap: 12px; justify-items: start">
@@ -902,13 +951,14 @@
       <div class="container footer-grid">
         <div>
           <h2>TRUNG AN | TRANG THÍ NGHIỆM</h2>
-          <p>Giới thiệu ngắn gọn năng lực thí nghiệm chuyên ngành xây dựng và khu vực công bố công khai tài liệu liên quan từ thư mục `tai-lieu`.</p>
+          <p>Giới thiệu ngắn gọn năng lực thí nghiệm chuyên ngành xây dựng và các tài liệu liên quan đang được công bố từ thư mục `tai-lieu`.</p>
         </div>
         <div>
           <h3>Liên kết</h3>
-          <a href="./index.html">Trang doanh nghiệp</a>
-          <a href="#cong-bo">Tài liệu nổi bật</a>
-          <a href="#thu-muc">Thư mục tài liệu</a>
+          <a href="./index.html#gioi-thieu">Giới thiệu</a>
+          <a href="./index.html#linh-vuc">Lĩnh vực</a>
+          <a href="./index.html#nang-luc">Năng lực</a>
+          <a href="#gioi-thieu">Thí nghiệm</a>
           <a href="#lien-he">Liên hệ</a>
         </div>
         <div>
@@ -925,6 +975,35 @@
         trigger.addEventListener("click", () => {
           const item = trigger.parentElement;
           item.classList.toggle("is-open");
+        });
+      });
+
+      const pdfViewer = document.getElementById("pdfViewer");
+      const viewerTitle = document.getElementById("viewerTitle");
+      const viewerDesc = document.getElementById("viewerDesc");
+      const viewerDownload = document.getElementById("viewerDownload");
+      const pdfButtons = document.querySelectorAll("[data-pdf]");
+
+      function setViewer(pdf, title, desc) {
+        if (!pdfViewer || !viewerTitle || !viewerDesc || !viewerDownload) return;
+        pdfViewer.src = pdf;
+        viewerTitle.textContent = title || "Tài liệu PDF";
+        viewerDesc.textContent = desc || "";
+        viewerDownload.href = pdf;
+      }
+
+      pdfButtons.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.preventDefault();
+          const pdf = button.getAttribute("data-pdf");
+          const title = button.getAttribute("data-title");
+          const desc = button.getAttribute("data-desc");
+          if (!pdf) return;
+          setViewer(pdf, title, desc);
+          document.querySelectorAll(".quick-doc-button").forEach((item) => item.classList.remove("is-active"));
+          if (button.classList.contains("quick-doc-button")) {
+            button.classList.add("is-active");
+          }
         });
       });
     </script>
