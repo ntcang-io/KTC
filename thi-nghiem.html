@@ -432,6 +432,59 @@
         font-size: 0.94rem;
       }
 
+      .lab-gallery {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        margin-top: 30px;
+      }
+
+      .lab-gallery__main,
+      .lab-gallery__stack {
+        display: grid;
+        gap: 18px;
+      }
+
+      .lab-shot {
+        position: relative;
+        overflow: hidden;
+        min-height: 220px;
+        border-radius: 24px;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow-soft);
+        background: #dfe8f2;
+      }
+
+      .lab-shot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .lab-shot__caption {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(9, 26, 48, 0.12), rgba(9, 26, 48, 0.78));
+        color: #fff;
+      }
+
+      .lab-shot__caption strong {
+        display: block;
+        font-size: 1rem;
+        line-height: 1.35;
+      }
+
+      .lab-shot__caption span {
+        display: block;
+        margin-top: 4px;
+        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.9rem;
+      }
+
       .docs-layout {
         display: grid;
         grid-template-columns: 0.9fr 1.1fr;
@@ -678,6 +731,7 @@
         .stats,
         .grid-3,
         .grid-4,
+        .lab-gallery,
         .docs-grid,
         .doc-card,
         .footer-grid {
@@ -731,7 +785,7 @@
               <span class="eyebrow">Thí nghiệm chuyên ngành xây dựng</span>
               <h1>Năng lực thí nghiệm chuyên ngành xây dựng và tài liệu công bố liên quan</h1>
               <p class="section-copy">
-                Trung An có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và mã số phòng thí nghiệm LAS-XD 13.004 đã được chuyển đổi thành LAS-XD 1469. Nội dung dưới đây giới thiệu ngắn gọn năng lực chuyên môn và các tài liệu, văn bản liên quan đang được công bố.
+                Trung An có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và mã số phòng thí nghiệm LAS-XD 13.004 đã được chuyển đổi thành LAS-XD 1469. Nội dung dưới đây tập trung giới thiệu năng lực chuyên môn cùng các văn bản, tài liệu công bố liên quan.
               </p>
               <div class="hero-actions">
                 <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
@@ -742,7 +796,7 @@
             <div class="card hero-visual">
               <div class="hero-frame">
                 <!-- TODO: thay ảnh hero của trang thí nghiệm nếu có -->
-                <img src="./public/hero-industrial.svg" alt="Phòng thí nghiệm xây dựng và công tác kiểm tra hiện trường" />
+                <img src="./img/ptn/z7727376253795_c7cdb280ad09ebab1a99079bf534a5d2.jpg" alt="Phòng thí nghiệm xây dựng và công tác kiểm tra hiện trường" />
                 <div class="hero-overlay"></div>
                 <div class="hero-caption">
                   <span class="eyebrow eyebrow--light">LAS-XD 1469</span>
@@ -774,7 +828,7 @@
           <span class="eyebrow">Giới thiệu năng lực</span>
           <h2 class="section-title">Năng lực thí nghiệm chuyên ngành xây dựng</h2>
           <p class="section-copy">
-            Trang này giới thiệu ngắn gọn năng lực liên quan đến hoạt động thí nghiệm chuyên ngành xây dựng của Trung An, đồng thời tập hợp các văn bản, tài liệu tham chiếu và thông tin phục vụ tra cứu.
+            Trung An triển khai hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được chứng nhận, đồng thời công bố các văn bản và tài liệu liên quan để thuận tiện cho việc theo dõi, đối chiếu hồ sơ.
           </p>
 
           <div class="grid-3" style="margin-top: 30px">
@@ -790,9 +844,37 @@
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">HS</div>
-              <h3>Hồ sơ được sắp xếp theo nhóm tài liệu</h3>
-              <p>Các tài liệu trong thư mục `tai-lieu` được nhóm lại theo từng mục để thuận tiện cho việc theo dõi, đối chiếu và cập nhật khi cần.</p>
+              <h3>Hồ sơ công bố rõ ràng</h3>
+              <p>Các văn bản, chứng nhận và tài liệu liên quan được trình bày theo từng nhóm nội dung để thuận tiện cho việc theo dõi và đối chiếu.</p>
             </article>
+          </div>
+
+          <div class="lab-gallery">
+            <div class="lab-gallery__main">
+              <figure class="lab-shot">
+                <img src="./img/ptn/lay mau.jpg" alt="Công tác lấy mẫu phục vụ thí nghiệm xây dựng" />
+                <figcaption class="lab-shot__caption">
+                  <strong>Lấy mẫu và kiểm tra theo yêu cầu thực tế công trình</strong>
+                  <span>Tổ chức lấy mẫu, kiểm tra và ghi nhận thông tin kỹ thuật tại công trình.</span>
+                </figcaption>
+              </figure>
+            </div>
+            <div class="lab-gallery__stack">
+              <figure class="lab-shot">
+                <img src="./img/ptn/laymau (1).jpg" alt="Nhân sự thực hiện công tác lấy mẫu thí nghiệm ngoài hiện trường" />
+                <figcaption class="lab-shot__caption">
+                  <strong>Phối hợp ngoài hiện trường</strong>
+                  <span>Tổ chức lấy mẫu, kiểm tra và ghi nhận thông tin kỹ thuật tại hiện trường.</span>
+                </figcaption>
+              </figure>
+              <figure class="lab-shot">
+                <img src="./img/ptn/laymau (2).jpg" alt="Công tác thí nghiệm và hỗ trợ kiểm soát chất lượng xây dựng" />
+                <figcaption class="lab-shot__caption">
+                  <strong>Hỗ trợ kiểm soát chất lượng</strong>
+                  <span>Láy mẫu tại hiện trường</span>
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
@@ -802,7 +884,7 @@
           <span class="eyebrow">Năng lực liên quan</span>
           <h2 class="section-title">Các nhóm năng lực liên quan</h2>
           <p class="section-copy">
-            Phần này chỉ trình bày ngắn gọn các năng lực liên quan để người xem hiểu phạm vi hoạt động và mục đích của trang công bố tài liệu.
+            Các nhóm nội dung dưới đây giúp người xem hình dung phạm vi hoạt động, cơ sở tổ chức và tài liệu liên quan đến năng lực thí nghiệm chuyên ngành xây dựng.
           </p>
 
           <div class="grid-4" style="margin-top: 30px">
@@ -835,7 +917,7 @@
           <span class="eyebrow eyebrow--light">Tài liệu công bố</span>
           <h2 class="section-title">Danh mục tài liệu năng lực</h2>
           <p class="section-copy">
-            Các tài liệu dưới đây được sắp xếp theo nhóm nội dung để thuận tiện cho việc tra cứu, đối chiếu và theo dõi hồ sơ công bố.
+            Các tài liệu dưới đây được trình bày theo nhóm nội dung để thuận tiện cho việc tra cứu, đối chiếu và theo dõi hồ sơ năng lực.
           </p>
 
           <div class="docs-layout">
@@ -952,8 +1034,8 @@
     <footer class="footer">
       <div class="container footer-grid">
         <div>
-          <h2>TRUNG AN | TRANG THÍ NGHIỆM</h2>
-          <p>Giới thiệu ngắn gọn năng lực thí nghiệm chuyên ngành xây dựng và các tài liệu liên quan đang được công bố từ thư mục `tai-lieu`.</p>
+          <h2>TRUNG AN | THÍ NGHIỆM CHUYÊN NGÀNH XÂY DỰNG</h2>
+          <p>Giới thiệu năng lực thí nghiệm chuyên ngành xây dựng cùng các văn bản và tài liệu công bố liên quan.</p>
         </div>
         <div>
           <h3>Liên kết</h3>
