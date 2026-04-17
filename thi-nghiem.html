@@ -252,6 +252,46 @@
         padding: 0 20px;
       }
 
+      .mobile-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        min-width: 88px;
+        height: 48px;
+        padding: 0 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+        color: var(--primary);
+        font-size: 0.95rem;
+        font-weight: 800;
+      }
+
+      .mobile-menu {
+        display: none;
+        padding: 0 0 18px;
+      }
+
+      .mobile-menu.is-open {
+        display: block;
+      }
+
+      .mobile-menu__panel {
+        display: grid;
+        gap: 10px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.96);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .mobile-menu__panel a {
+        padding: 10px 4px;
+        color: var(--text);
+        font-weight: 700;
+      }
+
       .hero {
         padding-top: 58px;
       }
@@ -751,6 +791,24 @@
           padding: 72px 0;
         }
 
+        .header__inner {
+          grid-template-columns: auto auto;
+          justify-content: space-between;
+          gap: 20px;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .mobile-toggle {
+          display: inline-flex;
+        }
+
+        .header__action .button {
+          display: none;
+        }
+
         .brand-logo {
           padding: 8px;
         }
@@ -801,7 +859,7 @@
     </style>
   </head>
   <body>
-    <header class="header">
+    <header class="header" id="header">
       <div class="container">
         <div class="header__inner">
           <a class="brand" href="./index.html">
@@ -825,6 +883,17 @@
 
           <div class="header__action">
             <a class="button" href="#lien-he">Liên hệ</a>
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Mở menu">☰ Menu</button>
+          </div>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <div class="mobile-menu__panel">
+            <a href="./index.html#gioi-thieu">Giới thiệu</a>
+            <a href="./index.html#linh-vuc">Lĩnh vực</a>
+            <a href="#cong-bo">Công bố năng lực</a>
+            <a href="#gioi-thieu">Thí nghiệm</a>
+            <a href="#lien-he">Liên hệ</a>
           </div>
         </div>
       </div>
@@ -1175,7 +1244,7 @@
         </div>
         <div>
           <h3>Thông tin</h3>
-          <p>Địa chỉ: Số 10, Tổ 1, Khu vực Qui Thạnh 1, phường Trung Kiên, quận Thốt Nốt, TP. Cần Thơ</p>
+          <p>Địa chỉ: Số 10, tổ 01, khu vực Qui Thạnh 1, phường Thuận Hưng, thành phố Cần Thơ</p>
           <p>Điện thoại: 0292 3646 646</p>
           <p>Email: trungan.las1469@gmail.com</p>
           <p>Website: trungan-build.com.vn</p>
@@ -1184,6 +1253,28 @@
     </footer>
 
     <script>
+      const mobileToggle = document.getElementById("mobileToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+
+      function toggleMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.toggle("is-open");
+      }
+
+      function closeMobileMenu() {
+        if (!mobileMenu) return;
+        mobileMenu.classList.remove("is-open");
+      }
+
+      if (mobileToggle) {
+        mobileToggle.addEventListener("click", toggleMobileMenu);
+      }
+
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", closeMobileMenu);
+      });
+
       document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
         trigger.addEventListener("click", () => {
           const item = trigger.parentElement;
