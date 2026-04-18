@@ -8,6 +8,9 @@
       name="description"
       content="Trung An là doanh nghiệp hoạt động trong lĩnh vực xây dựng, dịch vụ kỹ thuật công trình và kiểm soát chất lượng xây dựng tại Cần Thơ, với hồ sơ pháp lý và năng lực hoạt động được công bố rõ ràng."
     />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <link rel="icon" type="image/png" href="./img/logo-kto.png" />
     <link rel="shortcut icon" type="image/png" href="./img/logo-kto.png" />
     <style>
@@ -28,6 +31,12 @@
         --radius: 26px;
         --radius-sm: 20px;
         --header-height: 78px;
+        --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --motion-duration: 920ms;
+        --motion-duration-fast: 780ms;
+        --motion-duration-slow: 1180ms;
+        --motion-stagger: 145ms;
+        --motion-hover: 320ms;
       }
 
       * {
@@ -127,6 +136,8 @@
       .button,
       .ghost-button,
       .chip-button {
+        position: relative;
+        overflow: hidden;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -134,7 +145,12 @@
         min-height: 48px;
         padding: 0 22px;
         border-radius: 999px;
-        transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+        transition:
+          transform var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease),
+          color var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease);
         font-weight: 700;
       }
 
@@ -143,16 +159,38 @@
       .chip-button:hover,
       .mobile-toggle:hover,
       .doc-action:hover {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+      }
+
+      .button::after,
+      .ghost-button::after,
+      .chip-button::after,
+      .doc-action::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 22%, rgba(255, 255, 255, 0.18) 50%, transparent 78%);
+        transform: translateX(-118%);
+        transition: transform 760ms var(--motion-ease);
+        pointer-events: none;
+      }
+
+      .button:hover::after,
+      .ghost-button:hover::after,
+      .chip-button:hover::after,
+      .doc-action:hover::after {
+        transform: translateX(118%);
       }
 
       .button {
         background: var(--primary);
         color: #fff;
+        box-shadow: 0 12px 26px rgba(16, 61, 115, 0.14);
       }
 
       .button:hover {
         background: var(--primary-strong);
+        box-shadow: 0 16px 30px rgba(10, 38, 71, 0.16);
       }
 
       .ghost-button,
@@ -166,6 +204,7 @@
       .chip-button:hover {
         border-color: rgba(16, 61, 115, 0.24);
         color: var(--primary);
+        box-shadow: 0 12px 26px rgba(14, 26, 43, 0.08);
       }
 
       .button--light {
@@ -453,7 +492,7 @@
         height: 100%;
         object-fit: cover;
         transform: scale(1);
-        transition: transform 420ms ease;
+        transition: transform 760ms var(--motion-ease);
       }
 
       .hero-overlay {
@@ -627,7 +666,7 @@
         height: 100%;
         object-fit: cover;
         transform: scale(1);
-        transition: transform 420ms ease;
+        transition: transform 520ms var(--motion-ease);
       }
 
       .intro-photo::after {
@@ -694,14 +733,8 @@
       }
 
       .experience-section[data-experience] {
-        opacity: 0;
-        transform: translateY(16px);
-        transition: opacity 0.62s ease, transform 0.62s ease;
-      }
-
-      .experience-section.is-visible {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
       }
 
       .experience-section .section-copy {
@@ -725,13 +758,10 @@
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 254, 0.96));
         box-shadow: var(--shadow-soft);
         position: relative;
-        opacity: 0;
-        transform: translateY(16px);
         transition:
-          opacity 0.56s ease,
-          transform 0.56s ease,
-          border-color 0.56s ease,
-          box-shadow 0.56s ease;
+          transform var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease);
       }
 
       .experience-card::before {
@@ -743,7 +773,7 @@
         height: 4px;
         border-radius: 999px;
         background: rgba(16, 61, 115, 0.16);
-        transition: width 0.52s ease;
+        transition: width 0.72s var(--motion-ease);
       }
 
       .experience-card--primary {
@@ -757,45 +787,9 @@
         background: var(--primary);
       }
 
-      .experience-section.is-animated .experience-card {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .experience-section.is-animated .experience-card::before {
+      .experience-card:hover::before,
+      .experience-card:focus-within::before {
         width: 44px;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(1) {
-        transition-delay: 0.08s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(2) {
-        transition-delay: 0.18s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(3) {
-        transition-delay: 0.28s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(4) {
-        transition-delay: 0.38s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(1)::before {
-        transition-delay: 0.18s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(2)::before {
-        transition-delay: 0.28s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(3)::before {
-        transition-delay: 0.38s;
-      }
-
-      .experience-section.is-animated .experience-card:nth-child(4)::before {
-        transition-delay: 0.48s;
       }
 
       .experience-value {
@@ -838,9 +832,6 @@
         margin-top: 22px;
         padding-top: 18px;
         border-top: 1px solid var(--line);
-        opacity: 0;
-        transform: translateY(14px);
-        transition: opacity 0.5s ease, transform 0.5s ease;
       }
 
       .experience-foot p {
@@ -868,48 +859,9 @@
         font-size: 0.88rem;
         font-weight: 700;
         line-height: 1.35;
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.46s ease, transform 0.46s ease;
-      }
-
-      .experience-section.is-animated .experience-foot {
-        opacity: 1;
-        transform: translateY(0);
-        transition-delay: 0.5s;
-      }
-
-      .experience-section.is-animated .experience-tag {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .experience-section.is-animated .experience-tag:nth-child(1) {
-        transition-delay: 0.62s;
-      }
-
-      .experience-section.is-animated .experience-tag:nth-child(2) {
-        transition-delay: 0.72s;
-      }
-
-      .experience-section.is-animated .experience-tag:nth-child(3) {
-        transition-delay: 0.82s;
-      }
-
-      .experience-section.is-animated .experience-tag:nth-child(4) {
-        transition-delay: 0.92s;
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .experience-section[data-experience],
-        .experience-card,
-        .experience-foot,
-        .experience-tag {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-
         .experience-card::before {
           width: 44px;
           transition: none;
@@ -956,7 +908,7 @@
         height: 100%;
         object-fit: cover;
         transform: scale(1);
-        transition: transform 420ms ease;
+        transition: transform 760ms var(--motion-ease);
       }
 
       .project-shot::after {
@@ -1217,6 +1169,8 @@
       }
 
       .doc-action {
+        position: relative;
+        overflow: hidden;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -1228,7 +1182,12 @@
         color: var(--text);
         font-size: 0.92rem;
         font-weight: 700;
-        transition: transform 180ms ease, color 180ms ease, border-color 180ms ease, background 180ms ease;
+        transition:
+          transform var(--motion-hover) var(--motion-ease),
+          color var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease);
       }
 
       .doc-action--primary {
@@ -1408,14 +1367,157 @@
       }
 
       [data-reveal] {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 520ms ease, transform 520ms ease;
+        will-change: transform, opacity;
       }
 
-      [data-reveal].is-visible {
+      .js [data-reveal],
+      .js [data-heading-reveal],
+      .js [data-stagger] > *,
+      .js [data-media-reveal] .motion-media,
+      .js [data-media-reveal] .motion-overlay-card {
+        opacity: 0;
+        will-change: transform, opacity;
+      }
+
+      .js [data-reveal] {
+        transform: translate3d(0, 26px, 0);
+        transition:
+          opacity var(--motion-duration) var(--motion-ease),
+          transform var(--motion-duration) var(--motion-ease);
+      }
+
+      .js [data-heading-reveal] {
+        transform: translate3d(0, 18px, 0);
+        transition:
+          opacity var(--motion-duration-slow) var(--motion-ease),
+          transform var(--motion-duration-slow) var(--motion-ease);
+        transition-delay: 80ms;
+      }
+
+      .js [data-stagger] > * {
+        transform: translate3d(0, 18px, 0);
+        transition:
+          opacity var(--motion-duration-fast) var(--motion-ease),
+          transform var(--motion-duration-fast) var(--motion-ease);
+        transition-delay: var(--stagger-delay, 0ms);
+      }
+
+      .js [data-stagger="left"] > * {
+        transform: translate3d(28px, 0, 0);
+      }
+
+      .js [data-media-reveal] .motion-media {
+        transform: scale(1.045);
+        transition:
+          opacity var(--motion-duration-slow) var(--motion-ease),
+          transform var(--motion-duration-slow) var(--motion-ease);
+      }
+
+      .js [data-media-reveal] .motion-overlay-card {
+        transform: translate3d(0, 28px, 0);
+        transition:
+          opacity 980ms var(--motion-ease),
+          transform 980ms var(--motion-ease);
+        transition-delay: 180ms;
+      }
+
+      .js [data-reveal].is-visible,
+      .js [data-heading-reveal].is-visible,
+      .js [data-stagger].is-visible > *,
+      .js [data-media-reveal].is-visible .motion-media,
+      .js [data-media-reveal].is-visible .motion-overlay-card {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
+      }
+
+      .stat-card,
+      .info-card,
+      .workflow-card,
+      .client-card,
+      .doc-card,
+      .equipment-card,
+      .project-shot,
+      .capability-card,
+      .experience-card {
+        transition:
+          transform var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .stat-card:hover,
+        .info-card:hover,
+        .workflow-card:hover,
+        .client-card:hover,
+        .doc-card:hover,
+        .equipment-card:hover,
+        .project-shot:hover,
+        .capability-card:hover,
+        .experience-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 22px 40px rgba(14, 26, 43, 0.1);
+          border-color: rgba(16, 61, 115, 0.16);
+        }
+      }
+
+      .stat-card:focus-within,
+      .info-card:focus-within,
+      .workflow-card:focus-within,
+      .client-card:focus-within,
+      .doc-card:focus-within,
+      .equipment-card:focus-within,
+      .project-shot:focus-within,
+      .capability-card:focus-within,
+      .experience-card:focus-within {
+        transform: translateY(-4px);
+        box-shadow: 0 22px 40px rgba(14, 26, 43, 0.1);
+        border-color: rgba(16, 61, 115, 0.16);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .button,
+        .ghost-button,
+        .chip-button,
+        .doc-action,
+        .stat-card,
+        .info-card,
+        .workflow-card,
+        .client-card,
+        .doc-card,
+        .equipment-card,
+        .project-shot,
+        .capability-card,
+        .experience-card,
+        .hero-frame img,
+        .intro-photo img,
+        .project-shot img,
+        .capability-card__media img {
+          transition: none !important;
+          transform: none !important;
+        }
+
+        .button::after,
+        .ghost-button::after,
+        .chip-button::after,
+        .doc-action::after {
+          display: none;
+        }
+
+        .js [data-reveal],
+        .js [data-heading-reveal],
+        .js [data-stagger] > *,
+        .js [data-media-reveal] .motion-media,
+        .js [data-media-reveal] .motion-overlay-card {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
       }
 
       @media (max-width: 980px) {
@@ -1591,18 +1693,18 @@
               <div class="badge-row">
                 <span class="badge">Thành lập từ năm 2015</span>
               </div>
-              <h1>Năng lực xây dựng, thí nghiệm và kiểm định công trình</h1>
+              <h1 data-heading-reveal>Năng lực xây dựng, thí nghiệm và kiểm định công trình</h1>
               <p class="hero-lead">
                 Trung An triển khai xây dựng, khảo sát, giám sát, thí nghiệm vật liệu và kiểm định chất lượng công trình cho các công trình dân dụng, giao thông, hạ tầng kỹ thuật và thủy lợi tại Cần Thơ và khu vực lân cận.
               </p>
-              <div class="hero-actions">
+              <div class="hero-actions" data-stagger="up">
                 <a class="button" href="#lien-he">Liên hệ tư vấn</a>
                 <a class="ghost-button" href="#ho-so-phap-ly">Xem hồ sơ năng lực</a>
               </div>
               <div class="hero-secondary">
                 <a class="ghost-button" href="./thi-nghiem.html">Xem trang thí nghiệm</a>
               </div>
-              <ul class="hero-points">
+              <ul class="hero-points" data-stagger="up">
                 <li>Hồ sơ năng lực rõ ràng</li>
                 <li>Kết hợp hiện trường và thí nghiệm</li>
                 <li>Phối hợp theo từng loại công trình</li>
@@ -1610,10 +1712,10 @@
             </div>
 
             <div class="card hero-visual" data-reveal>
-              <div class="hero-frame">
-                <img src="./img/ct/cong trinh giao thong.jpg" alt="Công trình giao thông do Trung An tham gia triển khai" />
+              <div class="hero-frame" data-media-reveal>
+                <img class="motion-media" src="./img/ct/cong trinh giao thong.jpg" alt="Công trình giao thông do Trung An tham gia triển khai" />
                 <div class="hero-overlay"></div>
-                <div class="hero-caption">
+                <div class="hero-caption motion-overlay-card">
                   <span class="eyebrow eyebrow--light">NĂNG LỰC TRIỂN KHAI THỰC TẾ</span>
                   <h2>Tổ chức hiện trường và phối hợp triển khai công trình</h2>
                   <p>Trung An tham gia các đầu việc xây dựng, khảo sát, giám sát, thí nghiệm và kiểm định chất lượng công trình theo phạm vi năng lực đã được xác lập. Việc tổ chức triển khai bám sát yêu cầu kỹ thuật, điều kiện hiện trường và tính chất của từng hạng mục.</p>
@@ -1622,7 +1724,7 @@
             </div>
           </div>
 
-          <div class="stats" data-reveal>
+          <div class="stats" data-stagger="up" data-stagger-step="160">
             <article class="soft-card stat-card">
               <strong>Hồ sơ pháp lý và năng lực</strong>
               <span>Giấy tờ, chứng chỉ, tài liệu công bố và phạm vi công việc được trình bày minh bạch</span>
@@ -1644,7 +1746,7 @@
           <div class="card intro-showcase" data-reveal>
             <div class="intro-story">
               <span class="eyebrow">Giới thiệu doanh nghiệp</span>
-              <h2 class="section-title">Một doanh nghiệp xây dựng và kỹ thuật công trình phát triển trên nền tảng hồ sơ rõ ràng, tổ chức bài bản và cách làm có căn cứ</h2>
+              <h2 class="section-title" data-heading-reveal>Một doanh nghiệp xây dựng và kỹ thuật công trình phát triển trên nền tảng hồ sơ rõ ràng, tổ chức bài bản và cách làm có căn cứ</h2>
               <div class="prose">
                 <p>
                   Được thành lập từ ngày 16/12/2015, qua hơn 10 năm hình thành và phát triển, Trung An đã khẳng định được uy tín và năng lực trong lĩnh vực xây dựng. Chúng tôi tự hào cung cấp các giải pháp toàn diện và chuyên sâu bao gồm tư vấn thiết kế công trình Dân dụng & Công nghiệp, Thủy lợi, Giao thông, Hạ tầng kỹ thuật; khảo sát địa hình công trình, đo vẽ hiện trạng; giám sát thi công và thẩm tra thiết kế các loại hình công trình xây dựng; thi công xây dựng các hạng mục Dân dụng & Công nghiệp, Giao thông, Thủy lợi và Hạ tầng kỹ thuật; cùng với đó là thí nghiệm và kiểm định chất lượng công trình tại phòng LAS-XD 13.004.
@@ -1657,7 +1759,7 @@
                 </p>
               </div>
 
-              <div class="intro-highlights">
+              <div class="intro-highlights" data-stagger="up" data-stagger-step="150">
                 <div class="intro-highlight">
                   <strong>2015</strong>
                   <span>Hình thành và phát triển trong lĩnh vực xây dựng và dịch vụ kỹ thuật công trình</span>
@@ -1674,9 +1776,9 @@
             </div>
 
             <div class="intro-rail">
-              <figure class="intro-photo">
-                <img src="./img/ct/Cong trình cơ quan.jpg" alt="Công trình cơ quan do Trung An tham gia thực hiện" />
-                <figcaption class="intro-photo-caption">
+              <figure class="intro-photo" data-media-reveal>
+                <img class="motion-media" src="./img/ct/Cong trình cơ quan.jpg" alt="Công trình cơ quan do Trung An tham gia thực hiện" />
+                <figcaption class="intro-photo-caption motion-overlay-card">
                   <strong>Hình ảnh công trình thực tế</strong>
                   <span>Thể hiện năng lực tổ chức hiện trường, triển khai thi công và phối hợp kỹ thuật trong quá trình thực hiện công trình.</span>
                 </figcaption>
@@ -1702,14 +1804,14 @@
       </section>
 
       <section class="section">
-        <div class="container card experience-section" data-experience>
+        <div class="container card experience-section" data-experience data-reveal data-count-group>
           <span class="eyebrow">KINH NGHIỆM TRIỂN KHAI</span>
-          <h2 class="section-title">Kinh nghiệm triển khai qua hồ sơ thực hiện</h2>
+          <h2 class="section-title" data-heading-reveal>Kinh nghiệm triển khai qua hồ sơ thực hiện</h2>
           <p class="section-copy">
             Hồ sơ năng lực của Trung An ghi nhận các công việc và công trình đã thực hiện trong giai đoạn 2017–2024. Dữ liệu này là căn cứ để đối chiếu phạm vi công việc và kinh nghiệm triển khai theo từng nhóm đầu việc.
           </p>
 
-          <div class="experience-grid">
+          <div class="experience-grid" data-stagger="up" data-stagger-step="170">
             <article class="experience-card experience-card--primary">
               <span class="experience-value" data-count="342" data-duration="1500">0</span>
               <span class="experience-label">Hồ sơ công việc và công trình đã ghi nhận</span>
@@ -1729,9 +1831,9 @@
             </article>
           </div>
 
-          <div class="experience-foot">
+          <div class="experience-foot" data-reveal>
             <p>Bao gồm các nhóm công việc: thi công xây dựng; thử tải và kiểm tra sức chịu tải móng cọc, cừ tràm; khảo sát, thiết kế, thẩm tra; tư vấn giám sát.</p>
-            <div class="experience-tags" aria-label="Nhóm công việc trong hồ sơ">
+            <div class="experience-tags" aria-label="Nhóm công việc trong hồ sơ" data-stagger="up" data-stagger-step="120">
               <span class="experience-tag">Thi công xây dựng</span>
               <span class="experience-tag">Thử tải và kiểm tra sức chịu tải móng cọc, cừ tràm</span>
               <span class="experience-tag">Khảo sát, thiết kế, thẩm tra</span>
@@ -1751,7 +1853,7 @@
             </p>
           </div>
 
-          <div class="grid-4" style="margin-top: 30px" data-reveal>
+          <div class="grid-4" style="margin-top: 30px" data-stagger="left" data-stagger-step="135">
             <article class="soft-card info-card">
               <div class="icon-badge">01</div>
               <h3>Thiết kế xây dựng công trình</h3>
@@ -1806,7 +1908,7 @@
             </p>
           </div>
 
-          <div class="grid-4" style="margin-top: 30px" data-reveal>
+          <div class="grid-4" style="margin-top: 30px" data-stagger="left" data-stagger-step="135">
             <article class="soft-card info-card">
               <div class="icon-badge">TK</div>
               <h3>Thiết kế công trình hạ tầng kỹ thuật</h3>
@@ -1842,7 +1944,7 @@
             </p>
           </div>
 
-          <div class="grid-4" data-reveal>
+          <div class="grid-4" data-stagger="up" data-stagger-step="145">
             <article class="soft-card info-card capability-card">
               <div class="capability-card__media">
                 <img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Thí nghiệm nén bê tông phục vụ kiểm tra vật liệu xây dựng" />
@@ -1935,7 +2037,7 @@
         <div class="container card cta-panel" data-reveal>
           <div>
             <span class="eyebrow eyebrow--light">Phòng thí nghiệm và công bố năng lực</span>
-            <h2 class="section-title">Mã số LAS-XD, tài liệu công bố và hình ảnh công việc thực tế</h2>
+            <h2 class="section-title" data-heading-reveal>Mã số LAS-XD, tài liệu công bố và hình ảnh công việc thực tế</h2>
             <p class="section-copy">
               Trang thí nghiệm thể hiện rõ mã số LAS-XD hiện hành, giấy chứng nhận đủ điều kiện hoạt động thí nghiệm, danh mục tài liệu công bố, thiết bị thí nghiệm và hình ảnh công việc trong phòng lẫn ngoài hiện trường.
             </p>
@@ -1957,7 +2059,7 @@
             </p>
           </div>
 
-          <div class="grid-4" style="margin-top: 30px" data-reveal>
+          <div class="grid-4" style="margin-top: 30px" data-stagger="left" data-stagger-step="135">
             <article class="soft-card info-card">
               <div class="icon-badge">BLĐ</div>
               <h3>Ban lãnh đạo</h3>
@@ -2003,7 +2105,7 @@
               </p>
             </div>
 
-            <div class="equipment-grid">
+            <div class="equipment-grid" data-stagger="up" data-stagger-step="160">
               <article class="soft-card equipment-card">
                 <div class="icon-badge">TC</div>
                 <h3>Thiết bị thi công chủ lực</h3>
@@ -2046,49 +2148,49 @@
       <section id="du-an" class="section">
         <div class="container card panel" data-reveal>
           <span class="eyebrow">Công trình và hình ảnh thực tế</span>
-          <h2 class="section-title">Nhóm công trình, dự án và công việc triển khai thực tế</h2>
+          <h2 class="section-title" data-heading-reveal>Nhóm công trình, dự án và công việc triển khai thực tế</h2>
           <p class="section-copy">
             "Minh chứng cho năng lực và uy tín của Trung An chính là hệ thống các dự án đa dạng đã được triển khai thành công. Dưới đây là những hình ảnh thực tế từ các công trình xây dựng, hoạt động kỹ thuật chuyên sâu và công tác thí nghiệm hiện trường mà chúng tôi đã thực hiện."
           </p>
-          <div class="project-gallery">
-            <figure class="soft-card project-shot">
-              <img src="./img/ct/conh trinh dan dung.jpg" alt="Công trình dân dụng do Trung An tham gia triển khai" />
-              <figcaption class="project-shot__caption">
+          <div class="project-gallery" data-stagger="up" data-stagger-step="180">
+            <figure class="soft-card project-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ct/conh trinh dan dung.jpg" alt="Công trình dân dụng do Trung An tham gia triển khai" />
+              <figcaption class="project-shot__caption motion-overlay-card">
                 <strong>Công trình dân dụng</strong>
                 <span>Hình ảnh thi công thực tế ở nhóm công trình dân dụng, phản ánh năng lực tổ chức hiện trường và triển khai xây lắp.</span>
               </figcaption>
             </figure>
-            <figure class="soft-card project-shot">
-              <img src="./img/ct/cong trinh giao thong.jpg" alt="Công trình giao thông do Trung An tham gia triển khai" />
-              <figcaption class="project-shot__caption">
+            <figure class="soft-card project-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ct/cong trinh giao thong.jpg" alt="Công trình giao thông do Trung An tham gia triển khai" />
+              <figcaption class="project-shot__caption motion-overlay-card">
                 <strong>Công trình giao thông</strong>
                 <span>Nhóm đầu việc giao thông gắn với thi công, phối hợp kỹ thuật, kiểm soát chất lượng và nghiệm thu theo yêu cầu từng hạng mục.</span>
               </figcaption>
             </figure>
-            <figure class="soft-card project-shot">
-              <img src="./img/ct/Cong trình cơ quan.jpg" alt="Công trình cơ quan do Trung An tham gia thực hiện" />
-              <figcaption class="project-shot__caption">
+            <figure class="soft-card project-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ct/Cong trình cơ quan.jpg" alt="Công trình cơ quan do Trung An tham gia thực hiện" />
+              <figcaption class="project-shot__caption motion-overlay-card">
                 <strong>Công trình cơ quan và hạ tầng liên quan</strong>
                 <span>Thể hiện năng lực tham gia các công trình có yêu cầu đồng bộ giữa xây dựng, kỹ thuật và hồ sơ triển khai.</span>
               </figcaption>
             </figure>
-            <figure class="soft-card project-shot">
-              <img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật tại hiện trường" />
-              <figcaption class="project-shot__caption">
+            <figure class="soft-card project-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật tại hiện trường" />
+              <figcaption class="project-shot__caption motion-overlay-card">
                 <strong>Thí nghiệm và kiểm định hiện trường</strong>
                 <span>Hình ảnh công tác thí nghiệm vật liệu phục vụ đối chiếu chỉ tiêu kỹ thuật, kiểm soát chất lượng và hỗ trợ nghiệm thu.</span>
               </figcaption>
             </figure>
-            <figure class="soft-card project-shot">
-              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra cấu kiện cọc bê tông dự ứng lực" />
-              <figcaption class="project-shot__caption">
+            <figure class="soft-card project-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra cấu kiện cọc bê tông dự ứng lực" />
+              <figcaption class="project-shot__caption motion-overlay-card">
                 <strong>Kiểm tra cấu kiện và kết cấu</strong>
                 <span>Phản ánh năng lực kỹ thuật ở các đầu việc kiểm tra cấu kiện bê tông cốt thép, cấu kiện dự ứng lực và bộ phận chịu lực của công trình.</span>
               </figcaption>
             </figure>
-            <figure class="soft-card project-shot">
-              <img src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc bê tông cốt thép" />
-              <figcaption class="project-shot__caption">
+            <figure class="soft-card project-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc bê tông cốt thép" />
+              <figcaption class="project-shot__caption motion-overlay-card">
                 <strong>Thử tải và đánh giá sức chịu tải</strong>
                 <span>Các đầu việc thử tĩnh, thử tải cọc và kiểm tra khả năng chịu lực giúp làm rõ năng lực kỹ thuật ngoài hiện trường.</span>
               </figcaption>
@@ -2101,12 +2203,12 @@
       <section id="ho-so-phap-ly" class="section docs-section">
         <div class="container docs-highlight" data-reveal>
           <span class="eyebrow eyebrow--light">Hồ sơ pháp lý và chứng chỉ</span>
-          <h2 class="section-title">Hồ sơ pháp lý, chứng chỉ và tài liệu công bố</h2>
+          <h2 class="section-title" data-heading-reveal>Hồ sơ pháp lý, chứng chỉ và tài liệu công bố</h2>
           <p class="section-copy">
             Các nhóm hồ sơ dưới đây là căn cứ để khách hàng, đơn vị tư vấn và ban quản lý dự án rà soát năng lực, đối chiếu phạm vi công việc và kiểm tra tính rõ ràng của hồ sơ chuyên môn.
           </p>
 
-          <div class="docs-grid">
+          <div class="docs-grid" data-stagger="left" data-stagger-step="150">
             <article class="soft-card doc-card">
               <div class="doc-thumb" aria-hidden="true">LAS</div>
               <div>
@@ -2163,7 +2265,7 @@
         <div class="container card panel" data-reveal>
           <span class="eyebrow">Quy trình phối hợp</span>
           <h2 class="section-title">Quy trình làm việc</h2>
-          <div class="workflow-grid">
+          <div class="workflow-grid" data-stagger="left" data-stagger-step="130">
             <article class="soft-card workflow-card">
               <span class="step-number">1</span>
               <h3>Tiếp nhận thông tin công trình</h3>
@@ -2200,7 +2302,7 @@
           <p class="section-copy">
             Trung An phù hợp với nhu cầu của chủ đầu tư, nhà thầu thi công, đơn vị tư vấn, ban quản lý dự án và các đơn vị cần phối hợp kiểm tra, thí nghiệm, giám sát, đánh giá chất lượng công trình.
           </p>
-          <div class="clients-grid">
+          <div class="clients-grid" data-stagger="up" data-stagger-step="150">
             <article class="soft-card client-card">Chủ đầu tư</article>
             <article class="soft-card client-card">Nhà thầu thi công</article>
             <article class="soft-card client-card">Đơn vị tư vấn</article>
@@ -2215,7 +2317,7 @@
         <div class="container card contact-wrap" data-reveal>
           <div class="contact-info">
             <span class="eyebrow eyebrow--light">Liên hệ tư vấn</span>
-            <h2 class="section-title">Liên hệ Trung An để trao đổi nhu cầu phối hợp</h2>
+            <h2 class="section-title" data-heading-reveal>Liên hệ Trung An để trao đổi nhu cầu phối hợp</h2>
             <p class="section-copy">
               Bộ phận tiếp nhận sẽ ghi nhận thông tin công trình, rà soát nhóm nhu cầu và chuyển tiếp đến bộ phận phù hợp để trao đổi phương án triển khai.
             </p>
@@ -2297,8 +2399,9 @@
       const mobileToggle = document.getElementById("mobileToggle");
       const mobileMenu = document.getElementById("mobileMenu");
       const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
-      const revealItems = document.querySelectorAll("[data-reveal]");
-      const experienceSection = document.querySelector("[data-experience]");
+      const revealItems = document.querySelectorAll("[data-reveal], [data-heading-reveal], [data-stagger], [data-media-reveal], [data-count-group]");
+      const staggerGroups = document.querySelectorAll("[data-stagger]");
+      const countGroups = document.querySelectorAll("[data-count-group]");
       const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function updateHeaderState() {
@@ -2323,21 +2426,14 @@
         link.addEventListener("click", closeMobileMenu);
       });
 
-      const revealObserver = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
-            }
+      function setStaggerDelays() {
+        staggerGroups.forEach((group) => {
+          const step = Number(group.dataset.staggerStep || "100");
+          Array.from(group.children).forEach((child, index) => {
+            child.style.setProperty("--stagger-delay", `${index * step}ms`);
           });
-        },
-        {
-          threshold: 0.14,
-        }
-      );
-
-      revealItems.forEach((item) => revealObserver.observe(item));
+        });
+      }
 
       function formatCountValue(value, element) {
         const prefix = element.dataset.prefix || "";
@@ -2368,31 +2464,45 @@
         requestAnimationFrame(tick);
       }
 
-      if (experienceSection) {
-        const countItems = experienceSection.querySelectorAll("[data-count]");
-
-        if (reduceMotion) {
-          experienceSection.classList.add("is-visible", "is-animated");
-          countItems.forEach((item) => {
+      function runCountGroup(group) {
+        if (group.dataset.counted === "true") return;
+        group.dataset.counted = "true";
+        const countItems = group.querySelectorAll("[data-count]");
+        countItems.forEach((item) => {
+          if (reduceMotion) {
             item.textContent = formatCountValue(Number(item.dataset.count || "0"), item);
-          });
-        } else {
-          const experienceObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (!entry.isIntersecting) return;
-                experienceSection.classList.add("is-visible", "is-animated");
-                countItems.forEach((item) => animateCount(item));
-                experienceObserver.unobserve(entry.target);
-              });
-            },
-            {
-              threshold: 0.24,
-            }
-          );
+            return;
+          }
+          animateCount(item);
+        });
+      }
 
-          experienceObserver.observe(experienceSection);
-        }
+      setStaggerDelays();
+
+      if (reduceMotion) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+        countGroups.forEach((group) => runCountGroup(group));
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+
+              if (entry.target.matches("[data-count-group]")) {
+                runCountGroup(entry.target);
+              }
+
+              revealObserver.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.18,
+            rootMargin: "0px 0px -8% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
       }
 
       updateHeaderState();

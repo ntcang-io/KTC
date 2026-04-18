@@ -8,6 +8,9 @@
       name="description"
       content="Giới thiệu năng lực thí nghiệm chuyên ngành xây dựng của Trung An, kèm tài liệu công bố, chứng nhận và danh mục phép thử liên quan."
     />
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
     <link rel="icon" type="image/png" href="./img/logo-kto.png" />
     <link rel="shortcut icon" type="image/png" href="./img/logo-kto.png" />
     <style>
@@ -23,6 +26,12 @@
         --shadow: 0 18px 40px rgba(14, 26, 43, 0.08);
         --shadow-soft: 0 10px 24px rgba(14, 26, 43, 0.06);
         --radius: 24px;
+        --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --motion-duration: 920ms;
+        --motion-duration-fast: 780ms;
+        --motion-duration-slow: 1180ms;
+        --motion-stagger: 145ms;
+        --motion-hover: 320ms;
       }
 
       * {
@@ -120,6 +129,8 @@
       .button,
       .ghost-button,
       .doc-link {
+        position: relative;
+        overflow: hidden;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -128,23 +139,48 @@
         padding: 0 20px;
         border-radius: 999px;
         font-weight: 700;
-        transition: transform 180ms ease, background 180ms ease, color 180ms ease, border-color 180ms ease;
+        transition:
+          transform var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease),
+          color var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease);
       }
 
       .button:hover,
       .ghost-button:hover,
       .doc-link:hover,
       .accordion-trigger:hover {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+      }
+
+      .button::after,
+      .ghost-button::after,
+      .doc-link::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(110deg, transparent 22%, rgba(255, 255, 255, 0.18) 50%, transparent 78%);
+        transform: translateX(-118%);
+        transition: transform 520ms var(--motion-ease);
+        pointer-events: none;
+      }
+
+      .button:hover::after,
+      .ghost-button:hover::after,
+      .doc-link:hover::after {
+        transform: translateX(118%);
       }
 
       .button {
         background: var(--primary);
         color: #fff;
+        box-shadow: 0 12px 26px rgba(16, 61, 115, 0.14);
       }
 
       .button:hover {
         background: var(--primary-strong);
+        box-shadow: 0 16px 30px rgba(10, 38, 71, 0.16);
       }
 
       .ghost-button,
@@ -158,6 +194,7 @@
       .doc-link:hover {
         color: var(--primary);
         border-color: rgba(16, 61, 115, 0.24);
+        box-shadow: 0 12px 26px rgba(14, 26, 43, 0.08);
       }
 
       .header {
@@ -333,7 +370,7 @@
         height: 100%;
         object-fit: cover;
         transform: scale(1);
-        transition: transform 420ms ease;
+        transition: transform 760ms var(--motion-ease);
       }
 
       .hero-overlay {
@@ -522,7 +559,7 @@
         height: 100%;
         object-fit: cover;
         transform: scale(1);
-        transition: transform 420ms ease;
+        transition: transform 760ms var(--motion-ease);
       }
 
       @media (hover: hover) and (pointer: fine) {
@@ -643,7 +680,12 @@
         color: var(--text);
         text-align: left;
         font-weight: 700;
-        transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+        transition:
+          border-color var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease),
+          color var(--motion-hover) var(--motion-ease),
+          transform var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease);
       }
 
       .quick-doc-button:hover,
@@ -651,7 +693,8 @@
         border-color: rgba(16, 61, 115, 0.24);
         background: rgba(16, 61, 115, 0.06);
         color: var(--primary);
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        box-shadow: 0 12px 26px rgba(14, 26, 43, 0.08);
       }
 
       .accordion-list {
@@ -770,6 +813,111 @@
         color: #fff;
       }
 
+      .js [data-reveal],
+      .js [data-heading-reveal],
+      .js [data-stagger] > *,
+      .js [data-media-reveal] .motion-media,
+      .js [data-media-reveal] .motion-overlay-card {
+        opacity: 0;
+        will-change: transform, opacity;
+      }
+
+      .js [data-reveal] {
+        transform: translate3d(0, 26px, 0);
+        transition:
+          opacity var(--motion-duration) var(--motion-ease),
+          transform var(--motion-duration) var(--motion-ease);
+      }
+
+      .js [data-heading-reveal] {
+        transform: translate3d(0, 18px, 0);
+        transition:
+          opacity var(--motion-duration-slow) var(--motion-ease),
+          transform var(--motion-duration-slow) var(--motion-ease);
+        transition-delay: 80ms;
+      }
+
+      .js [data-stagger] > * {
+        transform: translate3d(0, 18px, 0);
+        transition:
+          opacity var(--motion-duration-fast) var(--motion-ease),
+          transform var(--motion-duration-fast) var(--motion-ease);
+        transition-delay: var(--stagger-delay, 0ms);
+      }
+
+      .js [data-stagger="left"] > * {
+        transform: translate3d(28px, 0, 0);
+      }
+
+      .js [data-media-reveal] .motion-media {
+        transform: scale(1.045);
+        transition:
+          opacity var(--motion-duration-slow) var(--motion-ease),
+          transform var(--motion-duration-slow) var(--motion-ease);
+      }
+
+      .js [data-media-reveal] .motion-overlay-card {
+        transform: translate3d(0, 28px, 0);
+        transition:
+          opacity 980ms var(--motion-ease),
+          transform 980ms var(--motion-ease);
+        transition-delay: 180ms;
+      }
+
+      .js [data-reveal].is-visible,
+      .js [data-heading-reveal].is-visible,
+      .js [data-stagger].is-visible > *,
+      .js [data-media-reveal].is-visible .motion-media,
+      .js [data-media-reveal].is-visible .motion-overlay-card {
+        opacity: 1;
+        transform: none;
+      }
+
+      .stat-card,
+      .info-card,
+      .doc-card,
+      .lab-shot,
+      .docs-browser,
+      .docs-viewer,
+      .accordion-item {
+        transition:
+          transform var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease);
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .hero-frame:hover img,
+        .lab-shot:hover img {
+          transform: scale(1.05);
+        }
+
+        .stat-card:hover,
+        .info-card:hover,
+        .doc-card:hover,
+        .lab-shot:hover,
+        .docs-browser:hover,
+        .docs-viewer:hover,
+        .accordion-item:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 22px 40px rgba(14, 26, 43, 0.1);
+          border-color: rgba(16, 61, 115, 0.16);
+        }
+      }
+
+      .stat-card:focus-within,
+      .info-card:focus-within,
+      .doc-card:focus-within,
+      .lab-shot:focus-within,
+      .docs-browser:focus-within,
+      .docs-viewer:focus-within,
+      .accordion-item:focus-within {
+        transform: translateY(-4px);
+        box-shadow: 0 22px 40px rgba(14, 26, 43, 0.1);
+        border-color: rgba(16, 61, 115, 0.16);
+      }
+
       @media (max-width: 1120px) {
         .header__inner,
         .hero-grid,
@@ -867,6 +1015,45 @@
           height: 560px;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .button,
+        .ghost-button,
+        .doc-link,
+        .quick-doc-button,
+        .stat-card,
+        .info-card,
+        .doc-card,
+        .lab-shot,
+        .docs-browser,
+        .docs-viewer,
+        .accordion-item,
+        .hero-frame img,
+        .lab-shot img {
+          transition: none !important;
+          transform: none !important;
+        }
+
+        .button::after,
+        .ghost-button::after,
+        .doc-link::after {
+          display: none;
+        }
+
+        .js [data-reveal],
+        .js [data-heading-reveal],
+        .js [data-stagger] > *,
+        .js [data-media-reveal] .motion-media,
+        .js [data-media-reveal] .motion-overlay-card {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body>
@@ -913,23 +1100,23 @@
       <section class="hero section">
         <div class="container">
           <div class="hero-grid">
-            <div>
+            <div data-reveal>
               <span class="eyebrow">Thí nghiệm chuyên ngành xây dựng</span>
-              <h1>Năng lực thí nghiệm chuyên ngành xây dựng và hồ sơ công bố liên quan</h1>
+              <h1 data-heading-reveal>Năng lực thí nghiệm chuyên ngành xây dựng và hồ sơ công bố liên quan</h1>
               <p class="section-copy">
                 Trung An có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và mã số phòng thí nghiệm LAS-XD 1469 đã được chuyển đổi thành LAS-XD 13.004. Doanh nghiệp công bố các văn bản và tài liệu liên quan đến điều kiện hoạt động, tổ chức phòng thí nghiệm và năng lực chuyên môn.
               </p>
-              <div class="hero-actions">
+              <div class="hero-actions" data-stagger="up" data-stagger-step="150">
                 <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
                 <a class="ghost-button" href="#lien-he">Liên hệ</a>
               </div>
             </div>
 
-            <div class="card hero-visual">
-              <div class="hero-frame">
-                <img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
+            <div class="card hero-visual" data-reveal>
+              <div class="hero-frame" data-media-reveal>
+                <img class="motion-media" src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
                 <div class="hero-overlay"></div>
-                <div class="hero-caption">
+                <div class="hero-caption motion-overlay-card">
                   <span class="eyebrow eyebrow--light">LAS-XD 13.004</span>
                   <p>Triển khai kiểm tra cấu kiện, thí nghiệm vật liệu, thử tải và các công tác hiện trường phục vụ kiểm soát chất lượng công trình.</p>
                 </div>
@@ -937,7 +1124,7 @@
             </div>
           </div>
 
-          <div class="stats">
+          <div class="stats" data-stagger="up" data-stagger-step="160">
             <article class="soft-card stat-card">
               <strong>LAS-XD 13.004</strong>
               <span>Mã số phòng thí nghiệm công bố</span>
@@ -956,16 +1143,18 @@
 
       <section id="gioi-thieu" class="section">
         <div class="container">
-          <span class="eyebrow">Hồ sơ năng lực</span>
-          <h2 class="section-title">Năng lực thí nghiệm chuyên ngành xây dựng</h2>
-          <p class="section-copy">
+          <div data-reveal>
+            <span class="eyebrow">Hồ sơ năng lực</span>
+            <h2 class="section-title" data-heading-reveal>Năng lực thí nghiệm chuyên ngành xây dựng</h2>
+            <p class="section-copy">
             Trung An triển khai hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được chứng nhận, đồng thời công bố các văn bản và tài liệu liên quan đến điều kiện hoạt động và năng lực chuyên môn.
-          </p>
-          <p class="lab-gallery-intro">
+            </p>
+            <p class="lab-gallery-intro">
             Hình ảnh dưới đây thể hiện một số nội dung công việc tiêu biểu tại hiện trường và trong phòng thí nghiệm, bao gồm kiểm tra cấu kiện, thí nghiệm vật liệu, lưu mẫu và thử tải theo yêu cầu kỹ thuật.
-          </p>
+            </p>
+          </div>
 
-          <div class="grid-3" style="margin-top: 30px">
+          <div class="grid-3" style="margin-top: 30px" data-stagger="up" data-stagger-step="150">
             <article class="soft-card info-card">
               <div class="icon-badge">GCN</div>
               <h3>Đủ điều kiện hoạt động thí nghiệm</h3>
@@ -983,101 +1172,101 @@
             </article>
           </div>
 
-          <div class="lab-gallery">
-            <figure class="lab-shot">
-              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra kết cấu cấu kiện cọc bê tông dự ứng lực" />
-              <figcaption class="lab-shot__caption">
+          <div class="lab-gallery" data-stagger="up" data-stagger-step="180">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra kết cấu cấu kiện cọc bê tông dự ứng lực" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Kiểm tra kết cấu cấu kiện cọc BT DUL</strong>
                 <span>Đánh giá tình trạng và chất lượng cấu kiện cọc bê tông dự ứng lực phục vụ nghiệm thu và kiểm soát kỹ thuật.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-dam-super-t.jpg" alt="Kiểm tra kết cấu cấu kiện dầm Super T" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-dam-super-t.jpg" alt="Kiểm tra kết cấu cấu kiện dầm Super T" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Kiểm tra kết cấu cấu kiện dầm Super T</strong>
                 <span>Kiểm tra hiện trạng cấu kiện dầm Super T, hỗ trợ đánh giá chất lượng và mức độ đáp ứng yêu cầu thiết kế.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan mẫu bê tông tại công trình" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan mẫu bê tông tại công trình" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Khoan mẫu bê tông</strong>
                 <span>Thực hiện khoan lấy mẫu bê tông hiện trường để phục vụ thí nghiệm và đối chiếu chất lượng kết cấu.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/luu-mau-be-tong.jpg" alt="Lưu mẫu bê tông trong quá trình kiểm soát chất lượng" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/luu-mau-be-tong.jpg" alt="Lưu mẫu bê tông trong quá trình kiểm soát chất lượng" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Lưu mẫu bê tông</strong>
                 <span>Bảo quản và lưu trữ mẫu bê tông theo quy trình để phục vụ theo dõi chất lượng và đối chứng khi cần thiết.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm tra kết cấu cấu kiện cống bê tông cốt thép" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm tra kết cấu cấu kiện cống bê tông cốt thép" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Kiểm tra kết cấu cấu kiện cống BTCT</strong>
                 <span>Kiểm tra hình học, bề mặt và tình trạng làm việc của cấu kiện cống bê tông cốt thép trước khi đưa vào sử dụng.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Thí nghiệm kéo thép trong phòng thí nghiệm" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Thí nghiệm kéo thép trong phòng thí nghiệm" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thí nghiệm kéo thép</strong>
                 <span>Xác định khả năng chịu kéo, giới hạn bền và đặc trưng cơ lý của thép dùng trong xây dựng.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Thí nghiệm nén bê tông" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Thí nghiệm nén bê tông" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thí nghiệm nén BT</strong>
                 <span>Đánh giá cường độ chịu nén của mẫu bê tông phục vụ nghiệm thu vật liệu và kết cấu công trình.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thi-nghiem-nhua-bitum.jpg" alt="Thí nghiệm nhựa bitum" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thi-nghiem-nhua-bitum.jpg" alt="Thí nghiệm nhựa bitum" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thí nghiệm nhựa bitum</strong>
                 <span>Kiểm tra các chỉ tiêu kỹ thuật của nhựa bitum phục vụ công tác giao thông và kết cấu mặt đường.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Thí nghiệm độ chặt hiện trường" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Thí nghiệm độ chặt hiện trường" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thí nghiệm độ chặt hiện trường</strong>
                 <span>Đo kiểm độ chặt nền, móng và lớp vật liệu tại hiện trường để kiểm soát chất lượng thi công.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thí nghiệm vải địa</strong>
                 <span>Kiểm tra các chỉ tiêu kỹ thuật của vải địa kỹ thuật phục vụ thiết kế và kiểm soát vật liệu đầu vào.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thu-tai-cong-btct.jpg" alt="Thử tải cống bê tông cốt thép" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thu-tai-cong-btct.jpg" alt="Thử tải cống bê tông cốt thép" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thử tải cống BTCT</strong>
                 <span>Thực hiện thử tải nhằm đánh giá khả năng làm việc và độ an toàn của cấu kiện cống bê tông cốt thép.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thu-tai-nap-ho-ga.jpg" alt="Thử tải nắp hố ga" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thu-tai-nap-ho-ga.jpg" alt="Thử tải nắp hố ga" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thử tải nắp hố ga</strong>
                 <span>Kiểm tra khả năng chịu tải của nắp hố ga trong điều kiện khai thác và yêu cầu kỹ thuật thực tế.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc bê tông cốt thép" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc bê tông cốt thép" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thử tĩnh cọc BTCT</strong>
                 <span>Đánh giá sức chịu tải của cọc bê tông cốt thép bằng phương pháp thử tĩnh theo yêu cầu thiết kế.</span>
               </figcaption>
             </figure>
-            <figure class="lab-shot">
-              <img src="./img/ptn/thu-tinh-cu-tram.jpg" alt="Thử tĩnh cừ tràm" />
-              <figcaption class="lab-shot__caption">
+            <figure class="lab-shot" data-media-reveal>
+              <img class="motion-media" src="./img/ptn/thu-tinh-cu-tram.jpg" alt="Thử tĩnh cừ tràm" />
+              <figcaption class="lab-shot__caption motion-overlay-card">
                 <strong>Thử tĩnh cừ tràm</strong>
                 <span>Thực hiện thử tải tĩnh cừ tràm nhằm kiểm tra khả năng chịu lực và phục vụ đánh giá nền móng công trình.</span>
               </figcaption>
@@ -1088,13 +1277,15 @@
 
       <section id="nang-luc" class="section">
         <div class="container">
-          <span class="eyebrow">Năng lực liên quan</span>
-          <h2 class="section-title">Các nhóm nội dung năng lực</h2>
-          <p class="section-copy">
-            Phạm vi hoạt động, cơ sở tổ chức và hệ thống tài liệu liên quan đến năng lực thí nghiệm chuyên ngành xây dựng được thể hiện qua các nhóm dưới đây.
-          </p>
+          <div data-reveal>
+            <span class="eyebrow">Năng lực liên quan</span>
+            <h2 class="section-title" data-heading-reveal>Các nhóm nội dung năng lực</h2>
+            <p class="section-copy">
+              Phạm vi hoạt động, cơ sở tổ chức và hệ thống tài liệu liên quan đến năng lực thí nghiệm chuyên ngành xây dựng được thể hiện qua các nhóm dưới đây.
+            </p>
+          </div>
 
-          <div class="grid-4" style="margin-top: 30px">
+          <div class="grid-4" style="margin-top: 30px" data-stagger="left" data-stagger-step="135">
             <article class="soft-card info-card">
               <div class="icon-badge">TN</div>
               <h3>Thí nghiệm chuyên ngành xây dựng</h3>
@@ -1120,16 +1311,16 @@
       </section>
 
       <section id="cong-bo" class="section">
-        <div class="container card docs-section">
+        <div class="container card docs-section" data-reveal>
           <span class="eyebrow eyebrow--light">Tài liệu công bố</span>
-          <h2 class="section-title">Danh mục tài liệu công bố</h2>
+          <h2 class="section-title" data-heading-reveal>Danh mục tài liệu công bố</h2>
           <p class="section-copy">
             Danh mục dưới đây gồm các văn bản và tài liệu liên quan đến điều kiện hoạt động, tổ chức phòng thí nghiệm, thiết bị và hồ sơ tham chiếu.
           </p>
 
           <div class="docs-layout">
-            <div class="docs-browser">
-              <div class="quick-docs">
+            <div class="docs-browser" data-reveal>
+              <div class="quick-docs" data-stagger="up" data-stagger-step="120">
                 <button class="quick-doc-button is-active" type="button" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" data-title="Công bố năng lực PTN LAS-XD 13.004" data-desc="Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD 1469 được chuyển đổi thành LAS-XD 13.004.">
                   <span>Công bố năng lực PTN LAS-XD 13.004</span>
                   <span>Xem</span>
@@ -1148,7 +1339,7 @@
                 </button>
               </div>
 
-              <div class="accordion-list" style="margin-top: 0">
+              <div class="accordion-list" style="margin-top: 0" data-stagger="up" data-stagger-step="130">
             <article class="accordion-item is-open">
               <button class="accordion-trigger" type="button">Chứng chỉ và quyết định hoạt động</button>
               <div class="accordion-panel">
@@ -1202,7 +1393,7 @@
               </div>
             </div>
 
-            <div class="docs-viewer">
+            <div class="docs-viewer" data-reveal>
               <div class="viewer-meta">
                 <div>
                   <h3 id="viewerTitle">Công bố năng lực PTN LAS-XD 13.004</h3>
@@ -1222,15 +1413,15 @@
       </section>
 
       <section id="lien-he" class="section">
-        <div class="container card cta-bar">
+        <div class="container card cta-bar" data-reveal>
           <div>
             <span class="eyebrow eyebrow--light">Liên hệ</span>
-          <h2 class="section-title">Liên hệ Trung An để trao đổi về hồ sơ năng lực và tài liệu công bố</h2>
+          <h2 class="section-title" data-heading-reveal>Liên hệ Trung An để trao đổi về hồ sơ năng lực và tài liệu công bố</h2>
             <p class="section-copy">
               Khi cần trao đổi cụ thể hơn về tài liệu hoặc phạm vi thí nghiệm, có thể liên hệ trực tiếp với doanh nghiệp.
             </p>
           </div>
-          <div style="display: grid; gap: 12px; justify-items: start">
+          <div style="display: grid; gap: 12px; justify-items: start" data-stagger="up" data-stagger-step="140">
             <a class="button button--light" href="tel:02923646646">0292 3646 646</a>
             <a class="ghost-button ghost-button--on-dark" href="mailto:trungan.las1469@gmail.com">trungan.las1469@gmail.com</a>
           </div>
@@ -1266,6 +1457,9 @@
       const mobileToggle = document.getElementById("mobileToggle");
       const mobileMenu = document.getElementById("mobileMenu");
       const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
+      const revealItems = document.querySelectorAll("[data-reveal], [data-heading-reveal], [data-stagger], [data-media-reveal]");
+      const staggerGroups = document.querySelectorAll("[data-stagger]");
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       function toggleMobileMenu() {
         if (!mobileMenu) return;
@@ -1284,6 +1478,37 @@
       mobileLinks.forEach((link) => {
         link.addEventListener("click", closeMobileMenu);
       });
+
+      function setStaggerDelays() {
+        staggerGroups.forEach((group) => {
+          const step = Number(group.dataset.staggerStep || "145");
+          Array.from(group.children).forEach((child, index) => {
+            child.style.setProperty("--stagger-delay", `${index * step}ms`);
+          });
+        });
+      }
+
+      setStaggerDelays();
+
+      if (reduceMotion) {
+        revealItems.forEach((item) => item.classList.add("is-visible"));
+      } else {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              entry.target.classList.add("is-visible");
+              revealObserver.unobserve(entry.target);
+            });
+          },
+          {
+            threshold: 0.18,
+            rootMargin: "0px 0px -8% 0px",
+          }
+        );
+
+        revealItems.forEach((item) => revealObserver.observe(item));
+      }
 
       document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
         trigger.addEventListener("click", () => {
