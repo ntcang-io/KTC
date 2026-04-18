@@ -745,23 +745,28 @@
 
       .experience-grid {
         display: grid;
-        grid-template-columns: 1.15fr 1fr 1fr 1fr;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 16px;
         margin-top: 28px;
         align-items: stretch;
       }
 
       .experience-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
         padding: 28px 24px 24px;
         border-radius: 18px;
-        border: 1px solid var(--line);
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(247, 250, 254, 0.96));
+        border: 1px solid rgba(148, 163, 184, 0.22);
+        background: #fff;
         box-shadow: var(--shadow-soft);
         position: relative;
+        min-height: 212px;
         transition:
           transform var(--motion-hover) var(--motion-ease),
           border-color var(--motion-hover) var(--motion-ease),
-          box-shadow var(--motion-hover) var(--motion-ease);
+          box-shadow var(--motion-hover) var(--motion-ease),
+          background var(--motion-hover) var(--motion-ease);
       }
 
       .experience-card::before {
@@ -777,14 +782,24 @@
       }
 
       .experience-card--primary {
-        background: linear-gradient(180deg, rgba(16, 61, 115, 0.1), rgba(255, 255, 255, 0.98));
-        border-color: rgba(16, 61, 115, 0.16);
-        padding: 32px 26px 26px;
-        box-shadow: 0 16px 34px rgba(14, 26, 43, 0.08);
-      }
+  /* Đổi từ màu slate-đen sang tone xanh dương đậm thương hiệu */
+  background: linear-gradient(180deg, #1a56a3 0%, #103d73 100%);
+  border-color: rgba(16, 61, 115, 0.92);
+  padding: 32px 26px 26px;
+  box-shadow:
+    0 26px 52px rgba(16, 61, 115, 0.26),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
 
       .experience-card--primary::before {
-        background: var(--primary);
+        background: rgba(255, 255, 255, 0.88);
+      }
+
+      .experience-card--secondary:hover,
+      .experience-card--secondary:focus-within {
+        transform: translateY(-4px);
+        border-color: rgba(148, 163, 184, 0.34);
+        box-shadow: 0 18px 34px rgba(14, 26, 43, 0.1);
       }
 
       .experience-card:hover::before,
@@ -792,32 +807,45 @@
         width: 44px;
       }
 
+      .experience-stat {
+        min-height: 88px;
+        display: flex;
+        align-items: flex-end;
+      }
+
       .experience-value {
         display: block;
         color: var(--primary);
         font-size: clamp(2.1rem, 3.4vw, 3rem);
-        line-height: 0.95;
-        font-weight: 900;
+        line-height: 0.88;
+        font-weight: 950;
         letter-spacing: -0.03em;
         white-space: nowrap;
       }
 
       .experience-card--primary .experience-value {
         font-size: clamp(2.4rem, 3.9vw, 3.4rem);
+        color: #fff;
       }
 
       .experience-label {
         display: block;
         margin-top: 12px;
         color: var(--muted);
-        font-size: 0.92rem;
+        font-size: 0.9rem;
         font-weight: 600;
-        line-height: 1.5;
+        line-height: 1.45;
+        text-wrap: balance;
       }
 
       .experience-card--primary .experience-label {
-        color: var(--text);
+        color: rgba(226, 232, 240, 0.84);
         font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .experience-card--secondary .experience-label {
+        color: #5f6f85;
       }
 
       .experience-detail {
@@ -859,6 +887,22 @@
         font-size: 0.88rem;
         font-weight: 700;
         line-height: 1.35;
+        cursor: default;
+        transition:
+          background var(--motion-hover) var(--motion-ease),
+          border-color var(--motion-hover) var(--motion-ease),
+          color var(--motion-hover) var(--motion-ease),
+          transform var(--motion-hover) var(--motion-ease),
+          box-shadow var(--motion-hover) var(--motion-ease);
+      }
+
+      .experience-tag:hover,
+      .experience-tag:focus-visible {
+        background: rgba(241, 245, 249, 0.98);
+        border-color: rgba(16, 61, 115, 0.2);
+        color: var(--primary);
+        transform: translateY(-1px);
+        box-shadow: 0 10px 20px rgba(14, 26, 43, 0.06);
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -1693,13 +1737,13 @@
               <div class="badge-row">
                 <span class="badge">Thành lập từ năm 2015</span>
               </div>
-              <h1 data-heading-reveal>Năng lực xây dựng, thí nghiệm và kiểm định công trình</h1>
+              <h1 data-heading-reveal>Trung An: Thi công, giám sát và kiểm định công trình bằng số liệu thực tế.</h1>
               <p class="hero-lead">
-                Trung An triển khai xây dựng, khảo sát, giám sát, thí nghiệm vật liệu và kiểm định chất lượng công trình cho các công trình dân dụng, giao thông, hạ tầng kỹ thuật và thủy lợi tại Cần Thơ và khu vực lân cận.
+                Minh bạch hồ sơ - Chuẩn xác kỹ thuật. Trực tiếp kiểm soát chất lượng vật liệu và kết cấu qua phòng thí nghiệm chuyên ngành LAS-XD 13.004.
               </p>
               <div class="hero-actions" data-stagger="up">
-                <a class="button" href="#lien-he">Liên hệ tư vấn</a>
-                <a class="ghost-button" href="#ho-so-phap-ly">Xem hồ sơ năng lực</a>
+                <a class="button" href="#lien-he">Gửi yêu cầu phối hợp kỹ thuật</a>
+                <a class="ghost-button" href="#ho-so-phap-ly">Tải hồ sơ năng lực &amp; Pháp lý (PDF)</a>
               </div>
               <div class="hero-secondary">
                 <a class="ghost-button" href="./thi-nghiem.html">Xem trang thí nghiệm</a>
@@ -1746,10 +1790,10 @@
           <div class="card intro-showcase" data-reveal>
             <div class="intro-story">
               <span class="eyebrow">Giới thiệu doanh nghiệp</span>
-              <h2 class="section-title" data-heading-reveal>Một doanh nghiệp xây dựng và kỹ thuật công trình phát triển trên nền tảng hồ sơ rõ ràng, tổ chức bài bản và cách làm có căn cứ</h2>
+              <h2 class="section-title" data-heading-reveal>Hoạt động từ 2015, Trung An lấy tính pháp lý và độ chính xác của dữ liệu làm nền tảng cốt lõi.</h2>
               <div class="prose">
                 <p>
-                  Được thành lập từ ngày 16/12/2015, qua hơn 10 năm hình thành và phát triển, Trung An đã khẳng định được uy tín và năng lực trong lĩnh vực xây dựng. Chúng tôi tự hào cung cấp các giải pháp toàn diện và chuyên sâu bao gồm tư vấn thiết kế công trình Dân dụng & Công nghiệp, Thủy lợi, Giao thông, Hạ tầng kỹ thuật; khảo sát địa hình công trình, đo vẽ hiện trạng; giám sát thi công và thẩm tra thiết kế các loại hình công trình xây dựng; thi công xây dựng các hạng mục Dân dụng & Công nghiệp, Giao thông, Thủy lợi và Hạ tầng kỹ thuật; cùng với đó là thí nghiệm và kiểm định chất lượng công trình tại phòng LAS-XD 13.004.
+                  Được thành lập từ ngày 16/12/2015, qua hơn 10 năm hình thành và phát triển, Trung An đã khẳng định được uy tín và năng lực trong lĩnh vực xây dựng. Chúng tôi tự hào cung cấp các giải pháp toàn diện và chuyên sâu bao gồm tư vấn thiết kế công trình Dân dụng &amp; Công nghiệp, Thủy lợi, Giao thông, Hạ tầng kỹ thuật; khảo sát địa hình công trình, đo vẽ hiện trạng; giám sát thi công và thẩm tra thiết kế các loại hình công trình xây dựng; thi công xây dựng các hạng mục Dân dụng &amp; Công nghiệp, Giao thông, Thủy lợi và Hạ tầng kỹ thuật; cùng với đó là thí nghiệm và kiểm định chất lượng công trình tại phòng LAS-XD 13.004.
                 </p>
                 <p>
                   Với đội ngũ cán bộ kỹ thuật giàu kinh nghiệm cùng lực lượng công nhân lành nghề, Trung An cam kết luôn đảm bảo các tiêu chuẩn kỹ thuật khắt khe nhất, tiến độ thi công nhanh chóng và chất lượng bền vững cho mọi dự án.
@@ -1786,12 +1830,12 @@
 
               <div class="intro-markers">
                 <div class="intro-marker">
-                  <strong>Định hướng</strong>
-                  <p>Phát triển theo hướng làm việc bài bản, đúng phạm vi năng lực và chú trọng tiêu chuẩn kỹ thuật.</p>
+                  <strong>Nguyên tắc</strong>
+                  <p>Làm đúng phạm vi năng lực - Thi công bám sát tiêu chuẩn.</p>
                 </div>
                 <div class="intro-marker">
-                  <strong>Cách làm</strong>
-                  <p>Lấy sự rõ ràng về hồ sơ pháp lý, đầu việc phối hợp và trách nhiệm triển khai làm nền tảng làm việc.</p>
+                  <strong>Thực thi</strong>
+                  <p>Nói bằng số liệu hiện trường - Nghiệm thu bằng hồ sơ pháp lý minh bạch.</p>
                 </div>
                 <div class="intro-marker">
                   <strong>Phục vụ</strong>
@@ -1805,34 +1849,40 @@
 
       <section class="section">
         <div class="container card experience-section" data-experience data-reveal data-count-group>
-          <span class="eyebrow">KINH NGHIỆM TRIỂN KHAI</span>
-          <h2 class="section-title" data-heading-reveal>Kinh nghiệm triển khai qua hồ sơ thực hiện</h2>
+          <span class="eyebrow">HỒ SƠ NĂNG LỰC</span>
+          <h2 class="section-title" data-heading-reveal>Năng lực thực thi: Nói bằng số liệu hiện trường</h2>
           <p class="section-copy">
-            Hồ sơ năng lực của Trung An ghi nhận các công việc và công trình đã thực hiện trong giai đoạn 2017–2024. Dữ liệu này là căn cứ để đối chiếu phạm vi công việc và kinh nghiệm triển khai theo từng nhóm đầu việc.
+            Từ 2017 đến nay, Trung An đã trực tiếp tổ chức thi công, giám sát và kiểm định hàng trăm công trình. Khối lượng công việc dưới đây là minh chứng thực tế được đúc kết từ các biên bản nghiệm thu và hồ sơ hoàn công.
           </p>
 
           <div class="experience-grid" data-stagger="up" data-stagger-step="170">
             <article class="experience-card experience-card--primary">
-              <span class="experience-value" data-count="342" data-duration="1500">0</span>
-              <span class="experience-label">Hồ sơ công việc và công trình đã ghi nhận</span>
-              <span class="experience-detail">Thể hiện quy mô dữ liệu thực hiện được tổng hợp trong hồ sơ năng lực.</span>
+              <div class="experience-stat">
+                <span class="experience-value" data-count="342" data-duration="1500">0</span>
+              </div>
+              <span class="experience-label">Dự án &amp; Hạng mục đã nghiệm thu</span>
             </article>
-            <article class="experience-card">
-              <span class="experience-value">2017–2024</span>
-              <span class="experience-label">Giai đoạn thể hiện trong hồ sơ</span>
+            <article class="experience-card experience-card--secondary">
+              <div class="experience-stat">
+                <span class="experience-value">08+</span>
+              </div>
+              <span class="experience-label">Năm thi công thực chiến (2017-2024)</span>
             </article>
-            <article class="experience-card">
-              <span class="experience-value" data-count="4" data-duration="1280" data-prefix="0">00</span>
-              <span class="experience-label">Nhóm công việc chính</span>
+            <article class="experience-card experience-card--secondary">
+              <div class="experience-stat">
+                <span class="experience-value" data-count="4" data-duration="1280" data-prefix="0">00</span>
+              </div>
+              <span class="experience-label">Lĩnh vực mũi nhọn</span>
             </article>
-            <article class="experience-card">
-              <span class="experience-value" data-count="146" data-duration="1420">0</span>
-              <span class="experience-label">Hồ sơ về thử tải và sức chịu tải móng cọc, cừ tràm</span>
+            <article class="experience-card experience-card--secondary">
+              <div class="experience-stat">
+                <span class="experience-value" data-count="146" data-duration="1420">0</span>
+              </div>
+              <span class="experience-label">Hạng mục thử tải &amp; Kiểm định</span>
             </article>
           </div>
 
           <div class="experience-foot" data-reveal>
-            <p>Bao gồm các nhóm công việc: thi công xây dựng; thử tải và kiểm tra sức chịu tải móng cọc, cừ tràm; khảo sát, thiết kế, thẩm tra; tư vấn giám sát.</p>
             <div class="experience-tags" aria-label="Nhóm công việc trong hồ sơ" data-stagger="up" data-stagger-step="120">
               <span class="experience-tag">Thi công xây dựng</span>
               <span class="experience-tag">Thử tải và kiểm tra sức chịu tải móng cọc, cừ tràm</span>
@@ -1856,13 +1906,13 @@
           <div class="grid-4" style="margin-top: 30px" data-stagger="left" data-stagger-step="135">
             <article class="soft-card info-card">
               <div class="icon-badge">01</div>
-              <h3>Thiết kế xây dựng công trình</h3>
-              <p>Thực hiện các đầu việc thiết kế thuộc phạm vi năng lực đã được xác lập, đặc biệt ở nhóm công trình hạ tầng kỹ thuật, cấp thoát nước và các hạng mục cần phối hợp kỹ thuật rõ ràng.</p>
+              <h3>Thiết kế hạ tầng</h3>
+              <p>Lập bản vẽ bám sát địa hình, tối ưu khối lượng vật tư và đảm bảo tính khả thi cao nhất khi đưa ra thi công thực tế.</p>
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">02</div>
-              <h3>Thi công xây dựng công trình</h3>
-              <p>Tham gia tổ chức thi công các hạng mục xây dựng, phối hợp hiện trường, vật tư, kỹ thuật và kiểm soát chất lượng theo yêu cầu của từng công trình cụ thể.</p>
+              <h3>Tổ chức thi công</h3>
+              <p>Trực tiếp điều phối thiết bị, quản lý vật tư và bám sát tiến độ các hạng mục giao thông, hạ tầng kỹ thuật.</p>
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">03</div>
@@ -1881,18 +1931,18 @@
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">06</div>
-              <h3>Thí nghiệm vật liệu và kiểm định chất lượng công trình</h3>
-              <p>Tổ chức thí nghiệm, kiểm tra chỉ tiêu vật liệu, cấu kiện và chất lượng công trình để phục vụ đánh giá kỹ thuật, nghiệm thu và đối chiếu hồ sơ.</p>
+              <h3>Kiểm định vật liệu (LAS-XD 13.004)</h3>
+              <p>Trực tiếp lấy mẫu, khoan lõi và thí nghiệm. Cung cấp bộ số liệu chuẩn để đối chiếu kỹ thuật.</p>
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">07</div>
-              <h3>Thử tải cọc, móng cọc và cừ tràm</h3>
-              <p>Triển khai các nội dung thử tải, kiểm tra sức chịu tải của cọc, cừ tràm và một số cấu kiện liên quan theo yêu cầu kỹ thuật của từng công trình.</p>
+              <h3>Thử tải móng cọc</h3>
+              <p>Triển khai nén tĩnh hiện trường, đánh giá chính xác sức chịu tải của cọc, cừ tràm để đảm bảo an toàn kết cấu.</p>
             </article>
             <article class="soft-card info-card">
               <div class="icon-badge">08</div>
-              <h3>Phối hợp hiện trường và hồ sơ kỹ thuật</h3>
-              <p>Thực hiện đầu việc phối hợp giữa hiện trường, thí nghiệm, giám sát và hồ sơ liên quan để giúp quá trình triển khai và bàn giao được rõ ràng, mạch lạc hơn.</p>
+              <h3>Hồ sơ hoàn công</h3>
+              <p>Đồng bộ giữa kết quả thí nghiệm, nhật ký giám sát và bản vẽ, hỗ trợ chốt khối lượng và nghiệm thu nhanh gọn.</p>
             </article>
           </div>
         </div>
@@ -2268,28 +2318,28 @@
           <div class="workflow-grid" data-stagger="left" data-stagger-step="130">
             <article class="soft-card workflow-card">
               <span class="step-number">1</span>
-              <h3>Tiếp nhận thông tin công trình</h3>
-              <p>Tiếp nhận nhu cầu từ khách hàng, ghi nhận loại công trình, vị trí, nhóm đầu việc, tài liệu hiện có và yêu cầu kỹ thuật cần phối hợp.</p>
+              <h3>Khảo sát yêu cầu</h3>
+              <p>Ghi nhận hiện trạng, kiểm tra hồ sơ thiết kế và xác định các hạng mục kỹ thuật cần phối hợp.</p>
             </article>
             <article class="soft-card workflow-card">
               <span class="step-number">2</span>
-              <h3>Rà soát phạm vi và căn cứ năng lực</h3>
-              <p>Đối chiếu nhu cầu với phạm vi hoạt động xây dựng, năng lực kỹ thuật, điều kiện thí nghiệm và các hồ sơ liên quan để xác định hướng xử lý phù hợp.</p>
+              <h3>Lên phương án</h3>
+              <p>Đối chiếu năng lực thiết bị và nhân sự, chốt phương án thi công/thí nghiệm tối ưu chi phí.</p>
             </article>
             <article class="soft-card workflow-card">
               <span class="step-number">3</span>
-              <h3>Đề xuất phương án phối hợp</h3>
-              <p>Thống nhất đầu việc, cách phối hợp, tiến độ, hồ sơ cần chuẩn bị và phương án tổ chức triển khai phù hợp với tính chất của công trình.</p>
+              <h3>Thống nhất triển khai</h3>
+              <p>Chốt đầu việc, khối lượng, tiến độ và pháp lý liên quan.</p>
             </article>
             <article class="soft-card workflow-card">
               <span class="step-number">4</span>
-              <h3>Tổ chức triển khai</h3>
-              <p>Thực hiện công việc ngoài hiện trường, trong phòng hoặc kết hợp nhiều bộ phận theo kế hoạch đã thống nhất, bảo đảm rõ đầu việc và trách nhiệm.</p>
+              <h3>Tổ chức hiện trường</h3>
+              <p>Điều động thiết bị, máy móc và kỹ sư bám sát công trường. Kiểm soát chặt sai số.</p>
             </article>
             <article class="soft-card workflow-card">
               <span class="step-number">5</span>
-              <h3>Bàn giao và hỗ trợ sau thực hiện</h3>
-              <p>Bàn giao kết quả, hồ sơ liên quan và tiếp tục hỗ trợ xử lý các nội dung phát sinh trong quá trình nghiệm thu, đối chiếu hoặc phối hợp kỹ thuật tiếp theo.</p>
+              <h3>Nghiệm thu &amp; Bàn giao</h3>
+              <p>Cung cấp đầy đủ số liệu, nhật ký và chứng nhận chất lượng để khép lại hồ sơ.</p>
             </article>
           </div>
         </div>
