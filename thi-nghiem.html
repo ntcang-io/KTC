@@ -1011,6 +1011,21 @@
           grid-template-columns: 1fr;
         }
 
+        /* Mobile browsers can drop nested reveal states in long galleries.
+           Keep the lab gallery visible on small screens instead of waiting for IO. */
+        .js .lab-gallery[data-stagger] > * {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+
+        .js .lab-gallery [data-media-reveal] .motion-media,
+        .js .lab-gallery [data-media-reveal] .motion-overlay-card {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+
         .viewer-frame {
           height: 560px;
         }
