@@ -1,1565 +1,818 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Trung An | Thí nghiệm chuyên ngành xây dựng và tài liệu công bố</title>
-    <meta
-      name="description"
-      content="Giới thiệu năng lực thí nghiệm chuyên ngành xây dựng của Trung An, kèm tài liệu công bố, chứng nhận và danh mục phép thử liên quan."
-    />
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
-    <link rel="icon" type="image/png" href="./img/logo-kto.png" />
-    <link rel="shortcut icon" type="image/png" href="./img/logo-kto.png" />
-    <style>
-      :root {
-        --bg: #f3f7fb;
-        --surface: rgba(255, 255, 255, 0.95);
-        --surface-muted: #eef3fa;
-        --text: #0e1a2b;
-        --muted: #617289;
-        --primary: #103d73;
-        --primary-strong: #0a2647;
-        --line: rgba(14, 26, 43, 0.1);
-        --shadow: 0 18px 40px rgba(14, 26, 43, 0.08);
-        --shadow-soft: 0 10px 24px rgba(14, 26, 43, 0.06);
-        --radius: 24px;
-        --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
-        --motion-duration: 920ms;
-        --motion-duration-fast: 780ms;
-        --motion-duration-slow: 1180ms;
-        --motion-stagger: 145ms;
-        --motion-hover: 320ms;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trung An | Thí nghiệm chuyên ngành xây dựng và tài liệu công bố</title>
+  <meta name="description" content="Giới thiệu năng lực thí nghiệm chuyên ngành xây dựng của Trung An, kèm tài liệu công bố, chứng nhận và danh mục phép thử liên quan.">
+  <script>document.documentElement.classList.add("js");</script>
+  <link rel="icon" type="image/png" href="./img/logo-kto.png">
+  
+  <!-- Font Montserrat: Cấu trúc hình học vững chãi, đồng bộ với Index -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-main: #f4f7fb; 
+      --bg-soft: #f7f5f2; 
+      --bg-dark-base: #071324;
+      
+      --surface: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      
+      --primary: #103d73;
+      --primary-strong: #0a2647;
+      --primary-soft: #e0eaf5;
+      
+      --line: rgba(16, 61, 115, 0.12);
+      --shadow-card: 0 16px 40px rgba(16, 61, 115, 0.12);
+      --shadow-hover: 0 24px 50px rgba(16, 61, 115, 0.22);
+      
+      --radius: 16px;
+      --radius-lg: 24px;
+      --header-height: 84px;
+      --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
-      * {
-        box-sizing: border-box;
-      }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text);
+      background-color: var(--bg-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+    button, input, textarea, select { font: inherit; }
 
-      html {
-        scroll-behavior: smooth;
-      }
+    .container {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    
+    .section { padding: 100px 0; scroll-margin-top: var(--header-height); }
+    
+    .bg-soft { background-color: var(--bg-soft); }
+    .bg-white { background-color: var(--surface); }
+    .bg-dark-gradient {
+      background-color: var(--bg-dark-base);
+      background-image: radial-gradient(circle at 100% 0%, rgba(16, 61, 115, 0.8) 0%, transparent 50%),
+                        radial-gradient(circle at 0% 100%, rgba(10, 38, 71, 0.9) 0%, transparent 50%);
+      color: #fff;
+    }
 
-      body {
-        margin: 0;
-        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
-        background:
-          radial-gradient(circle at top left, rgba(16, 61, 115, 0.08), transparent 28%),
-          linear-gradient(180deg, #f8fbff 0%, #f2f6fb 52%, #eef3f8 100%);
-        color: var(--text);
-        line-height: 1.65;
-      }
+    .eyebrow {
+      display: inline-block;
+      color: var(--primary);
+      font-size: 0.8rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .eyebrow-light { color: rgba(255,255,255,0.7); }
+    
+    .section-title {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      max-width: 860px;
+    }
+    .section-copy {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 800px;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
 
-      img {
-        display: block;
-        max-width: 100%;
-      }
+    .button, .ghost-button, .doc-link {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 52px;
+      padding: 0 32px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: all 0.3s var(--motion-ease);
+      cursor: pointer;
+      border: 1px solid transparent;
+      z-index: 1;
+      overflow: hidden;
+    }
 
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
-      button {
-        font: inherit;
-      }
-
-      .container {
-        width: min(1180px, calc(100% - 32px));
-        margin: 0 auto;
-      }
-
-      .section {
-        padding: 86px 0;
-        scroll-margin-top: 96px;
-      }
-
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        border-radius: 999px;
-        background: rgba(16, 61, 115, 0.06);
-        border: 1px solid rgba(16, 61, 115, 0.1);
-        color: var(--primary);
-        font-size: 0.72rem;
-        font-weight: 800;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-
-      .eyebrow--light {
-        color: #fff;
-        background: rgba(10, 38, 71, 0.42);
-        border-color: rgba(255, 255, 255, 0.2);
-      }
-
-      .section-title {
-        margin: 18px 0 0;
-        font-size: clamp(2rem, 3vw, 3rem);
-        line-height: 1.12;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-      }
-
-      .section-copy {
-        max-width: 760px;
-        margin: 18px 0 0;
-        color: var(--muted);
-        font-size: 1.05rem;
-      }
-
-      .card {
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--surface);
-        box-shadow: var(--shadow);
-      }
-
-      .soft-card {
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: #fff;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .button,
-      .ghost-button,
-      .doc-link {
-        position: relative;
-        overflow: hidden;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        min-height: 46px;
-        padding: 0 20px;
-        border-radius: 999px;
-        font-weight: 700;
-        transition:
-          transform var(--motion-hover) var(--motion-ease),
-          background var(--motion-hover) var(--motion-ease),
-          color var(--motion-hover) var(--motion-ease),
-          border-color var(--motion-hover) var(--motion-ease),
-          box-shadow var(--motion-hover) var(--motion-ease);
-      }
-
-      .button:hover,
-      .ghost-button:hover,
-      .doc-link:hover,
-      .accordion-trigger:hover {
-        transform: translateY(-2px);
-      }
-
-      .button::after,
-      .ghost-button::after,
-      .doc-link::after {
-        content: "";
+    .button::before, .ghost-button::before {
+        content: '';
         position: absolute;
-        inset: 0;
-        background: linear-gradient(110deg, transparent 22%, rgba(255, 255, 255, 0.18) 50%, transparent 78%);
-        transform: translateX(-118%);
-        transition: transform 520ms var(--motion-ease);
-        pointer-events: none;
-      }
-
-      .button:hover::after,
-      .ghost-button:hover::after,
-      .doc-link:hover::after {
-        transform: translateX(118%);
-      }
-
-      .button {
-        background: var(--primary);
-        color: #fff;
-        box-shadow: 0 12px 26px rgba(16, 61, 115, 0.14);
-      }
-
-      .button:hover {
-        background: var(--primary-strong);
-        box-shadow: 0 16px 30px rgba(10, 38, 71, 0.16);
-      }
-
-      .ghost-button,
-      .doc-link {
-        border: 1px solid var(--line);
-        background: #fff;
-        color: var(--text);
-      }
-
-      .ghost-button:hover,
-      .doc-link:hover {
-        color: var(--primary);
-        border-color: rgba(16, 61, 115, 0.24);
-        box-shadow: 0 12px 26px rgba(14, 26, 43, 0.08);
-      }
-
-      .header {
-        position: sticky;
-        top: 0;
-        z-index: 50;
-        border-bottom: 1px solid rgba(14, 26, 43, 0.06);
-        background: rgba(248, 251, 255, 0.84);
-        backdrop-filter: blur(16px);
-      }
-
-      .header__inner {
-        min-height: 78px;
-        display: grid;
-        grid-template-columns: auto 1fr auto;
-        align-items: center;
-        gap: 34px;
-      }
-
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-      }
-
-      .brand-copy {
-        min-width: 0;
-      }
-
-      .brand-logo-frame {
-        width: 112px;
-        height: 112px;
-        padding: 8px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 18px;
-        background: linear-gradient(180deg, #cf2027 0%, #af161f 100%);
-        box-shadow: 0 14px 30px rgba(175, 22, 31, 0.18);
-        flex-shrink: 0;
-      }
-
-      .brand-logo {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-        padding: 10px;
-        background: #fff;
-        border-radius: 12px;
-        border: 1px solid rgba(14, 26, 43, 0.08);
-      }
-
-      .brand-mark {
-        font-size: 1.18rem;
-        letter-spacing: 0.18em;
-        font-weight: 900;
-        color: var(--primary);
-        text-transform: uppercase;
-        line-height: 1;
-      }
-
-      .brand-text {
-        margin: 6px 0 0;
-        max-width: 440px;
-        color: var(--muted);
-        font-size: 0.84rem;
-        line-height: 1.35;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .nav {
-        display: flex;
-        justify-content: center;
-        gap: 28px;
-        flex-wrap: wrap;
-      }
-
-      .nav a {
-        color: var(--muted);
-        font-weight: 700;
-        font-size: 0.95rem;
-      }
-
-      .nav a:hover {
-        color: var(--primary);
-      }
-
-      .header__action .button {
-        min-height: 44px;
-        padding: 0 20px;
-      }
-
-      .mobile-toggle {
-        display: none;
-        align-items: center;
-        justify-content: center;
-        min-width: 88px;
-        height: 48px;
-        padding: 0 14px;
-        border: 1px solid var(--line);
-        border-radius: 14px;
-        background: #fff;
-        color: var(--primary);
-        font-size: 0.95rem;
-        font-weight: 800;
-      }
-
-      .mobile-menu {
-        display: none;
-        padding: 0 0 18px;
-      }
-
-      .mobile-menu.is-open {
-        display: block;
-      }
-
-      .mobile-menu__panel {
-        display: grid;
-        gap: 10px;
-        padding: 18px;
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.96);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .mobile-menu__panel a {
-        padding: 10px 4px;
-        color: var(--text);
-        font-weight: 700;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 44px;
-        align-items: center;
-      }
-
-      .hero h1 {
-        margin: 22px 0 0;
-        font-size: clamp(2.6rem, 5vw, 4.5rem);
-        line-height: 1.04;
-        font-weight: 800;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 14px;
-        flex-wrap: wrap;
-        margin-top: 28px;
-      }
-
-      .hero-visual {
-        padding: 14px;
-      }
-
-      .hero-frame {
-        position: relative;
-        min-height: 520px;
-        overflow: hidden;
-        border-radius: calc(var(--radius) - 4px);
-      }
-
-      .hero-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1);
-        transition: transform 760ms var(--motion-ease);
-      }
-
-      .hero-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(28deg, rgba(10, 38, 71, 0.78), rgba(16, 61, 115, 0.16), transparent 72%);
-      }
-
-      .hero-caption {
-        position: absolute;
-        left: 24px;
-        right: 24px;
-        bottom: 24px;
-        padding: 22px;
-        border-radius: 22px;
-        background: rgba(10, 38, 71, 0.56);
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        backdrop-filter: blur(12px);
-        color: #fff;
-      }
-
-      .hero-caption p {
-        margin: 10px 0 0;
-        color: rgba(255, 255, 255, 0.82);
-      }
-
-      .stats {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 26px;
-      }
-
-      .stat-card {
-        padding: 22px 24px;
-      }
-
-      .stat-card strong {
-        display: block;
-        color: var(--primary);
-        font-size: 1.4rem;
-      }
-
-      .stat-card span {
-        display: block;
-        margin-top: 8px;
-        color: var(--muted);
-      }
-
-      .grid-3,
-      .grid-4,
-      .docs-grid {
-        display: grid;
-        gap: 20px;
-      }
-
-      .grid-3 {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .grid-4 {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
-
-      .docs-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        margin-top: 30px;
-      }
-
-      .info-card,
-      .doc-card {
-        padding: 26px;
-      }
-
-      .icon-badge {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 54px;
-        height: 54px;
-        border-radius: 18px;
-        background: rgba(16, 61, 115, 0.1);
-        color: var(--primary);
-        font-size: 0.82rem;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-      }
-
-      .info-card h3,
-      .doc-card h3 {
-        margin: 18px 0 0;
-        font-size: 1.18rem;
-        line-height: 1.35;
-      }
-
-      .info-card p,
-      .doc-card p {
-        margin: 12px 0 0;
-        color: var(--muted);
-      }
-
-      .docs-section {
-        padding: 42px;
-        background:
-          linear-gradient(180deg, rgba(10, 38, 71, 0.97), rgba(16, 61, 115, 0.95)),
-          #0a2647;
-        color: #fff;
-      }
-
-      .docs-section .section-copy {
-        color: rgba(255, 255, 255, 0.76);
-      }
-
-      .doc-card {
-        display: grid;
-        grid-template-columns: 136px 1fr;
-        gap: 22px;
-        align-items: start;
-      }
-
-      .doc-thumb {
-        aspect-ratio: 4 / 5;
-        border-radius: 18px;
-        overflow: hidden;
-        border: 1px solid var(--line);
-        background: #fff;
-      }
-
-      .doc-thumb img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .doc-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 18px;
-      }
-
-      .doc-link--primary {
-        background: rgba(16, 61, 115, 0.08);
-        color: var(--primary);
-        border-color: rgba(16, 61, 115, 0.16);
-      }
-
-      .doc-meta {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        margin-top: 14px;
-        border-radius: 999px;
-        background: rgba(16, 61, 115, 0.08);
-        color: var(--primary);
-        font-size: 0.86rem;
-        font-weight: 700;
-      }
-
-      .docs-note {
-        margin-top: 22px;
-        color: rgba(255, 255, 255, 0.68);
-        font-size: 0.94rem;
-      }
-
-      .lab-gallery {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 18px;
-        margin-top: 30px;
-      }
-
-      .lab-shot {
-        position: relative;
-        overflow: hidden;
-        min-height: 220px;
-        border-radius: 24px;
-        border: 1px solid var(--line);
-        box-shadow: var(--shadow-soft);
-        background: #dfe8f2;
-      }
-
-      .lab-shot img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1);
-        transition: transform 760ms var(--motion-ease);
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .hero-frame:hover img,
-        .lab-shot:hover img {
-          transform: scale(1.05);
-        }
-      }
-
-      .lab-shot__caption {
-        position: absolute;
-        left: 18px;
-        right: 18px;
-        bottom: 18px;
-        padding: 16px 18px;
-        border-radius: 18px;
-        background: linear-gradient(180deg, rgba(9, 26, 48, 0.26), rgba(9, 26, 48, 0.88));
-        color: #fff;
-      }
-
-      .ghost-button--on-dark {
-        background: rgba(255, 255, 255, 0.14);
-        border-color: rgba(255, 255, 255, 0.24);
-        color: #fff;
-      }
-
-      .ghost-button--on-dark:hover {
-        background: rgba(255, 255, 255, 0.2);
-        border-color: rgba(255, 255, 255, 0.32);
-        color: #fff;
-      }
-
-      .lab-shot__caption strong {
-        display: block;
-        font-size: 1rem;
-        line-height: 1.35;
-      }
-
-      .lab-shot__caption span {
-        display: block;
-        margin-top: 4px;
-        color: rgba(255, 255, 255, 0.82);
-        font-size: 0.9rem;
-      }
-
-      .lab-gallery-intro {
-        margin-top: 20px;
-        color: var(--muted);
-      }
-
-      .docs-layout {
-        display: grid;
-        grid-template-columns: 0.9fr 1.1fr;
-        gap: 22px;
-        margin-top: 30px;
-        align-items: start;
-      }
-
-      .docs-browser {
-        padding: 22px;
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.96);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .docs-viewer {
-        padding: 18px;
-        border-radius: 22px;
-        background: rgba(255, 255, 255, 0.96);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: var(--shadow-soft);
-      }
-
-      .viewer-meta {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: center;
-        padding: 8px 6px 18px;
-      }
-
-      .viewer-meta h3 {
-        margin: 0;
-        color: var(--text);
-        font-size: 1.1rem;
-      }
-
-      .viewer-meta p {
-        margin: 6px 0 0;
-        color: var(--muted);
-        font-size: 0.94rem;
-      }
-
-      .viewer-frame {
-        width: 100%;
-        height: 820px;
-        border: 1px solid rgba(14, 26, 43, 0.08);
-        border-radius: 18px;
-        background: #fff;
-      }
-
-      .quick-docs {
-        display: grid;
-        gap: 12px;
-        margin-bottom: 18px;
-      }
-
-      .quick-doc-button {
-        display: flex;
-        justify-content: space-between;
-        gap: 14px;
-        width: 100%;
-        padding: 14px 16px;
-        border: 1px solid rgba(14, 26, 43, 0.08);
-        border-radius: 16px;
-        background: #fff;
-        color: var(--text);
-        text-align: left;
-        font-weight: 700;
-        transition:
-          border-color var(--motion-hover) var(--motion-ease),
-          background var(--motion-hover) var(--motion-ease),
-          color var(--motion-hover) var(--motion-ease),
-          transform var(--motion-hover) var(--motion-ease),
-          box-shadow var(--motion-hover) var(--motion-ease);
-      }
-
-      .quick-doc-button:hover,
-      .quick-doc-button.is-active {
-        border-color: rgba(16, 61, 115, 0.24);
-        background: rgba(16, 61, 115, 0.06);
-        color: var(--primary);
-        transform: translateY(-2px);
-        box-shadow: 0 12px 26px rgba(14, 26, 43, 0.08);
-      }
-
-      .accordion-list {
-        display: grid;
-        gap: 14px;
-        margin-top: 30px;
-      }
-
-      .accordion-item {
-        overflow: hidden;
-        border: 1px solid var(--line);
-        border-radius: 22px;
-        background: #fff;
-        box-shadow: var(--shadow-soft);
-      }
-
-      .accordion-trigger {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        gap: 20px;
-        align-items: center;
-        text-align: left;
-        padding: 22px 24px;
-        border: 0;
-        background: transparent;
-        cursor: pointer;
-        color: var(--text);
-        font-weight: 800;
-      }
-
-      .accordion-trigger::after {
-        content: "+";
-        font-size: 1.4rem;
-        color: var(--primary);
-      }
-
-      .accordion-item.is-open .accordion-trigger::after {
-        content: "–";
-      }
-
-      .accordion-panel {
-        display: none;
-        padding: 0 24px 24px;
-        border-top: 1px solid rgba(14, 26, 43, 0.08);
-        background: rgba(238, 243, 250, 0.6);
-      }
-
-      .accordion-item.is-open .accordion-panel {
-        display: block;
-      }
-
-      .doc-list {
-        display: grid;
-        gap: 10px;
-        padding-top: 18px;
-      }
-
-      .doc-list a {
-        display: flex;
-        justify-content: space-between;
-        gap: 16px;
-        align-items: center;
-        padding: 14px 16px;
-        border: 1px solid rgba(14, 26, 43, 0.08);
-        border-radius: 16px;
-        background: #fff;
-        color: var(--text);
-      }
-
-      .doc-list a span {
-        color: var(--primary);
-        font-weight: 700;
-        white-space: nowrap;
-      }
-
-      .cta-bar {
-        padding: 36px 40px;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 18px;
-        align-items: center;
-        background: linear-gradient(180deg, rgba(10, 38, 71, 0.96), rgba(16, 61, 115, 0.94));
-        color: #fff;
-      }
-
-      .cta-bar .section-copy {
-        color: rgba(255, 255, 255, 0.76);
-      }
-
-      .footer {
-        padding: 64px 0;
-        background: var(--primary-strong);
-        color: #fff;
-      }
-
-      .footer-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr 0.8fr;
-        gap: 24px;
-      }
-
-      .footer h2,
-      .footer h3 {
-        margin: 0 0 14px;
-      }
-
-      .footer p,
-      .footer a {
-        display: block;
-        margin: 0 0 10px;
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      .footer a:hover {
-        color: #fff;
-      }
-
-      .js [data-reveal],
-      .js [data-heading-reveal],
-      .js [data-stagger] > *,
-      .js [data-media-reveal] .motion-media,
-      .js [data-media-reveal] .motion-overlay-card {
-        opacity: 0;
-        will-change: transform, opacity;
-      }
-
-      .js [data-reveal] {
-        transform: translate3d(0, 26px, 0);
-        transition:
-          opacity var(--motion-duration) var(--motion-ease),
-          transform var(--motion-duration) var(--motion-ease);
-      }
-
-      .js [data-heading-reveal] {
-        transform: translate3d(0, 18px, 0);
-        transition:
-          opacity var(--motion-duration-slow) var(--motion-ease),
-          transform var(--motion-duration-slow) var(--motion-ease);
-        transition-delay: 80ms;
-      }
-
-      .js [data-stagger] > * {
-        transform: translate3d(0, 18px, 0);
-        transition:
-          opacity var(--motion-duration-fast) var(--motion-ease),
-          transform var(--motion-duration-fast) var(--motion-ease);
-        transition-delay: var(--stagger-delay, 0ms);
-      }
-
-      .js [data-stagger="left"] > * {
-        transform: translate3d(28px, 0, 0);
-      }
-
-      .js [data-media-reveal] .motion-media {
-        transform: scale(1.045);
-        transition:
-          opacity var(--motion-duration-slow) var(--motion-ease),
-          transform var(--motion-duration-slow) var(--motion-ease);
-      }
-
-      .js [data-media-reveal] .motion-overlay-card {
-        transform: translate3d(0, 28px, 0);
-        transition:
-          opacity 980ms var(--motion-ease),
-          transform 980ms var(--motion-ease);
-        transition-delay: 180ms;
-      }
-
-      .js [data-reveal].is-visible,
-      .js [data-heading-reveal].is-visible,
-      .js [data-stagger].is-visible > *,
-      .js [data-media-reveal].is-visible .motion-media,
-      .js [data-media-reveal].is-visible .motion-overlay-card {
-        opacity: 1;
-        transform: none;
-      }
-
-      .stat-card,
-      .info-card,
-      .doc-card,
-      .lab-shot,
-      .docs-browser,
-      .docs-viewer,
-      .accordion-item {
-        transition:
-          transform var(--motion-hover) var(--motion-ease),
-          box-shadow var(--motion-hover) var(--motion-ease),
-          border-color var(--motion-hover) var(--motion-ease),
-          background var(--motion-hover) var(--motion-ease);
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .hero-frame:hover img,
-        .lab-shot:hover img {
-          transform: scale(1.05);
-        }
-
-        .stat-card:hover,
-        .info-card:hover,
-        .doc-card:hover,
-        .lab-shot:hover,
-        .docs-browser:hover,
-        .docs-viewer:hover,
-        .accordion-item:hover {
-          transform: translateY(-4px);
-          box-shadow: 0 22px 40px rgba(14, 26, 43, 0.1);
-          border-color: rgba(16, 61, 115, 0.16);
-        }
-      }
-
-      .stat-card:focus-within,
-      .info-card:focus-within,
-      .doc-card:focus-within,
-      .lab-shot:focus-within,
-      .docs-browser:focus-within,
-      .docs-viewer:focus-within,
-      .accordion-item:focus-within {
-        transform: translateY(-4px);
-        box-shadow: 0 22px 40px rgba(14, 26, 43, 0.1);
-        border-color: rgba(16, 61, 115, 0.16);
-      }
-
-      @media (max-width: 1120px) {
-        .header__inner,
-        .hero-grid,
-        .cta-bar,
-        .footer-grid,
-        .docs-layout {
-          grid-template-columns: 1fr;
-        }
-
-        .nav {
-          justify-content: flex-start;
-          gap: 14px;
-        }
-
-        .grid-4 {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-
-        .lab-gallery {
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-        }
-      }
-
-      @media (max-width: 760px) {
-        .container {
-          width: min(100%, calc(100% - 20px));
-        }
-
-        .section {
-          padding: 72px 0;
-        }
-
-        .header__inner {
-          grid-template-columns: auto auto;
-          justify-content: space-between;
-          gap: 20px;
-        }
-
-        .nav {
-          display: none;
-        }
-
-        .mobile-toggle {
-          display: inline-flex;
-        }
-
-        .header__action .button {
-          display: none;
-        }
-
-        .brand-logo {
-          padding: 8px;
-        }
-
-        .brand-logo-frame {
-          width: 92px;
-          height: 92px;
-        }
-
-        .brand-copy {
-          display: none;
-        }
-
-        .brand-text {
-          max-width: 240px;
-        }
-
-        .hero h1 {
-          font-size: 2.35rem;
-        }
-
-        .hero-frame {
-          min-height: 420px;
-        }
-
-        .stats,
-        .grid-3,
-        .grid-4,
-        .docs-grid,
-        .doc-card,
-        .footer-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .docs-section,
-        .cta-bar {
-          padding: 28px 20px;
-        }
-
-        .lab-gallery {
-          grid-template-columns: 1fr;
-        }
-
-        /* Mobile browsers can drop nested reveal states in long galleries.
-           Keep the lab gallery visible on small screens instead of waiting for IO. */
-        .js .lab-gallery[data-stagger] > * {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-
-        .js .lab-gallery [data-media-reveal] .motion-media,
-        .js .lab-gallery [data-media-reveal] .motion-overlay-card {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-
-        .viewer-frame {
-          height: 560px;
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
-
-        .button,
-        .ghost-button,
-        .doc-link,
-        .quick-doc-button,
-        .stat-card,
-        .info-card,
-        .doc-card,
-        .lab-shot,
-        .docs-browser,
-        .docs-viewer,
-        .accordion-item,
-        .hero-frame img,
-        .lab-shot img {
-          transition: none !important;
-          transform: none !important;
-        }
-
-        .button::after,
-        .ghost-button::after,
-        .doc-link::after {
-          display: none;
-        }
-
-        .js [data-reveal],
-        .js [data-heading-reveal],
-        .js [data-stagger] > *,
-        .js [data-media-reveal] .motion-media,
-        .js [data-media-reveal] .motion-overlay-card {
-          opacity: 1;
-          transform: none;
-          transition: none;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <header class="header" id="header">
-      <div class="container">
-        <div class="header__inner">
-          <a class="brand" href="./index.html">
-            <span class="brand-logo-frame">
-              <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An" />
-            </span>
-            <div class="brand-copy">
-              <div class="brand-mark">CÔNG TY CP ĐTXD TMDV TRUNG AN</div>
-              <p class="brand-text">Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</p>
-            </div>
-          </a>
-
-          <nav class="nav" aria-label="Điều hướng chính">
-            <a href="./index.html#gioi-thieu">Giới thiệu</a>
-            <a href="./index.html#linh-vuc">Lĩnh vực</a>
-            <a href="#cong-bo">Công bố năng lực</a>
-            <a href="#gioi-thieu">Thí nghiệm</a>
-            <a href="#lien-he">Liên hệ</a>
-          </nav>
-
-          <div class="header__action">
-            <a class="button" href="#lien-he">Liên hệ</a>
-            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Mở menu">☰ Menu</button>
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        z-index: -1; transition: opacity 0.3s ease; opacity: 0;
+    }
+    .button:hover::before, .ghost-button:hover::before { opacity: 1; }
+
+    .button {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+      color: #fff;
+      box-shadow: 0 10px 20px rgba(16, 61, 115, 0.2);
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10, 38, 71, 0.3); }
+
+    .ghost-button, .doc-link {
+      background: linear-gradient(135deg, #ffffff 0%, #f4f7fb 100%);
+      border-color: var(--line); color: var(--text);
+    }
+    .ghost-button:hover, .doc-link:hover {
+      border-color: var(--primary); color: var(--primary);
+      transform: translateY(-2px); box-shadow: var(--shadow-card);
+    }
+    
+    .ghost-button--light {
+      background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.3); color: #fff;
+    }
+    .ghost-button--light:hover {
+      border-color: #fff; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    }
+
+    /* HEADER */
+    .topbar {
+      position: sticky;
+      top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line); transition: box-shadow 0.3s ease;
+    }
+    .topbar.is-scrolled { box-shadow: var(--shadow-card); }
+    .topbar__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      min-height: var(--header-height); gap: 1rem; padding: 10px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 14px; position: relative; z-index: 101; }
+    .brand-logo-frame {
+      width: 64px; height: 64px; padding: 3px; border-radius: 14px;
+      background: linear-gradient(180deg, #cf2027 0%, #af161f 100%); flex-shrink: 0;
+    }
+    .brand-logo {
+      width: 100%; height: 100%; object-fit: contain; padding: 6px; border-radius: 10px; background: #fff;
+    }
+    .brand-mark {
+      font-size: 1.05rem; font-weight: 800; color: var(--primary);
+      letter-spacing: 0.05em; line-height: 1.2; text-align: left;
+    }
+    .brand-text { font-size: 0.8rem; color: var(--muted); margin-top: 4px; text-align: left; }
+    
+    .nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
+    .nav a { font-weight: 700; color: var(--muted); font-size: 0.95rem; transition: color 0.2s; }
+    .nav a:hover, .nav a[aria-current="page"] { color: var(--primary); }
+
+    /* ========================================================
+       1. HERO SECTION (NỀN DARK GRADIENT ĐẬM)
+       ======================================================== */
+    .hero {
+      position: relative;
+      padding-top: 60px;
+      padding-bottom: 100px;
+      background-color: var(--bg-dark-base);
+      background-image: radial-gradient(circle at 100% 0%, rgba(26, 86, 163, 0.5) 0%, transparent 50%),
+                        linear-gradient(135deg, var(--bg-dark-base) 0%, var(--primary-strong) 100%);
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: start; position: relative; z-index: 2;}
+    .hero-left { padding-top: 20px; }
+    
+    .hero-left .eyebrow {
+      background: rgba(255, 255, 255, 0.15); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 900; line-height: 1.15;
+      letter-spacing: -0.03em; margin-bottom: 24px; color: #fff;
+    }
+    .hero p.lead { font-size: 1.15rem; color: rgba(255,255,255,0.85); margin-bottom: 40px; line-height: 1.6; }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
+    
+    .hero-bullets {
+      display: flex; flex-direction: column; gap: 16px; list-style: none; 
+      border-top: 1px solid rgba(255,255,255,0.15); padding-top: 32px;
+    }
+    .hero-bullets li {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.5; font-size: 1.05rem;
+    }
+    .hero-bullets li::before {
+      content: '✓'; color: #60a5fa; font-weight: 900; font-size: 1.1rem;
+    }
+
+    .hero-right { display: flex; flex-direction: column; gap: 20px; }
+    .hero-img {
+      width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius-lg); 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    }
+    
+    .stats-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .stat-card {
+      background: #fff; border-radius: var(--radius-lg); padding: 32px 24px;
+      display: flex; flex-direction: column; justify-content: center;
+      box-shadow: 0 16px 40px rgba(16, 61, 115, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(16, 61, 115, 0.25); }
+    
+    .stat-card.primary { 
+      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: #fff; 
+      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 16px 40px rgba(10, 38, 71, 0.3);
+    }
+    .stat-card.primary:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(10, 38, 71, 0.45); }
+    .stat-card h3 {
+      font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 900; line-height: 1;
+      margin-bottom: 12px; letter-spacing: -0.02em; color: var(--text);
+    }
+    .stat-card.primary h3 { color: #fff; }
+    .stat-card p { font-size: 0.95rem; font-weight: 500; line-height: 1.5; margin: 0; color: var(--muted); }
+    .stat-card.primary p { color: rgba(255,255,255,0.9); }
+
+    /* ========================================================
+       2. NĂNG LỰC & BENTO GRID
+       ======================================================== */
+    .lab-layout {
+      display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px; align-items: stretch;
+    }
+    .lab-content {
+      background: #fff; padding: 48px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
+      display: flex; flex-direction: column; justify-content: center; transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .lab-content:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    
+    .lab-bento { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 16px; }
+    .lab-bento-header {
+      grid-column: span 2; background: var(--primary-strong); padding: 32px; border-radius: var(--radius-lg);
+      color: #fff; box-shadow: 0 16px 40px rgba(10,38,71,0.25); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .lab-bento-header:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(10,38,71,0.35); }
+    .lab-bento-header h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4; }
+    .lab-bento-header p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin: 0; }
+    
+    .lab-img-wrapper {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: var(--shadow-card); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .lab-img-wrapper:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .lab-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .lab-img-wrapper:hover img { transform: scale(1.05); }
+    .lab-img-wrapper::after {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(0deg, rgba(10,38,71,0.9) 0%, transparent 60%);
+    }
+    .lab-bento-small.lab-img-wrapper { border-radius: 16px; }
+    .lab-bento-small.lab-img-wrapper::after { background: rgba(10,38,71,0.1); }
+    .lab-img-caption { position: absolute; bottom: 0; left: 0; width: 100%; padding: 24px; color: #fff; z-index: 2; font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
+    .lab-bento-tall { min-height: 480px; }
+    .lab-bento-right { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
+    .lab-bento-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; }
+
+    /* ========================================================
+       3. TÀI LIỆU CÔNG BỐ (SECTION DARK)
+       ======================================================== */
+    .docs-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: start; }
+    .accordion-list { display: flex; flex-direction: column; gap: 16px; }
+    .accordion-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); overflow: hidden; transition: background 0.3s; }
+    .accordion-trigger {
+      width: 100%; display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 24px; background: transparent; border: none; color: #fff;
+      font-weight: 700; font-size: 1.05rem; cursor: pointer; text-align: left;
+    }
+    .accordion-trigger::after { content: "+"; font-size: 1.5rem; color: rgba(255,255,255,0.5); }
+    .accordion-item.is-open { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+    .accordion-item.is-open .accordion-trigger::after { content: "–"; }
+    .accordion-panel { display: none; padding: 0 24px 24px; }
+    .accordion-item.is-open .accordion-panel { display: block; }
+    
+    .doc-list { display: flex; flex-direction: column; gap: 12px; }
+    .doc-list a {
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px; color: rgba(255,255,255,0.9); font-size: 0.95rem; transition: all 0.2s;
+    }
+    .doc-list a:hover, .doc-list a.is-active { background: rgba(255,255,255,0.15); border-color: rgba(255,255,255,0.3); color: #fff; }
+    .doc-list a span { color: #60a5fa; font-weight: 700; font-size: 0.85rem; white-space: nowrap; }
+
+    .document-preview-card {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-strong);
+    }
+    .document-preview-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 24px; }
+    .document-preview-head h3 { font-size: 1.4rem; color: #fff; font-weight: 700; margin-bottom: 8px;}
+    .document-preview-head p { color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem; }
+    .preview-open-link { border-color: rgba(255,255,255,0.3); color: #fff; background: transparent; }
+    .preview-open-link:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+    .document-preview-frame { border-radius: 16px; overflow: hidden; background: #fff; height: 760px; }
+    .document-preview-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+
+    /* ========================================================
+       4. DỰ ÁN THỰC TẾ (FULL WIDTH STACK)
+       ======================================================== */
+    .project-gallery { display: flex; flex-direction: column; gap: 48px; margin-top: 40px; }
+    .project-shot {
+      position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 21/9; 
+      width: 100%; box-shadow: var(--shadow-card); transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .project-shot:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .project-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .project-shot:hover img { transform: scale(1.03); }
+    .project-shot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(10,38,71,0.95) 100%); }
+    .project-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; z-index: 2; color: #fff; }
+    .project-label {
+      display: inline-block; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
+      background: var(--primary); padding: 6px 14px; border-radius: 6px; margin-bottom: 12px;
+    }
+    .project-caption h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
+    .project-caption p { font-size: 1.05rem; color: rgba(255,255,255,0.85); }
+
+    /* ========================================================
+       5. LIÊN HỆ & FOOTER
+       ======================================================== */
+    .contact-wrap {
+      display: grid; grid-template-columns: 1fr 1fr;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
+      overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .contact-wrap:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .contact-info { padding: 64px 48px; background: var(--primary-strong); color: #fff; }
+    .contact-info h2 { font-size: 2rem; font-weight: 800; margin: 16px 0 24px; line-height: 1.3;}
+    .contact-info p.desc { color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 40px; }
+    .contact-form { padding: 64px 48px; }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem; }
+    .form-control { width: 100%; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-main); transition: all 0.2s; font-family: inherit; }
+    .form-control:focus { outline: none; border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px var(--primary-soft); }
+
+    .footer { background: #06182e; color: #fff; padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
+    .footer h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 16px; }
+    .footer p { color: rgba(255,255,255,0.7); font-size: 1rem; }
+    .footer-col h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; }
+    .footer-col a { display: block; margin-bottom: 12px; color: rgba(255,255,255,0.7); font-weight: 600;}
+    .footer-col a:hover { color: #fff; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--motion-ease), transform 0.8s var(--motion-ease); }
+    .reveal.is-visible { opacity: 1; transform: none; }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .hero-layout, .docs-layout, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .lab-layout { grid-template-columns: 1fr; }
+      .lab-bento-tall { min-height: 360px; }
+      .project-shot { aspect-ratio: 16/9; } 
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+      .document-preview-frame { height: 600px; }
+    }
+    @media (max-width: 960px) {
+      .topbar__inner { flex-direction: column; justify-content: center; padding: 16px 0; gap: 16px; }
+      .nav { gap: 12px 20px; }
+    }
+    @media (max-width: 640px) {
+      .brand { flex-direction: column; text-align: center; gap: 12px; }
+      .brand-mark { text-align: center; }
+      .brand-text { text-align: center; white-space: normal; max-width: none;}
+      .brand-logo-frame { width: 72px; height: 72px; }
+      .hero h1 { font-size: 2.2rem; }
+      .stats-2x2 { grid-template-columns: 1fr; }
+      .lab-bento { grid-template-columns: 1fr; }
+      .lab-bento-header { grid-column: 1; }
+      .lab-bento-right { grid-template-rows: auto; }
+      .lab-bento-square { min-height: 240px; }
+      .project-shot { aspect-ratio: 4/3; } 
+      .contact-info, .contact-form { padding: 32px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar" id="header">
+    <div class="container">
+      <div class="topbar__inner">
+        <a class="brand" href="index.html" aria-label="Trung An">
+          <span class="brand-logo-frame">
+            <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An">
+          </span>
+          <div class="brand-copy">
+            <div class="brand-mark">CÔNG TY CP ĐTXD TMDV TRUNG AN</div>
+            <div class="brand-text">Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</div>
           </div>
-        </div>
+        </a>
+        <nav class="nav">
+          <a href="index.html#gioi-thieu">Giới thiệu</a>
+          <a href="index.html#nang-luc">Năng lực</a>
+          <a href="index.html#dich-vu">Giải pháp</a>
+          <a href="thi-nghiem.html" aria-current="page" style="color: var(--primary);">Phòng LAS-XD</a>
+          <a href="index.html#lien-he">Liên hệ</a>
+        </nav>
+      </div>
+    </div>
+  </header>
 
-        <div class="mobile-menu" id="mobileMenu">
-          <div class="mobile-menu__panel">
-            <a href="./index.html#gioi-thieu">Giới thiệu</a>
-            <a href="./index.html#linh-vuc">Lĩnh vực</a>
-            <a href="#cong-bo">Công bố năng lực</a>
-            <a href="#gioi-thieu">Thí nghiệm</a>
-            <a href="#lien-he">Liên hệ</a>
+  <main id="top">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-layout">
+          <div class="hero-left" data-reveal>
+            <span class="eyebrow eyebrow-light">PHÒNG THÍ NGHIỆM LAS-XD 13.004</span>
+            <h1>Kiểm định Xây dựng & Thử tải: Số liệu thực, Pháp lý vững.</h1>
+            <p class="lead">
+              Trung An trực tiếp vận hành phòng thí nghiệm LAS-XD 13.004. Chúng tôi cung cấp chuỗi dịch vụ lấy mẫu, khoan lõi, thử tải và xuất kết quả kiểm định hợp lệ pháp lý, tuân thủ nghiêm ngặt hệ thống tiêu chuẩn hiện hành.
+            </p>
+            <div class="hero-actions">
+              <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
+              <a class="ghost-button ghost-button--light" href="#lien-he">Liên hệ lấy mẫu</a>
+            </div>
+            <ul class="hero-bullets">
+              <li>Mã số hợp chuẩn do Bộ Xây dựng cấp phép hoạt động.</li>
+              <li>Hệ thống quản lý chất lượng phòng thí nghiệm chuẩn ISO/IEC 17025:2017.</li>
+              <li>Minh bạch hồ sơ thiết bị, máy nén và năng lực kỹ sư đo kiểm.</li>
+            </ul>
+          </div>
+          
+          <div class="hero-right" data-reveal>
+            <img class="hero-img" src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Hoạt động kiểm định, thử tải của Trung An" />
+            <div class="stats-2x2">
+              <div class="stat-card primary">
+                <h3 style="font-size: 2.8rem; font-family: 'Montserrat', sans-serif;">13.004</h3>
+                <p>Mã số chứng nhận LAS-XD (Chuyển đổi từ mã cũ 1469).</p>
+              </div>
+              <div class="stat-card">
+                <h3><span class="count-up" data-target="100">0</span>%</h3>
+                <p>Thiết bị nén, kéo, đo lường được hiệu chuẩn định kỳ hàng năm.</p>
+              </div>
+              <div class="stat-card">
+                <h3><span class="count-up" data-target="8">0</span>+</h3>
+                <p>Năm kinh nghiệm trong lĩnh vực thí nghiệm, kiểm định xây dựng.</p>
+              </div>
+              <div class="stat-card">
+                <h3 style="font-size: 2.4rem; font-family: 'Montserrat', sans-serif;">ISO 17025</h3>
+                <p>Hệ thống quản lý chất lượng phòng thí nghiệm chuẩn quốc tế.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <main>
-      <section class="hero section">
-        <div class="container">
-          <div class="hero-grid">
-            <div data-reveal>
-              <span class="eyebrow">PHÒNG THÍ NGHIỆM HỢP CHUẨN LAS-XD 13.004</span>
-              <h1 data-heading-reveal>Kiểm định Xây dựng &amp; Thử tải: Số liệu thực, Pháp lý vững.</h1>
-              <p class="section-copy">
-                Trực tiếp vận hành phòng thí nghiệm LAS-XD 13.004. Chúng tôi cung cấp chuỗi dịch vụ lấy mẫu, khoan lõi, thử tải và xuất kết quả kiểm định hợp lệ pháp lý, tuân thủ nghiêm ngặt hệ thống tiêu chuẩn hiện hành (TCVN, ASTM, AASHTO).
-              </p>
-              <div class="hero-actions" data-stagger="up" data-stagger-step="150">
-                <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
-                <a class="ghost-button" href="#lien-he">Liên hệ</a>
+    <!-- NĂNG LỰC & BENTO GRID -->
+    <section id="phong-las" class="section bg-soft">
+      <div class="container">
+        <div class="lab-layout" data-reveal>
+          <div class="lab-content">
+            <span class="eyebrow" style="margin-bottom: 24px;">Phòng thí nghiệm LAS-XD</span>
+            <h2>PHÒNG THÍ NGHIỆM CHUYÊN NGÀNH XÂY DỰNG (LAS-XD 13.004) là hợp phần quan trọng giúp Trung An kiểm soát chất lượng đồng bộ hơn.</h2>
+            <p>Không chỉ dừng ở tư vấn hồ sơ, Trung An còn có năng lực kiểm tra, thí nghiệm và đánh giá chất lượng vật liệu, cấu kiện, nền móng và hiện trạng công trình thông qua hệ thống phòng thí nghiệm chuyên ngành xây dựng.</p>
+            <p>Đây là điểm mạnh giúp công ty kết nối giữa giải pháp kỹ thuật trên hồ sơ với dữ liệu kiểm soát chất lượng trong thực tế triển khai dự án.</p>
+          </div>
+
+          <div class="lab-bento">
+            <div class="lab-bento-header">
+              <span class="eyebrow eyebrow-light" style="background: transparent; border: none; padding: 0; margin-bottom: 8px;">Năng lực chuyên sâu</span>
+              <h3 style="font-family: 'Playfair Display', serif;">Kiểm soát chất lượng vật liệu, cấu kiện và công trình</h3>
+              <p>Hỗ trợ thí nghiệm, kiểm định và khảo sát vật liệu xây dựng theo tiêu chuẩn chuyên ngành hiện hành.</p>
+            </div>
+            
+            <div class="lab-bento-tall lab-img-wrapper">
+              <img src="./img/ptn/luu-mau-be-tong.jpg" alt="Hoạt động phòng thí nghiệm">
+              <div class="lab-img-caption">Hoạt động thí nghiệm, lưu mẫu và vận hành thiết bị được tổ chức đồng bộ trong cùng một quy trình chuyên môn.</div>
+            </div>
+            
+            <div class="lab-bento-right">
+              <div class="lab-bento-square lab-img-wrapper">
+                <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Lấy mẫu hiện trường">
+                <div class="lab-img-caption" style="padding: 16px; font-size: 0.85rem;">Công tác lấy mẫu, đo kiểm và kiểm tra hiện trạng được thực hiện trực tiếp bởi đội ngũ kỹ thuật.</div>
+              </div>
+              <div class="lab-bento-grid">
+                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Máy kéo thép"></div>
+                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Máy nén bê tông"></div>
+                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc"></div>
+                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa"></div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="card hero-visual" data-reveal>
-              <div class="hero-frame" data-media-reveal>
-                <img class="motion-media" src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
-                <div class="hero-overlay"></div>
-                <div class="hero-caption motion-overlay-card">
-                  <span class="eyebrow eyebrow--light">LAS-XD 13.004</span>
-                  <p>Triển khai kiểm tra cấu kiện, thí nghiệm vật liệu, thử tải và các công tác hiện trường phục vụ kiểm soát chất lượng công trình.</p>
-                </div>
-              </div>
+    <!-- GALLERY DỰ ÁN THỰC TẾ -->
+    <section id="hinh-anh" class="projects-section section">
+      <div class="container">
+        <div data-reveal>
+          <span class="eyebrow">Hình ảnh hiện trường</span>
+          <h2 class="section-title">Hoạt động thí nghiệm & kiểm định thực tế.</h2>
+          <p class="section-copy">Một số công tác tiêu biểu như khoan lấy mẫu, thử tải cấu kiện, đo độ chặt hiện trường và nén mẫu bê tông trong phòng thí nghiệm.</p>
+        </div>
+
+        <div class="project-gallery" data-reveal>
+          <div class="project-shot">
+            <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra cọc BT DUL">
+            <div class="project-caption">
+              <span class="project-label">01. Kiểm tra cấu kiện</span>
+              <h3>Kiểm tra cọc BT DUL</h3>
+              <p>Nghiệm thu kích thước hình học và ngoại quan cọc ly tâm.</p>
             </div>
           </div>
-
-          <div class="stats" data-stagger="up" data-stagger-step="160">
-            <article class="soft-card stat-card">
-              <strong>LAS-XD 13.004</strong>
-              <span>Mã số hợp chuẩn do Bộ Xây dựng cấp phép.</span>
-            </article>
-            <article class="soft-card stat-card">
-              <strong>ISO/IEC 17025:2017</strong>
-              <span>Hệ thống quản lý chất lượng phòng thí nghiệm.</span>
-            </article>
-            <article class="soft-card stat-card">
-              <strong>Minh bạch hồ sơ</strong>
-              <span>Công khai biên bản hiệu chuẩn và năng lực nhân sự.</span>
-            </article>
+          <div class="project-shot">
+            <img src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan rút lõi">
+            <div class="project-caption">
+              <span class="project-label">02. Thí nghiệm vật liệu</span>
+              <h3>Khoan rút lõi hiện trường</h3>
+              <p>Khoan lấy mẫu trụ bê tông để ép nén kiểm tra mác (R28).</p>
+            </div>
+          </div>
+          <div class="project-shot">
+            <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm định cống BTCT">
+            <div class="project-caption">
+              <span class="project-label">03. Đánh giá chất lượng</span>
+              <h3>Kiểm định cống BTCT</h3>
+              <p>Kiểm tra chiều dày, cốt thép và bề mặt cống thoát nước.</p>
+            </div>
+          </div>
+          <div class="project-shot">
+            <img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Kéo nén thép cốt">
+            <div class="project-caption">
+              <span class="project-label">04. Thí nghiệm kéo nén</span>
+              <h3>Kéo nén thép cốt</h3>
+              <p>Kiểm tra giới hạn chảy, giới hạn đứt và độ giãn dài của thép.</p>
+            </div>
+          </div>
+          <div class="project-shot">
+            <img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Nén mẫu bê tông">
+            <div class="project-caption">
+              <span class="project-label">05. Ép mẫu phá hủy</span>
+              <h3>Nén mẫu bê tông</h3>
+              <p>Thí nghiệm phá hủy xác định cường độ trên máy ngàm thủy lực.</p>
+            </div>
+          </div>
+          <div class="project-shot">
+            <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Độ chặt (Rót cát)">
+            <div class="project-caption">
+              <span class="project-label">06. Kiểm tra hiện trường</span>
+              <h3>Độ chặt nền (Rót cát)</h3>
+              <p>Xác định độ chặt nền đường (K95/K98) tại công trường.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="gioi-thieu" class="section">
-        <div class="container">
-          <div data-reveal>
-            <span class="eyebrow">Hồ sơ năng lực</span>
-            <h2 class="section-title" data-heading-reveal>Năng lực thí nghiệm chuyên ngành xây dựng</h2>
-            <p class="section-copy">
-            Trung An triển khai hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được chứng nhận, đồng thời công bố các văn bản và tài liệu liên quan đến điều kiện hoạt động và năng lực chuyên môn.
-            </p>
-            <p class="lab-gallery-intro">
-            Hình ảnh dưới đây thể hiện một số nội dung công việc tiêu biểu tại hiện trường và trong phòng thí nghiệm, bao gồm kiểm tra cấu kiện, thí nghiệm vật liệu, lưu mẫu và thử tải theo yêu cầu kỹ thuật.
-            </p>
-          </div>
-
-          <div class="grid-3" style="margin-top: 30px" data-stagger="up" data-stagger-step="150">
-            <article class="soft-card info-card">
-              <div class="icon-badge">GCN</div>
-              <h3>Đủ điều kiện hoạt động thí nghiệm</h3>
-              <p>Doanh nghiệp có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được công nhận.</p>
-            </article>
-            <article class="soft-card info-card">
-              <div class="icon-badge">LAS</div>
-              <h3>Mã số LAS-XD rõ ràng</h3>
-              <p>Phòng thí nghiệm mang mã số LAS-XD 1469 và đã được chuyển đổi thành LAS-XD 13.004 theo hồ sơ năng lực hiện hành.</p>
-            </article>
-            <article class="soft-card info-card">
-              <div class="icon-badge">HS</div>
-              <h3>Hồ sơ công bố đầy đủ</h3>
-              <p>Văn bản, chứng nhận và tài liệu liên quan được công bố để đối tác và đơn vị liên quan tham khảo, đối chiếu.</p>
-            </article>
-          </div>
-
-          <div class="lab-gallery" data-stagger="up" data-stagger-step="180">
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra kết cấu cấu kiện cọc bê tông dự ứng lực" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Kiểm tra cọc BT DUL</strong>
-                <span>Nghiệm thu kích thước hình học và ngoại quan cọc bê tông ly tâm dự ứng lực.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-dam-super-t.jpg" alt="Kiểm tra kết cấu cấu kiện dầm Super T" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Kiểm định dầm Super T</strong>
-                <span>Đánh giá cường độ và siêu âm khuyết tật dầm cầu trước khi lao phóng.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan mẫu bê tông tại công trình" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Khoan rút lõi hiện trường</strong>
-                <span>Khoan lấy mẫu trụ bê tông để ép nén kiểm tra mác (R28) thực tế.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/luu-mau-be-tong.jpg" alt="Lưu mẫu bê tông trong quá trình kiểm soát chất lượng" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Bảo dưỡng &amp; Lưu mẫu</strong>
-                <span>Bảo dưỡng mẫu bê tông trong môi trường tiêu chuẩn chờ ngày nén phá hủy.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm tra kết cấu cấu kiện cống bê tông cốt thép" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Kiểm định cống BTCT</strong>
-                <span>Kiểm tra chiều dày, cốt thép và chất lượng bề mặt cống thoát nước.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Thí nghiệm kéo thép trong phòng thí nghiệm" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Kéo nén thép cốt</strong>
-                <span>Kiểm tra giới hạn chảy, giới hạn đứt và độ giãn dài của thép xây dựng.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Thí nghiệm nén bê tông" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Nén mẫu bê tông</strong>
-                <span>Thí nghiệm phá hủy xác định cường độ chịu nén (R7, R28) trên máy nén ngàm thủy lực.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thi-nghiem-nhua-bitum.jpg" alt="Thí nghiệm nhựa bitum" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Thí nghiệm nhựa Bitum</strong>
-                <span>Xác định độ kim lún, điểm mềm và hàm lượng nhựa phục vụ thảm thảm bê tông nhựa nóng.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Thí nghiệm độ chặt hiện trường" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Độ chặt hiện trường (Rót cát)</strong>
-                <span>Thí nghiệm phễu rót cát xác định độ chặt nền đường (K95/K98).</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa kỹ thuật" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Thí nghiệm Vải địa kỹ thuật</strong>
-                <span>Kiểm tra lực kéo giật, độ giãn dài và sức kháng bục của vải địa.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thu-tai-cong-btct.jpg" alt="Thử tải cống bê tông cốt thép" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Thử tải cống</strong>
-                <span>Ép tải 3 cạnh kiểm tra khả năng chịu lực xuyên tâm của ống cống.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thu-tai-nap-ho-ga.jpg" alt="Thử tải nắp hố ga" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Thử tải nắp hố ga</strong>
-                <span>Nén tĩnh kiểm tra giới hạn phá hủy của nắp gang/composite.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc bê tông cốt thép" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Thử tĩnh cọc khoan nhồi / ép</strong>
-                <span>Gia tải ép tĩnh bằng hệ dầm đối trọng để lập biểu đồ sức chịu tải của cọc.</span>
-              </figcaption>
-            </figure>
-            <figure class="lab-shot" data-media-reveal>
-              <img class="motion-media" src="./img/ptn/thu-tinh-cu-tram.jpg" alt="Thử tĩnh cừ tràm" />
-              <figcaption class="lab-shot__caption motion-overlay-card">
-                <strong>Thử tĩnh cừ tràm</strong>
-                <span>Nén tĩnh kiểm tra sức chịu tải của nền đất yếu gia cố cừ tràm.</span>
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <section id="nang-luc" class="section">
-        <div class="container">
-          <div data-reveal>
-            <span class="eyebrow">Năng lực liên quan</span>
-            <h2 class="section-title" data-heading-reveal>Các nhóm nội dung năng lực</h2>
-            <p class="section-copy">
-              Phạm vi hoạt động, cơ sở tổ chức và hệ thống tài liệu liên quan đến năng lực thí nghiệm chuyên ngành xây dựng được thể hiện qua các nhóm dưới đây.
-            </p>
-          </div>
-
-          <div class="grid-4" style="margin-top: 30px" data-stagger="left" data-stagger-step="135">
-            <article class="soft-card info-card">
-              <div class="icon-badge">TN</div>
-              <h3>Danh mục phép thử</h3>
-              <p>Thực hiện đầy đủ các phép thử cơ lý hóa cho đất, cát, đá, xi măng, bê tông và thép.</p>
-            </article>
-            <article class="soft-card info-card">
-              <div class="icon-badge">PTN</div>
-              <h3>Nhân sự chuyên môn</h3>
-              <p>Đội ngũ thí nghiệm viên có chứng chỉ hành nghề, vận hành theo sơ đồ QLCL độc lập.</p>
-            </article>
-            <article class="soft-card info-card">
-              <div class="icon-badge">TB</div>
-              <h3>Hiệu chuẩn định kỳ</h3>
-              <p>100% thiết bị đo lường, kích thủy lực, máy nén được kiểm định và dán tem hiệu chuẩn hàng năm.</p>
-            </article>
-            <article class="soft-card info-card">
-              <div class="icon-badge">CB</div>
-              <h3>Truy xuất pháp lý</h3>
-              <p>Hồ sơ số hóa, dễ dàng tra cứu chứng nhận thiết bị và năng lực kỹ sư trực tiếp trên portal.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="cong-bo" class="section">
-        <div class="container card docs-section" data-reveal>
-          <span class="eyebrow eyebrow--light">Tài liệu công bố</span>
-          <h2 class="section-title" data-heading-reveal>Danh mục tài liệu công bố</h2>
-          <p class="section-copy">
-            Danh mục dưới đây gồm các văn bản và tài liệu liên quan đến điều kiện hoạt động, tổ chức phòng thí nghiệm, thiết bị và hồ sơ tham chiếu.
+    <!-- SECTION TÀI LIỆU CÔNG BỐ (PDF VIEWER) -->
+    <section class="section bg-dark-gradient section-dark" id="cong-bo">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow eyebrow-light">Tài liệu công bố</span>
+          <h2>Danh mục hồ sơ phòng thí nghiệm và tra cứu pháp lý.</h2>
+          <p class="section-copy" style="color: rgba(255,255,255,0.8);">
+            Danh mục dưới đây gồm các văn bản liên quan đến quyết định thành lập, điều kiện hoạt động, biểu mẫu quản lý chất lượng và chứng chỉ kiểm định thiết bị.
           </p>
+        </div>
 
-          <div class="docs-layout">
-            <div class="docs-browser" data-reveal>
-              <div class="quick-docs" data-stagger="up" data-stagger-step="120">
-                <button class="quick-doc-button is-active" type="button" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" data-title="Công bố năng lực PTN LAS-XD 13.004" data-desc="Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD 1469 được chuyển đổi thành LAS-XD 13.004.">
-                  <span>Công bố năng lực PTN LAS-XD 13.004</span>
-                  <span>Xem</span>
-                </button>
-                <button class="quick-doc-button" type="button" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123.pdf" data-title="Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử" data-desc="Tài liệu thể hiện điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và danh mục các phép thử liên quan.">
-                  <span>Giấy chứng nhận hoạt động thí nghiệm</span>
-                  <span>Xem</span>
-                </button>
-                <button class="quick-doc-button" type="button" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" data-title="Bản vẽ sơ đồ tổ chức phòng thí nghiệm" data-desc="Tài liệu mô tả cách tổ chức nhân sự và mô hình vận hành của phòng thí nghiệm trong quá trình triển khai công việc.">
-                  <span>Sơ đồ tổ chức phòng thí nghiệm</span>
-                  <span>Xem</span>
-                </button>
-                <button class="quick-doc-button" type="button" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" data-title="Thiết bị thí nghiệm" data-desc="Tài liệu về thiết bị thí nghiệm phục vụ cho việc chứng minh điều kiện và năng lực triển khai công việc chuyên môn.">
-                  <span>Thiết bị thí nghiệm</span>
-                  <span>Xem</span>
-                </button>
-              </div>
-
-              <div class="accordion-list" style="margin-top: 0" data-stagger="up" data-stagger-step="130">
-            <article class="accordion-item is-open">
+        <div class="docs-layout">
+          <!-- Accordion Danh mục -->
+          <div class="accordion-list reveal">
+            <!-- Nhóm 1 -->
+            <div class="accordion-item is-open">
               <button class="accordion-trigger" type="button">Chứng chỉ và quyết định hoạt động</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" data-title="Công bố năng lực PTN LAS-XD 13.004" data-desc="Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD 1469 được chuyển đổi thành LAS-XD 13.004.">Công bố năng lực phòng thí nghiệm LAS-XD 13.004 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/2. CHỨNG CHỈ NLHD LẦN 1.pdf" data-title="Chứng chỉ NLHD lần 1" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 1 liên quan đến hồ sơ doanh nghiệp.">Chứng chỉ năng lực hoạt động xây dựng lần 1 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/3. CHỨNG CHỈ NLHD LẦN 2.pdf" data-title="Chứng chỉ NLHD lần 2" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 2 liên quan đến hồ sơ doanh nghiệp.">Chứng chỉ năng lực hoạt động xây dựng lần 2 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/4. CHỨNG CHỈ NLHD LẦN 3.pdf" data-title="Chứng chỉ NLHD lần 3" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 3 liên quan đến hồ sơ doanh nghiệp.">Chứng chỉ năng lực hoạt động xây dựng lần 3 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/5. CHỨNG CHỈ NLHD LẦN 4.pdf" data-title="Chứng chỉ NLHD lần 4" data-desc="Tài liệu chứng chỉ năng lực hoạt động xây dựng lần 4 đang được lưu trong bộ hồ sơ công khai.">Chứng chỉ năng lực hoạt động xây dựng lần 4 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/6. Quyết định thành lập phòng TN.pdf" data-title="Quyết định thành lập phòng thí nghiệm" data-desc="Quyết định liên quan đến việc thành lập phòng thí nghiệm và tổ chức vận hành.">Quyết định thành lập phòng thí nghiệm <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/7. GIAY CHUNG NHAN HOAT DONG TN 2123.pdf" data-title="Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử" data-desc="Tài liệu thể hiện điều kiện hoạt động thí nghiệm chuyên ngành xây dựng và danh mục các phép thử liên quan.">Giấy chứng nhận hoạt động thí nghiệm và danh mục phép thử <span>Xem PDF</span></a>
+                  <a href="javascript:void(0)" class="preview-link is-active" data-preview-title="Công bố năng lực PTN LAS-XD 13.004" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf">Công bố năng lực phòng thí nghiệm <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ NLHD Xây dựng (Bản hiện hành)" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/5.%20CHỨNG%20CHỈ%20NLHD%20LẦN%204.pdf">Chứng chỉ năng lực HĐXD <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Quyết định thành lập phòng thí nghiệm" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/6.%20Quyết%20định%20thành%20lập%20phòng%20TN.pdf">Quyết định thành lập phòng TN <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Giấy chứng nhận hoạt động và danh mục phép thử" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/7.%20GIAY%20CHUNG%20NHAN%20HOAT%20DONG%20TN%202123.pdf">Giấy chứng nhận HĐ thí nghiệm <span>Xem</span></a>
                 </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-trigger" type="button">Biểu mẫu và quy trình tiếp nhận</button>
-              <div class="accordion-panel">
-                <div class="doc-list">
-                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/1. TIEU CHUAN QLCL THEO SOIEC 17025-2017.pdf" data-title="Tiêu chuẩn QLCL theo ISO/IEC 17025:2017" data-desc="Tài liệu tham chiếu liên quan đến hệ thống quản lý chất lượng trong hoạt động phòng thí nghiệm.">Tiêu chuẩn quản lý chất lượng ISO/IEC 17025:2017 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/2. THIẾT BỊ THÍ NGHIỆM.pdf" data-title="Thiết bị thí nghiệm" data-desc="Tài liệu về thiết bị thí nghiệm phục vụ cho việc chứng minh điều kiện và năng lực triển khai công việc chuyên môn.">Danh mục thiết bị thí nghiệm <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/3. BAN VE SO DO TO CHUC PTN.pdf" data-title="Bản vẽ sơ đồ tổ chức phòng thí nghiệm" data-desc="Tài liệu mô tả cách tổ chức nhân sự và mô hình vận hành của phòng thí nghiệm trong quá trình triển khai công việc.">Sơ đồ tổ chức phòng thí nghiệm <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/BIEU MAU VA QUY TRINH TIEP NHAN/MAY THI CONG/2.1 DS MÁY THI CÔNG.pdf" data-title="Danh sách máy thi công" data-desc="Tài liệu liên quan đến máy thi công và danh mục thiết bị hỗ trợ trong quá trình triển khai công việc.">Danh sách máy thi công <span>Xem PDF</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-trigger" type="button">Danh mục tài liệu tham chiếu</button>
-              <div class="accordion-panel">
-                <div class="doc-list">
-                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/1. GIẤY CHỨNG NHẬN ĐKKD LAN 4.pdf" data-title="Giấy chứng nhận ĐKKD lần 4" data-desc="Tài liệu tham chiếu liên quan đến đăng ký kinh doanh của doanh nghiệp.">Giấy chứng nhận đăng ký kinh doanh lần 4 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/2. HIEU CHUAN THIET BI/GIẤY CNHC THIẾT BỊ 2025-2026.pdf" data-title="Giấy CNHC thiết bị 2025-2026" data-desc="Tài liệu hiệu chuẩn thiết bị được dùng trong bộ hồ sơ tham chiếu liên quan đến năng lực phòng thí nghiệm.">Giấy chứng nhận hiệu chuẩn thiết bị 2025-2026 <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON THIẾT BỊ TN.pdf" data-title="Hóa đơn thiết bị thí nghiệm" data-desc="Tài liệu tham chiếu về thiết bị thí nghiệm được lưu trong bộ hồ sơ công khai.">Hóa đơn thiết bị thí nghiệm <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/DANH MUC TAI LIEU THAM CHIEU/3. HOA DON THIET BI/HOADON CÂN ĐIỆN TỬ.pdf" data-title="Hóa đơn cân điện tử" data-desc="Tài liệu tham chiếu liên quan đến thiết bị cân điện tử trong danh mục thiết bị.">Hóa đơn cân điện tử <span>Xem PDF</span></a>
-                </div>
-              </div>
-            </article>
-
-            <article class="accordion-item">
-              <button class="accordion-trigger" type="button">Thông báo và cập nhật vận hành</button>
-              <div class="accordion-panel">
-                <div class="doc-list">
-                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/1. QD bổ nhiệm truong PTN.pdf" data-title="Quyết định bổ nhiệm trưởng PTN" data-desc="Tài liệu vận hành liên quan đến chức danh phụ trách phòng thí nghiệm.">Quyết định bổ nhiệm trưởng phòng thí nghiệm <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU-VAN BANG-CHUNG CHI/1 TN NGUYEN DUY THANH/Nguyễn Duy Thanh - Bằng Đại Học.pdf" data-title="Bằng đại học - Nguyễn Duy Thanh" data-desc="Tài liệu thuộc nhóm danh sách nhân sự, văn bằng và chứng chỉ chuyên môn.">Bằng đại học - Nguyễn Duy Thanh <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU-VAN BANG-CHUNG CHI/1 TN NGUYEN DUY THANH/Nguyễn Duy Thanh - ISO 17025-2017.pdf" data-title="ISO 17025:2017 - Nguyễn Duy Thanh" data-desc="Tài liệu thuộc nhóm chứng chỉ chuyên môn liên quan đến hoạt động phòng thí nghiệm.">Chứng chỉ ISO 17025:2017 - Nguyễn Duy Thanh <span>Xem PDF</span></a>
-                  <a href="#" data-pdf="./tai-lieu/THONG BAO VA CAP NHAT VAN HANH/2. DS NHAN SU-VAN BANG-CHUNG CHI/1 TN NGUYEN DUY THANH/Nguyễn Duy Thanh - QL PTN.pdf" data-title="Quản lý phòng thí nghiệm - Nguyễn Duy Thanh" data-desc="Tài liệu chứng minh năng lực quản lý liên quan đến tổ chức phòng thí nghiệm.">Chứng chỉ quản lý phòng thí nghiệm - Nguyễn Duy Thanh <span>Xem PDF</span></a>
-                </div>
-              </div>
-            </article>
               </div>
             </div>
 
-            <div class="docs-viewer" data-reveal>
-              <div class="viewer-meta">
-                <div>
-                  <h3 id="viewerTitle">Công bố năng lực PTN LAS-XD 13.004</h3>
-                  <p id="viewerDesc">Tài liệu công bố năng lực phòng thí nghiệm liên quan đến mã số LAS-XD 1469 được chuyển đổi thành LAS-XD 13.004.</p>
+            <!-- Nhóm 2 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button">Tiêu chuẩn và thiết bị</button>
+              <div class="accordion-panel">
+                <div class="doc-list">
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Tiêu chuẩn quản lý chất lượng ISO/IEC 17025:2017" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/1.%20TIEU%20CHUAN%20QLCL%20THEO%20SOIEC%2017025-2017.pdf">Tiêu chuẩn ISO/IEC 17025:2017 <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Sơ đồ tổ chức phòng thí nghiệm" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/3.%20BAN%20VE%20SO%20DO%20TO%20CHUC%20PTN.pdf">Sơ đồ tổ chức nhân sự <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Danh mục thiết bị thí nghiệm" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/2.%20THIẾT%20BỊ%20THÍ%20NGHIỆM.pdf">Danh mục máy móc, thiết bị <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Danh mục máy thi công" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/MAY%20THI%20CONG/2.1%20DS%20MÁY%20THI%20CÔNG.pdf">Danh sách thiết bị thi công <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Giấy chứng nhận hiệu chuẩn thiết bị" data-pdf="./tai-lieu/DANH%20MUC%20TAI%20LIEU%20THAM%20CHIEU/2.%20HIEU%20CHUAN%20THIET%20BI/GIẤY%20CNHC%20THIẾT%20BỊ%202025-2026.pdf">Giấy chứng nhận hiệu chuẩn <span>Xem</span></a>
                 </div>
-                <a class="doc-link doc-link--primary" id="viewerDownload" href="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf" download>Tải PDF</a>
               </div>
+            </div>
+
+            <!-- Nhóm 3 -->
+            <div class="accordion-item">
+              <button class="accordion-trigger" type="button">Năng lực nhân sự</button>
+              <div class="accordion-panel">
+                <div class="doc-list">
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Quyết định bổ nhiệm trưởng phòng thí nghiệm" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/1.%20QD%20bổ%20nhiệm%20truong%20PTN.pdf">Bổ nhiệm trưởng phòng TN <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Bằng Đại Học - Trưởng phòng" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20Bằng%20Đại%20Học.pdf">Văn bằng chuyên môn kỹ sư <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ ISO 17025 - Nguyễn Duy Thanh" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20ISO%2017025-2017.pdf">Chứng chỉ ISO 17025 <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ Quản lý phòng thí nghiệm - Nguyễn Duy Thanh" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20QL%20PTN.pdf">Chứng chỉ Quản lý phòng TN <span>Xem</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Khung xem PDF -->
+          <div class="document-preview-card reveal" id="document-preview">
+            <div class="document-preview-head">
+              <div>
+                <h3 id="previewTitle" style="font-family: 'Montserrat', sans-serif;">Công bố năng lực PTN LAS-XD 13.004</h3>
+                <p>Khung xem trước tài liệu. Nhấn tải về nếu trình duyệt không hiển thị.</p>
+              </div>
+              <a class="doc-link preview-open-link" id="previewOpenLink" href="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf" target="_blank" download>Tải PDF</a>
+            </div>
+            <div class="document-preview-frame">
               <iframe
-                id="pdfViewer"
-                class="viewer-frame"
-                src="./tai-lieu/CHUNG CHI VA QUYET DINH HOAT DONG/1. CONG BO NANG LUC PTN LAS-XD 13.004.pdf"
+                id="documentFrame"
+                src="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf"
                 title="Khung xem PDF tài liệu thí nghiệm"
               ></iframe>
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section id="lien-he" class="section">
-        <div class="container card cta-bar" data-reveal>
-          <div>
-            <span class="eyebrow eyebrow--light">Liên hệ</span>
-          <h2 class="section-title" data-heading-reveal>Bạn cần tư vấn cấp phối hoặc báo giá thí nghiệm hiện trường?</h2>
-            <p class="section-copy">
-              Gửi yêu cầu loại vật liệu hoặc hạng mục cần thử tải, phòng kỹ thuật LAS-XD 13.004 sẽ phản hồi bảng chi phí và phương án lấy mẫu.
-            </p>
-          </div>
-          <div style="display: grid; gap: 12px; justify-items: start" data-stagger="up" data-stagger-step="140">
-            <a class="button button--light" href="tel:02923646646">0292 3646 646</a>
-            <a class="ghost-button ghost-button--on-dark" href="mailto:trungan.las1469@gmail.com">trungan.las1469@gmail.com</a>
-          </div>
-        </div>
-      </section>
-    </main>
+    <!-- LIÊN HỆ -->
+    <section id="lien-he" class="section">
+      <div class="container">
+        <div class="contact-wrap reveal">
+          <div class="contact-info bg-dark-gradient">
+            <span class="eyebrow eyebrow-light">Liên hệ trao đổi dự án</span>
+            <h2>Bạn cần tư vấn cấp phối hoặc báo giá thí nghiệm hiện trường?</h2>
+            <p class="desc">Gửi yêu cầu loại vật liệu hoặc hạng mục cần thử tải, phòng kỹ thuật LAS-XD của Trung An sẽ phản hồi bảng chi phí chi tiết.</p>
+            
+            <div style="margin-top: 40px;">
+              <p style="margin-bottom: 8px; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Trụ sở chính</p>
+              <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 24px;">Số 10, tổ 01, KV Qui Thạnh 1, P. Thuận Hưng, TP. Cần Thơ</p>
+              
+              <p style="margin-bottom: 8px; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Điện thoại hỗ trợ</p>
+              <p style="font-size: 1.1rem; font-weight: 600; margin-bottom: 24px;">0292 3646 646</p>
 
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div>
-          <h2>TRUNG AN | THÍ NGHIỆM CHUYÊN NGÀNH XÂY DỰNG</h2>
-          <p>Năng lực thí nghiệm chuyên ngành xây dựng cùng hồ sơ và tài liệu công bố liên quan.</p>
-        </div>
-        <div>
-          <h3>Liên kết</h3>
-          <a href="./index.html#gioi-thieu">Giới thiệu</a>
-          <a href="./index.html#linh-vuc">Lĩnh vực</a>
-          <a href="#cong-bo">Công bố năng lực</a>
-          <a href="#gioi-thieu">Thí nghiệm</a>
-          <a href="#lien-he">Liên hệ</a>
-        </div>
-        <div>
-          <h3>Thông tin</h3>
-          <p>Địa chỉ: Số 10, tổ 01, khu vực Qui Thạnh 1, phường Thuận Hưng, thành phố Cần Thơ</p>
-          <p>Điện thoại: 0292 3646 646</p>
-          <p>Email: trungan.las1469@gmail.com</p>
-          <p>Website: trungan-build.com.vn</p>
+              <p style="margin-bottom: 8px; color: rgba(255,255,255,0.7); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Email tiếp nhận hồ sơ</p>
+              <p style="font-size: 1.1rem; font-weight: 600;">trungan.las1469@gmail.com</p>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 24px; color: var(--text);">Gửi yêu cầu thử tải</h3>
+            <form onsubmit="event.preventDefault(); alert('Đây là giao diện web mẫu.');">
+              <div class="form-group">
+                <label>Tên Đơn vị / Chủ đầu tư</label>
+                <input type="text" class="form-control" placeholder="Nhập tên tổ chức...">
+              </div>
+              <div class="form-group">
+                <label>Số điện thoại liên hệ</label>
+                <input type="tel" class="form-control" placeholder="09xx xxx xxx">
+              </div>
+              <div class="form-group">
+                <label>Nội dung cần tư vấn</label>
+                <textarea class="form-control" rows="4" placeholder="VD: Cần báo giá nén tĩnh cọc ly tâm, khoan rút lõi R28..."></textarea>
+              </div>
+              <button type="submit" class="button" style="width: 100%;">Gửi yêu cầu thí nghiệm</button>
+            </form>
+          </div>
         </div>
       </div>
-    </footer>
+    </section>
+  </main>
 
-    <script>
-      const mobileToggle = document.getElementById("mobileToggle");
-      const mobileMenu = document.getElementById("mobileMenu");
-      const mobileLinks = mobileMenu ? mobileMenu.querySelectorAll("a") : [];
-      const revealItems = document.querySelectorAll("[data-reveal], [data-heading-reveal], [data-stagger], [data-media-reveal]");
-      const staggerGroups = document.querySelectorAll("[data-stagger]");
-      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  <footer class="footer bg-dark-gradient" style="background-image: none;">
+    <div class="container footer-grid">
+      <div>
+        <h2 style="font-family: 'Montserrat', sans-serif;">TRUNG AN CO., LTD</h2>
+        <p>Công ty CP Đầu tư Xây dựng Thương mại Dịch vụ Trung An. Doanh nghiệp chuyên sâu trong lĩnh vực thi công, khảo sát, giám sát và kiểm định công trình tại miền Tây.</p>
+      </div>
+      <div class="footer-col">
+        <h3 style="font-family: 'Montserrat', sans-serif;">Liên kết nhanh</h3>
+        <a href="index.html#gioi-thieu">Giới thiệu công ty</a>
+        <a href="index.html#dich-vu">Giải pháp & Dịch vụ</a>
+        <a href="thi-nghiem.html">Phòng thí nghiệm LAS-XD</a>
+      </div>
+      <div class="footer-col">
+        <h3 style="font-family: 'Montserrat', sans-serif;">Tài liệu pháp lý</h3>
+        <a href="thi-nghiem.html#cong-bo">Chứng chỉ Năng lực HĐXD</a>
+        <a href="thi-nghiem.html#cong-bo">Giấy chứng nhận PTN</a>
+        <a href="./tai-lieu/HSNL%20CTY%20TRUNG%20AN%202026_Optimized.pdf" target="_blank">Hồ sơ Năng lực (PDF)</a>
+      </div>
+    </div>
+    <div class="container footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; color: rgba(255,255,255,0.5); font-size: 0.9rem;">
+      <p>© 2026 TRUNG AN CO., LTD. Website giới thiệu năng lực thi công và kiểm định xây dựng.</p>
+    </div>
+  </footer>
 
-      function toggleMobileMenu() {
-        if (!mobileMenu) return;
-        mobileMenu.classList.toggle("is-open");
-      }
+  <script>
+    // Header Scroll Effect
+    const header = document.getElementById('header');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) header.classList.add('is-scrolled');
+        else header.classList.remove('is-scrolled');
+      }, { passive: true });
+    }
 
-      function closeMobileMenu() {
-        if (!mobileMenu) return;
-        mobileMenu.classList.remove("is-open");
-      }
-
-      if (mobileToggle) {
-        mobileToggle.addEventListener("click", toggleMobileMenu);
-      }
-
-      mobileLinks.forEach((link) => {
-        link.addEventListener("click", closeMobileMenu);
-      });
-
-      function setStaggerDelays() {
-        staggerGroups.forEach((group) => {
-          const step = Number(group.dataset.staggerStep || "145");
-          Array.from(group.children).forEach((child, index) => {
-            child.style.setProperty("--stagger-delay", `${index * step}ms`);
-          });
-        });
-      }
-
-      setStaggerDelays();
-
-      if (reduceMotion) {
-        revealItems.forEach((item) => item.classList.add("is-visible"));
-      } else {
-        const revealObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (!entry.isIntersecting) return;
+    // Reveal Animations
+    const revealItems = document.querySelectorAll(".reveal");
+    if (typeof IntersectionObserver !== 'undefined') {
+      const observer = new IntersectionObserver(
+        (entries, obs) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
               entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
-            });
-          },
-          {
-            threshold: 0.18,
-            rootMargin: "0px 0px -8% 0px",
-          }
-        );
+              obs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+      );
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
 
-        revealItems.forEach((item) => revealObserver.observe(item));
-      }
+    // Count Up Animation
+    const counters = document.querySelectorAll('.count-up');
+    if (typeof IntersectionObserver !== 'undefined' && counters.length > 0) {
+        const countObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const counter = entry.target;
+              const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+              let startTime = null;
+              const duration = 2000;
+              
+              const step = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const easeProgress = 1 - Math.pow(1 - progress, 4);
+                counter.innerText = Math.floor(easeProgress * target);
+                
+                if (progress < 1) {
+                  window.requestAnimationFrame(step);
+                } else {
+                  counter.innerText = target;
+                }
+              };
+              window.requestAnimationFrame(step);
+              obs.unobserve(counter);
+            }
+          });
+        }, { threshold: 0.1 });
 
-      document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
-        trigger.addEventListener("click", () => {
-          const item = trigger.parentElement;
-          item.classList.toggle("is-open");
-        });
+        counters.forEach(c => countObserver.observe(c));
+    }
+
+    // Accordion Logic
+    document.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+      trigger.addEventListener("click", () => {
+        const item = trigger.parentElement;
+        item.classList.toggle("is-open");
       });
+    });
 
-      const pdfViewer = document.getElementById("pdfViewer");
-      const viewerTitle = document.getElementById("viewerTitle");
-      const viewerDesc = document.getElementById("viewerDesc");
-      const viewerDownload = document.getElementById("viewerDownload");
-      const pdfButtons = document.querySelectorAll("[data-pdf]");
+    // Document PDF Viewer logic
+    const documentFrame = document.getElementById("documentFrame");
+    const previewTitle = document.getElementById("previewTitle");
+    const previewOpenLink = document.getElementById("previewOpenLink");
+    const previewLinks = document.querySelectorAll(".preview-link");
 
-      function setViewer(pdf, title, desc) {
-        if (!pdfViewer || !viewerTitle || !viewerDesc || !viewerDownload) return;
-        pdfViewer.src = pdf;
-        viewerTitle.textContent = title || "Tài liệu PDF";
-        viewerDesc.textContent = desc || "";
-        viewerDownload.href = pdf;
-      }
-
-      pdfButtons.forEach((button) => {
-        button.addEventListener("click", (event) => {
+    if (documentFrame && previewTitle && previewOpenLink && previewLinks.length) {
+      previewLinks.forEach((link) => {
+        link.addEventListener("click", (event) => {
           event.preventDefault();
-          const pdf = button.getAttribute("data-pdf");
-          const title = button.getAttribute("data-title");
-          const desc = button.getAttribute("data-desc");
-          if (!pdf) return;
-          setViewer(pdf, title, desc);
-          document.querySelectorAll(".quick-doc-button").forEach((item) => item.classList.remove("is-active"));
-          if (button.classList.contains("quick-doc-button")) {
-            button.classList.add("is-active");
+
+          // Reset active state
+          previewLinks.forEach(l => l.classList.remove('is-active'));
+          link.classList.add('is-active');
+
+          const nextSrc = link.getAttribute("data-pdf");
+          const nextTitle = link.getAttribute("data-preview-title") || "Tài liệu phòng thí nghiệm";
+
+          documentFrame.setAttribute("src", nextSrc);
+          previewTitle.textContent = nextTitle;
+          previewOpenLink.setAttribute("href", nextSrc);
+
+          const previewCard = document.getElementById("document-preview");
+          if (previewCard) {
+            // Scroll focus to viewer on mobile
+            if(window.innerWidth <= 1024) {
+               const yOffset = -100; 
+               const y = previewCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
+               window.scrollTo({top: y, behavior: 'smooth'});
+            }
           }
         });
       });
-    </script>
-  </body>
+    }
+  </script>
+</body>
 </html>
