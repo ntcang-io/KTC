@@ -8,287 +8,362 @@
   <script>document.documentElement.classList.add("js");</script>
   <link rel="icon" type="image/png" href="./img/logo-kto.png">
   
-  <!-- Font Montserrat: Cấu trúc hình học vững chãi, đồng bộ với Index -->
+  <!-- Font chữ chuẩn từ AB&C: Playfair Display (Tiêu đề) & Be Vietnam Pro (Nội dung) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
   
   <style>
     :root {
-      --bg-main: #f4f7fb; 
-      --bg-soft: #f7f5f2; 
-      --bg-dark-base: #071324;
-      
-      --surface: #ffffff;
+      /* Tông màu Đã được chuyển đổi sang hệ Xanh Navy của Trung An */
+      --bg: #f2f6fb;
+      --surface: #f8fbff;
+      --surface-strong: #0a2647;
+      --surface-soft: #dce5f0;
       --text: #0f172a;
       --muted: #475569;
-      
-      --primary: #103d73;
-      --primary-strong: #0a2647;
-      --primary-soft: #e0eaf5;
-      
       --line: rgba(16, 61, 115, 0.12);
-      --shadow-card: 0 16px 40px rgba(16, 61, 115, 0.12);
-      --shadow-hover: 0 24px 50px rgba(16, 61, 115, 0.22);
-      
-      --radius: 16px;
-      --radius-lg: 24px;
-      --header-height: 84px;
-      --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --accent: #103d73;
+      --accent-strong: #0a2647;
+      --accent-deep: #071324;
+      --accent-soft: rgba(16, 61, 115, 0.08);
+      --max-width: 1180px;
+      --shadow: 0 18px 50px rgba(16, 61, 115, 0.08);
+      --shadow-strong: 0 30px 70px rgba(16, 61, 115, 0.14);
+      --radius: 20px;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
+
     body {
-      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      font-family: "Be Vietnam Pro", sans-serif;
       color: var(--text);
-      background-color: var(--bg-main);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      background:
+        radial-gradient(circle at top left, rgba(16, 61, 115, 0.08), transparent 30%),
+        radial-gradient(circle at 85% 12%, rgba(10, 38, 71, 0.05), transparent 24%),
+        linear-gradient(180deg, #eef3f8 0%, #f8fbff 45%, #f2f6fb 100%);
+      line-height: 1.65;
     }
+
+    a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    button, input, textarea, select { font: inherit; }
+    button, input, textarea { font: inherit; }
 
     .container {
-      width: min(1200px, calc(100% - 40px));
+      width: min(calc(100% - 2rem), var(--max-width));
       margin: 0 auto;
     }
-    
-    .section { padding: 100px 0; scroll-margin-top: var(--header-height); }
-    
-    .bg-soft { background-color: var(--bg-soft); }
-    .bg-white { background-color: var(--surface); }
-    .bg-dark-gradient {
-      background-color: var(--bg-dark-base);
-      background-image: radial-gradient(circle at 100% 0%, rgba(16, 61, 115, 0.8) 0%, transparent 50%),
-                        radial-gradient(circle at 0% 100%, rgba(10, 38, 71, 0.9) 0%, transparent 50%);
-      color: #fff;
+
+    /* ================= MENU XẾP CHỒNG (STACKED NAV) CHUẨN AB&C ================= */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(18px);
+      background: rgba(248, 251, 255, 0.9);
+      border-bottom: 1px solid var(--line);
     }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      gap: 1rem;
+      padding: 10px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-logo-frame {
+      width: 64px;
+      height: 64px;
+      padding: 3px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #cf2027 0%, #af161f 100%);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 6px;
+      background: #fff;
+      border-radius: 11px;
+    }
+
+    .brand-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .brand-mark {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+      line-height: 1.2;
+    }
+
+    .brand-text {
+      font-size: 0.8rem;
+      color: var(--muted);
+      max-width: 380px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover, .nav-links a.is-active {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* ================= TYPOGRAPHY & GENERAL ================= */
+    .section { padding: 90px 0; scroll-margin-top: 90px; }
 
     .eyebrow {
       display: inline-block;
-      color: var(--primary);
-      font-size: 0.8rem;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(16, 61, 115, 0.08);
+      border: 1px solid rgba(16, 61, 115, 0.15);
+      color: var(--accent);
+      font-size: 0.78rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-    .eyebrow-light { color: rgba(255,255,255,0.7); }
-    
-    .section-title {
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 800;
-      line-height: 1.2;
+
+    .eyebrow-light {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Playfair Display", serif;
       letter-spacing: -0.02em;
-      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      line-height: 1.2;
+      font-weight: 800;
       max-width: 860px;
     }
+
     .section-copy {
       font-size: 1.05rem;
       color: var(--muted);
       max-width: 800px;
-      margin-bottom: 40px;
-      line-height: 1.6;
+      margin: 20px 0 40px;
+      line-height: 1.7;
     }
 
+    .hero-text {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 700px;
+      margin: 24px 0 32px;
+      line-height: 1.65;
+    }
+
+    /* ================= BUTTONS ================= */
     .button, .ghost-button, .doc-link {
-      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      height: 52px;
-      padding: 0 32px;
+      min-height: 3.2rem;
+      padding: 0 1.5rem;
       border-radius: 999px;
       font-weight: 700;
-      transition: all 0.3s var(--motion-ease);
       cursor: pointer;
-      border: 1px solid transparent;
-      z-index: 1;
-      overflow: hidden;
+      transition: all 0.3s ease;
+      font-family: "Be Vietnam Pro", sans-serif;
     }
-
-    .button::before, .ghost-button::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; width: 100%; height: 100%;
-        background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
-        z-index: -1; transition: opacity 0.3s ease; opacity: 0;
-    }
-    .button:hover::before, .ghost-button:hover::before { opacity: 1; }
 
     .button {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
       color: #fff;
-      box-shadow: 0 10px 20px rgba(16, 61, 115, 0.2);
+      border: 1px solid transparent;
+      box-shadow: 0 10px 24px rgba(16, 61, 115, 0.2);
     }
-    .button:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(10, 38, 71, 0.3); }
+
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(10, 38, 71, 0.3);
+    }
 
     .ghost-button, .doc-link {
-      background: linear-gradient(135deg, #ffffff 0%, #f4f7fb 100%);
-      border-color: var(--line); color: var(--text);
+      background: #fff;
+      border: 1px solid var(--line);
+      color: var(--text);
     }
+
     .ghost-button:hover, .doc-link:hover {
-      border-color: var(--primary); color: var(--primary);
-      transform: translateY(-2px); box-shadow: var(--shadow-card);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
     }
-    
+
     .ghost-button--light {
-      background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.3); color: #fff;
-    }
-    .ghost-button--light:hover {
-      border-color: #fff; background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
-    }
-
-    /* HEADER */
-    .topbar {
-      position: sticky;
-      top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--line); transition: box-shadow 0.3s ease;
-    }
-    .topbar.is-scrolled { box-shadow: var(--shadow-card); }
-    .topbar__inner {
-      display: flex; align-items: center; justify-content: space-between;
-      min-height: var(--header-height); gap: 1rem; padding: 10px 0;
-    }
-    .brand { display: flex; align-items: center; gap: 14px; position: relative; z-index: 101; }
-    .brand-logo-frame {
-      width: 64px; height: 64px; padding: 3px; border-radius: 14px;
-      background: linear-gradient(180deg, #cf2027 0%, #af161f 100%); flex-shrink: 0;
-    }
-    .brand-logo {
-      width: 100%; height: 100%; object-fit: contain; padding: 6px; border-radius: 10px; background: #fff;
-    }
-    .brand-mark {
-      font-size: 1.05rem; font-weight: 800; color: var(--primary);
-      letter-spacing: 0.05em; line-height: 1.2; text-align: left;
-    }
-    .brand-text { font-size: 0.8rem; color: var(--muted); margin-top: 4px; text-align: left; }
-    
-    .nav { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
-    .nav a { font-weight: 700; color: var(--muted); font-size: 0.95rem; transition: color 0.2s; }
-    .nav a:hover, .nav a[aria-current="page"] { color: var(--primary); }
-
-    /* ========================================================
-       1. HERO SECTION (NỀN DARK GRADIENT ĐẬM)
-       ======================================================== */
-    .hero {
-      position: relative;
-      padding-top: 60px;
-      padding-bottom: 100px;
-      background-color: var(--bg-dark-base);
-      background-image: radial-gradient(circle at 100% 0%, rgba(26, 86, 163, 0.5) 0%, transparent 50%),
-                        linear-gradient(135deg, var(--bg-dark-base) 0%, var(--primary-strong) 100%);
+      background: rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.3);
       color: #fff;
+    }
+
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 32px; }
+
+    /* ================= LAYOUT HERO CHUẨN AB&C ================= */
+    .hero {
+      padding: 5.5rem 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .hero-points {
+      display: grid; gap: 12px; padding: 0; margin: 0; list-style: none;
+      border-top: 1px solid var(--line); padding-top: 32px;
+    }
+
+    .hero-points li { display: flex; align-items: flex-start; font-weight: 500; color: var(--muted); }
+    .hero-points li::before { content: "✓"; display: inline-block; margin-right: 12px; color: var(--accent); font-weight: 900; font-family: sans-serif; font-size: 1.1rem; }
+
+    .hero-card { display: grid; gap: 1rem; }
+    .hero-card-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .photo-panel {
+      position: relative;
+      grid-column: 1 / -1;
+      min-height: 25rem;
+      margin: 0;
+      border-radius: 1.5rem;
       overflow: hidden;
-    }
-    .hero-layout { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 60px; align-items: start; position: relative; z-index: 2;}
-    .hero-left { padding-top: 20px; }
-    
-    .hero-left .eyebrow {
-      background: rgba(255, 255, 255, 0.15); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .hero h1 {
-      font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 900; line-height: 1.15;
-      letter-spacing: -0.03em; margin-bottom: 24px; color: #fff;
-    }
-    .hero p.lead { font-size: 1.15rem; color: rgba(255,255,255,0.85); margin-bottom: 40px; line-height: 1.6; }
-    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-    
-    .hero-bullets {
-      display: flex; flex-direction: column; gap: 16px; list-style: none; 
-      border-top: 1px solid rgba(255,255,255,0.15); padding-top: 32px;
-    }
-    .hero-bullets li {
-      display: flex; align-items: flex-start; gap: 12px;
-      font-weight: 600; color: rgba(255,255,255,0.9); line-height: 1.5; font-size: 1.05rem;
-    }
-    .hero-bullets li::before {
-      content: '✓'; color: #60a5fa; font-weight: 900; font-size: 1.1rem;
+      box-shadow: var(--shadow-strong);
     }
 
-    .hero-right { display: flex; flex-direction: column; gap: 20px; }
-    .hero-img {
-      width: 100%; height: 380px; object-fit: cover; border-radius: var(--radius-lg); 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    .photo-panel img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0;}
+    .photo-panel::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(10,38,71,0.02), rgba(10,38,71,0.85)),
+                  linear-gradient(120deg, rgba(16,61,115,0.16), transparent 45%);
+    }
+
+    .photo-panel-copy {
+      position: absolute; left: 1.4rem; right: 1.4rem; bottom: 1.3rem; z-index: 1; color: #fff;
+    }
+
+    .photo-panel-copy span {
+      display: inline-block; padding: 6px 14px; background: var(--accent); border-radius: 8px;
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 12px;
+      font-family: "Be Vietnam Pro", sans-serif; letter-spacing: 0.05em;
     }
     
-    .stats-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .photo-panel-copy h3 { font-size: 1.3rem; line-height: 1.4; color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700;}
+
     .stat-card {
-      background: #fff; border-radius: var(--radius-lg); padding: 32px 24px;
-      display: flex; flex-direction: column; justify-content: center;
-      box-shadow: 0 16px 40px rgba(16, 61, 115, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff; border-radius: 1.5rem; padding: 1.5rem;
+      box-shadow: var(--shadow); border: 1px solid var(--line);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .stat-card:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(16, 61, 115, 0.25); }
-    
-    .stat-card.primary { 
-      background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%); color: #fff; 
-      border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 16px 40px rgba(10, 38, 71, 0.3);
-    }
-    .stat-card.primary:hover { transform: translateY(-6px); box-shadow: 0 24px 50px rgba(10, 38, 71, 0.45); }
-    .stat-card h3 {
-      font-size: clamp(2.6rem, 4vw, 3.8rem); font-weight: 900; line-height: 1;
-      margin-bottom: 12px; letter-spacing: -0.02em; color: var(--text);
-    }
-    .stat-card.primary h3 { color: #fff; }
-    .stat-card p { font-size: 0.95rem; font-weight: 500; line-height: 1.5; margin: 0; color: var(--muted); }
-    .stat-card.primary p { color: rgba(255,255,255,0.9); }
+    .stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-strong); }
+    .stat-card.accent { background: linear-gradient(135deg, var(--accent), var(--accent-strong)); color: #fff; border: none; }
+    .stat-number { margin: 0; font-size: 2.8rem; font-weight: 900; line-height: 1; font-family: "Playfair Display", serif;}
+    .stat-label { margin: 12px 0 0; color: var(--muted); font-size: 0.95rem; font-weight: 500; line-height: 1.5; }
+    .stat-card.accent .stat-label { color: rgba(255,255,255,0.85); }
 
-    /* ========================================================
-       2. NĂNG LỰC & BENTO GRID
-       ======================================================== */
-    .lab-layout {
-      display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 40px; align-items: stretch;
+    /* ================= SECTION NĂNG LỰC ================= */
+    .info-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .info-card { background: #fff; padding: 32px; border-radius: var(--radius); border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform 0.3s; }
+    .info-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-strong); border-color: var(--accent); }
+    .icon-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 6px 16px; border-radius: 999px; background: var(--primary-soft);
+      color: var(--accent); font-weight: 800; font-size: 0.95rem; margin-bottom: 16px;
     }
-    .lab-content {
-      background: #fff; padding: 48px; border-radius: var(--radius-lg); box-shadow: var(--shadow-card);
-      display: flex; flex-direction: column; justify-content: center; transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .lab-content:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    
-    .lab-bento { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto 1fr; gap: 16px; }
-    .lab-bento-header {
-      grid-column: span 2; background: var(--primary-strong); padding: 32px; border-radius: var(--radius-lg);
-      color: #fff; box-shadow: 0 16px 40px rgba(10,38,71,0.25); transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .lab-bento-header:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(10,38,71,0.35); }
-    .lab-bento-header h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 8px; line-height: 1.4; }
-    .lab-bento-header p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin: 0; }
-    
-    .lab-img-wrapper {
-      position: relative; border-radius: var(--radius-lg); overflow: hidden;
-      box-shadow: var(--shadow-card); transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .lab-img-wrapper:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .lab-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .lab-img-wrapper:hover img { transform: scale(1.05); }
-    .lab-img-wrapper::after {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(0deg, rgba(10,38,71,0.9) 0%, transparent 60%);
-    }
-    .lab-bento-small.lab-img-wrapper { border-radius: 16px; }
-    .lab-bento-small.lab-img-wrapper::after { background: rgba(10,38,71,0.1); }
-    .lab-img-caption { position: absolute; bottom: 0; left: 0; width: 100%; padding: 24px; color: #fff; z-index: 2; font-size: 0.95rem; font-weight: 600; line-height: 1.45; }
-    .lab-bento-tall { min-height: 480px; }
-    .lab-bento-right { display: grid; grid-template-rows: 1fr 1fr; gap: 16px; }
-    .lab-bento-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 16px; }
+    .info-card h3 { font-size: 1.25rem; margin-bottom: 12px; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700;}
+    .info-card p { color: var(--muted); font-size: 0.95rem; margin: 0; line-height: 1.6; }
 
-    /* ========================================================
-       3. TÀI LIỆU CÔNG BỐ (SECTION DARK)
-       ======================================================== */
-    .docs-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; align-items: start; }
+    /* ================= GALLERY HÌNH ẢNH ================= */
+    .lab-gallery { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px;}
+    .visual-card {
+      background: #fff; border-radius: 1.5rem; overflow: hidden;
+      border: 1px solid var(--line); box-shadow: var(--shadow); transition: transform 0.3s;
+    }
+    .visual-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-strong); border-color: var(--accent); }
+    .visual-media { height: 240px; overflow: hidden; position: relative; background: #e0eaf5; padding: 12px;}
+    .visual-media img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; transition: transform 0.6s ease; }
+    .visual-card:hover .visual-media img { transform: scale(1.05); }
+    .visual-copy { padding: 24px; }
+    .visual-copy .card-index { color: var(--accent); font-weight: 800; font-size: 0.9rem; margin-bottom: 8px; display: block; letter-spacing: 0.1em; }
+    .visual-copy h3 { font-size: 1.2rem; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700; margin-bottom: 8px; }
+    .visual-copy p { color: var(--muted); margin: 0; font-size: 0.95rem; line-height: 1.5;}
+
+    /* ================= TÀI LIỆU CÔNG BỐ (SECTION DARK) ================= */
+    .section-dark {
+      background: var(--accent-deep);
+      background-image: radial-gradient(circle at 100% 0%, rgba(26, 86, 163, 0.4) 0%, transparent 50%),
+                        linear-gradient(135deg, var(--accent-deep) 0%, var(--accent-strong) 100%);
+      color: #fff;
+    }
+    .section-dark h2 { color: #fff; }
+    .section-dark .section-copy { color: rgba(255,255,255,0.8); }
+
+    .docs-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; margin-top: 40px; align-items: start; }
+    
     .accordion-list { display: flex; flex-direction: column; gap: 16px; }
-    .accordion-item { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius); overflow: hidden; transition: background 0.3s; }
+    .accordion-item {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius); overflow: hidden; transition: background 0.3s;
+    }
     .accordion-trigger {
       width: 100%; display: flex; justify-content: space-between; align-items: center;
       padding: 20px 24px; background: transparent; border: none; color: #fff;
       font-weight: 700; font-size: 1.05rem; cursor: pointer; text-align: left;
+      font-family: "Be Vietnam Pro", sans-serif;
     }
     .accordion-trigger::after { content: "+"; font-size: 1.5rem; color: rgba(255,255,255,0.5); }
     .accordion-item.is-open { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
     .accordion-item.is-open .accordion-trigger::after { content: "–"; }
+    
     .accordion-panel { display: none; padding: 0 24px 24px; }
     .accordion-item.is-open .accordion-panel { display: block; }
     
@@ -306,262 +381,280 @@
       border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-strong);
     }
     .document-preview-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 24px; }
-    .document-preview-head h3 { font-size: 1.4rem; color: #fff; font-weight: 700; margin-bottom: 8px;}
+    .document-preview-head h3 { font-size: 1.3rem; color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700; margin-bottom: 8px;}
     .document-preview-head p { color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem; }
     .preview-open-link { border-color: rgba(255,255,255,0.3); color: #fff; background: transparent; }
     .preview-open-link:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
-    .document-preview-frame { border-radius: 16px; overflow: hidden; background: #fff; height: 760px; }
+    
+    .document-preview-frame {
+      border-radius: 16px; overflow: hidden; background: #fff; height: 760px;
+    }
     .document-preview-frame iframe { width: 100%; height: 100%; border: none; display: block; }
 
-    /* ========================================================
-       4. DỰ ÁN THỰC TẾ (FULL WIDTH STACK)
-       ======================================================== */
-    .project-gallery { display: flex; flex-direction: column; gap: 48px; margin-top: 40px; }
-    .project-shot {
-      position: relative; border-radius: var(--radius-lg); overflow: hidden; aspect-ratio: 21/9; 
-      width: 100%; box-shadow: var(--shadow-card); transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-    .project-shot:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
-    .project-shot img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-    .project-shot:hover img { transform: scale(1.03); }
-    .project-shot::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(10,38,71,0.95) 100%); }
-    .project-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px; z-index: 2; color: #fff; }
-    .project-label {
-      display: inline-block; font-size: 0.8rem; font-weight: 800; text-transform: uppercase;
-      background: var(--primary); padding: 6px 14px; border-radius: 6px; margin-bottom: 12px;
-    }
-    .project-caption h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 8px; }
-    .project-caption p { font-size: 1.05rem; color: rgba(255,255,255,0.85); }
-
-    /* ========================================================
-       5. LIÊN HỆ & FOOTER
-       ======================================================== */
+    /* ================= LIÊN HỆ & FOOTER ================= */
     .contact-wrap {
-      display: grid; grid-template-columns: 1fr 1fr;
-      background: #fff; border: 1px solid var(--line); border-radius: var(--radius-lg);
-      overflow: hidden; box-shadow: var(--shadow-card); transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: grid; grid-template-columns: 1fr 1fr; margin-top: 40px;
+      background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--shadow);
     }
-    .contact-wrap:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
-    .contact-info { padding: 64px 48px; background: var(--primary-strong); color: #fff; }
-    .contact-info h2 { font-size: 2rem; font-weight: 800; margin: 16px 0 24px; line-height: 1.3;}
-    .contact-info p.desc { color: rgba(255,255,255,0.8); font-size: 1.1rem; margin-bottom: 40px; }
-    .contact-form { padding: 64px 48px; }
-    .form-group { margin-bottom: 24px; }
-    .form-group label { display: block; font-weight: 700; margin-bottom: 10px; font-size: 0.95rem; }
-    .form-control { width: 100%; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-main); transition: all 0.2s; font-family: inherit; }
-    .form-control:focus { outline: none; border-color: var(--primary); background: #fff; box-shadow: 0 0 0 4px var(--primary-soft); }
+    .contact-info { padding: 64px 48px; background: var(--accent-strong); color: #fff; }
+    .contact-info h2 { font-size: 2rem; color: #fff; margin-bottom: 24px;}
+    .contact-info p.desc { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 40px; line-height: 1.6; }
+    .contact-details p { margin-bottom: 16px; font-size: 1.05rem;}
+    
+    .contact-form { padding: 64px 48px; display: flex; flex-direction: column; gap: 24px; }
+    .contact-form h3 { font-size: 1.6rem; color: var(--text); font-family: "Playfair Display", serif; font-weight: 800;}
+    .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--text); font-size: 0.95rem;}
+    .form-control { width: 100%; padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg); transition: 0.2s; font-family: inherit;}
+    .form-control:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 4px var(--accent-soft); }
 
-    .footer { background: #06182e; color: #fff; padding: 80px 0 40px; }
+    .site-footer { padding: 80px 0 40px; background: #06182e; color: rgba(255,255,255,0.8); }
     .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 60px; }
-    .footer h2 { font-size: 1.4rem; font-weight: 900; margin-bottom: 16px; }
-    .footer p { color: rgba(255,255,255,0.7); font-size: 1rem; }
-    .footer-col h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 20px; }
-    .footer-col a { display: block; margin-bottom: 12px; color: rgba(255,255,255,0.7); font-weight: 600;}
+    .footer-grid h2 { font-size: 1.4rem; color: #fff; font-family: "Playfair Display", serif; font-weight: 800; margin-bottom: 16px;}
+    .footer-col h3 { font-size: 1.1rem; color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700; margin-bottom: 20px;}
+    .footer-col a { display: block; margin-bottom: 12px; transition: 0.2s; font-size: 0.95rem;}
     .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; text-align: center; font-size: 0.9rem; }
 
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s var(--motion-ease), transform 0.8s var(--motion-ease); }
+    /* ================= ANIMATIONS ================= */
+    .reveal { opacity: 0; transform: translateY(24px); transition: all 0.6s var(--motion-ease); }
     .reveal.is-visible { opacity: 1; transform: none; }
 
-    /* RESPONSIVE */
-    @media (max-width: 1024px) {
-      .hero-layout, .docs-layout, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
-      .lab-layout { grid-template-columns: 1fr; }
-      .lab-bento-tall { min-height: 360px; }
-      .project-shot { aspect-ratio: 16/9; } 
+    /* ================= RESPONSIVE ĐÚNG CHUẨN AB&C ================= */
+    @media (max-width: 960px) {
+      .hero-grid, .docs-layout, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
+      .info-grid, .lab-gallery, .hero-card-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
       .document-preview-frame { height: 600px; }
+
+      /* Mobile Menu Stacked AB&C */
+      .nav { flex-direction: column; justify-content: center; padding: 16px 0; }
+      .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px 20px; }
+      h1 { max-width: 100%; }
+      .document-preview-head { flex-direction: column; }
     }
-    @media (max-width: 960px) {
-      .topbar__inner { flex-direction: column; justify-content: center; padding: 16px 0; gap: 16px; }
-      .nav { gap: 12px 20px; }
-    }
+    
     @media (max-width: 640px) {
-      .brand { flex-direction: column; text-align: center; gap: 12px; }
-      .brand-mark { text-align: center; }
-      .brand-text { text-align: center; white-space: normal; max-width: none;}
+      .hero { padding-top: 3.5rem; }
+      .section { padding: 4rem 0; }
+      /* Logo Mobile Centered ABC */
+      .brand { flex-direction: column; text-align: center; gap: 10px; }
+      .brand-text { max-width: none; }
       .brand-logo-frame { width: 72px; height: 72px; }
+
       .hero h1 { font-size: 2.2rem; }
-      .stats-2x2 { grid-template-columns: 1fr; }
-      .lab-bento { grid-template-columns: 1fr; }
-      .lab-bento-header { grid-column: 1; }
-      .lab-bento-right { grid-template-rows: auto; }
-      .lab-bento-square { min-height: 240px; }
-      .project-shot { aspect-ratio: 4/3; } 
+      .info-grid, .lab-gallery, .hero-card-grid { grid-template-columns: 1fr; }
       .contact-info, .contact-form { padding: 32px 24px; }
+      .document-preview-frame iframe { height: 520px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER STACKED CHUẨN AB&C -->
   <header class="topbar" id="header">
-    <div class="container">
-      <div class="topbar__inner">
-        <a class="brand" href="index.html" aria-label="Trung An">
-          <span class="brand-logo-frame">
-            <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An">
-          </span>
-          <div class="brand-copy">
-            <div class="brand-mark">CÔNG TY CP ĐTXD TMDV TRUNG AN</div>
-            <div class="brand-text">Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</div>
-          </div>
-        </a>
-        <nav class="nav">
-          <a href="index.html#gioi-thieu">Giới thiệu</a>
-          <a href="index.html#nang-luc">Năng lực</a>
-          <a href="index.html#dich-vu">Giải pháp</a>
-          <a href="thi-nghiem.html" aria-current="page" style="color: var(--primary);">Phòng LAS-XD</a>
-          <a href="index.html#lien-he">Liên hệ</a>
-        </nav>
-      </div>
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="Trung An">
+        <span class="brand-logo-frame">
+          <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An">
+        </span>
+        <span class="brand-text">
+          <strong>TRUNG AN CO., LTD</strong><br>
+          <small>Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</small>
+        </span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html#gioi-thieu">Giới thiệu</a>
+        <a href="index.html#dich-vu">Giải pháp</a>
+        <a href="thi-nghiem.html" class="is-active" style="color: var(--primary);">Phòng LAS-XD</a>
+        <a href="thi-nghiem.html#cong-bo">Công bố Năng lực</a>
+        <a href="index.html#nang-luc">Năng lực</a>
+        <a href="index.html#du-an">Dự án</a>
+        <a href="index.html#lien-he">Liên hệ</a>
+      </nav>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION CHUẨN AB&C -->
     <section class="hero">
-      <div class="container">
-        <div class="hero-layout">
-          <div class="hero-left" data-reveal>
-            <span class="eyebrow eyebrow-light">PHÒNG THÍ NGHIỆM LAS-XD 13.004</span>
-            <h1>Kiểm định Xây dựng & Thử tải: Số liệu thực, Pháp lý vững.</h1>
-            <p class="lead">
-              Trung An trực tiếp vận hành phòng thí nghiệm LAS-XD 13.004. Chúng tôi cung cấp chuỗi dịch vụ lấy mẫu, khoan lõi, thử tải và xuất kết quả kiểm định hợp lệ pháp lý, tuân thủ nghiêm ngặt hệ thống tiêu chuẩn hiện hành.
-            </p>
-            <div class="hero-actions">
-              <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
-              <a class="ghost-button ghost-button--light" href="#lien-he">Liên hệ lấy mẫu</a>
-            </div>
-            <ul class="hero-bullets">
-              <li>Mã số hợp chuẩn do Bộ Xây dựng cấp phép hoạt động.</li>
-              <li>Hệ thống quản lý chất lượng phòng thí nghiệm chuẩn ISO/IEC 17025:2017.</li>
-              <li>Minh bạch hồ sơ thiết bị, máy nén và năng lực kỹ sư đo kiểm.</li>
-            </ul>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">PHÒNG THÍ NGHIỆM LAS-XD 13.004</p>
+          <h1>Kiểm định Xây dựng & Thử tải: Số liệu thực, Pháp lý vững.</h1>
+          <p class="hero-text">
+            Trung An trực tiếp vận hành phòng thí nghiệm LAS-XD 13.004. Chúng tôi cung cấp chuỗi dịch vụ lấy mẫu, khoan lõi, thử tải và xuất kết quả kiểm định hợp lệ pháp lý, tuân thủ nghiêm ngặt hệ thống tiêu chuẩn TCVN.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#cong-bo">Xem tài liệu công bố</a>
+            <a class="ghost-button" href="#contact">Liên hệ lấy mẫu</a>
           </div>
-          
-          <div class="hero-right" data-reveal>
-            <img class="hero-img" src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Hoạt động kiểm định, thử tải của Trung An" />
-            <div class="stats-2x2">
-              <div class="stat-card primary">
-                <h3 style="font-size: 2.8rem; font-family: 'Montserrat', sans-serif;">13.004</h3>
-                <p>Mã số chứng nhận LAS-XD (Chuyển đổi từ mã cũ 1469).</p>
-              </div>
-              <div class="stat-card">
-                <h3><span class="count-up" data-target="100">0</span>%</h3>
-                <p>Thiết bị nén, kéo, đo lường được hiệu chuẩn định kỳ hàng năm.</p>
-              </div>
-              <div class="stat-card">
-                <h3><span class="count-up" data-target="8">0</span>+</h3>
-                <p>Năm kinh nghiệm trong lĩnh vực thí nghiệm, kiểm định xây dựng.</p>
-              </div>
-              <div class="stat-card">
-                <h3 style="font-size: 2.4rem; font-family: 'Montserrat', sans-serif;">ISO 17025</h3>
-                <p>Hệ thống quản lý chất lượng phòng thí nghiệm chuẩn quốc tế.</p>
-              </div>
+          <ul class="hero-points">
+            <li>Mã số hợp chuẩn do Bộ Xây dựng cấp phép hoạt động.</li>
+            <li>Hệ thống quản lý chất lượng phòng thí nghiệm chuẩn ISO/IEC 17025:2017.</li>
+            <li>Minh bạch hồ sơ thiết bị, máy nén và năng lực kỹ sư đo kiểm.</li>
+          </ul>
+        </div>
+
+        <div class="hero-card hero-card-grid reveal">
+          <article class="photo-panel">
+            <img src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Hoạt động kiểm định, thử tải của Trung An">
+            <div class="photo-panel-copy">
+              <span class="project-type" style="background: var(--accent); padding: 4px 10px; border-radius: 4px; color: #fff; font-size: 0.7rem; margin-bottom: 8px; display: inline-block;">Khảo sát & Kiểm định</span>
+              <h3 style="color: #fff; font-family: 'Be Vietnam Pro', sans-serif;">Triển khai kiểm tra cấu kiện, thí nghiệm vật liệu và thử tải hiện trường.</h3>
             </div>
+          </article>
+          <div class="stat-card accent">
+            <p class="stat-number"><span class="count-up" data-target="13004">0</span></p>
+            <p class="stat-label">Mã số chứng nhận LAS-XD (Chuyển đổi từ mã cũ 1469).</p>
+          </div>
+          <div class="stat-card">
+            <p class="stat-number"><span class="count-up" data-target="100">0</span>%</p>
+            <p class="stat-label">Thiết bị nén, kéo, đo lường được hiệu chuẩn định kỳ.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- NĂNG LỰC & BENTO GRID -->
-    <section id="phong-las" class="section bg-soft">
+    <!-- INFO SECTION -->
+    <section class="section" id="nang-luc" style="background: var(--surface);">
       <div class="container">
-        <div class="lab-layout" data-reveal>
-          <div class="lab-content">
-            <span class="eyebrow" style="margin-bottom: 24px;">Phòng thí nghiệm LAS-XD</span>
-            <h2>PHÒNG THÍ NGHIỆM CHUYÊN NGÀNH XÂY DỰNG (LAS-XD 13.004) là hợp phần quan trọng giúp Trung An kiểm soát chất lượng đồng bộ hơn.</h2>
-            <p>Không chỉ dừng ở tư vấn hồ sơ, Trung An còn có năng lực kiểm tra, thí nghiệm và đánh giá chất lượng vật liệu, cấu kiện, nền móng và hiện trạng công trình thông qua hệ thống phòng thí nghiệm chuyên ngành xây dựng.</p>
-            <p>Đây là điểm mạnh giúp công ty kết nối giữa giải pháp kỹ thuật trên hồ sơ với dữ liệu kiểm soát chất lượng trong thực tế triển khai dự án.</p>
-          </div>
+        <div class="reveal">
+          <span class="eyebrow">Hồ sơ năng lực</span>
+          <h2>Năng lực và danh mục hoạt động thí nghiệm chuyên ngành</h2>
+          <p class="section-copy">
+            Phạm vi hoạt động, cơ sở tổ chức và hệ thống tài liệu liên quan đến năng lực thí nghiệm chuyên ngành xây dựng được tổ chức minh bạch. Đội ngũ thí nghiệm viên có chứng chỉ hành nghề, vận hành theo sơ đồ QLCL độc lập để đảm bảo tính khách quan của số liệu.
+          </p>
+        </div>
 
-          <div class="lab-bento">
-            <div class="lab-bento-header">
-              <span class="eyebrow eyebrow-light" style="background: transparent; border: none; padding: 0; margin-bottom: 8px;">Năng lực chuyên sâu</span>
-              <h3 style="font-family: 'Playfair Display', serif;">Kiểm soát chất lượng vật liệu, cấu kiện và công trình</h3>
-              <p>Hỗ trợ thí nghiệm, kiểm định và khảo sát vật liệu xây dựng theo tiêu chuẩn chuyên ngành hiện hành.</p>
-            </div>
-            
-            <div class="lab-bento-tall lab-img-wrapper">
-              <img src="./img/ptn/luu-mau-be-tong.jpg" alt="Hoạt động phòng thí nghiệm">
-              <div class="lab-img-caption">Hoạt động thí nghiệm, lưu mẫu và vận hành thiết bị được tổ chức đồng bộ trong cùng một quy trình chuyên môn.</div>
-            </div>
-            
-            <div class="lab-bento-right">
-              <div class="lab-bento-square lab-img-wrapper">
-                <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Lấy mẫu hiện trường">
-                <div class="lab-img-caption" style="padding: 16px; font-size: 0.85rem;">Công tác lấy mẫu, đo kiểm và kiểm tra hiện trạng được thực hiện trực tiếp bởi đội ngũ kỹ thuật.</div>
-              </div>
-              <div class="lab-bento-grid">
-                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Máy kéo thép"></div>
-                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Máy nén bê tông"></div>
-                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thu-tinh-coc-btct.jpg" alt="Thử tĩnh cọc"></div>
-                <div class="lab-img-wrapper lab-bento-small"><img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Thí nghiệm vải địa"></div>
-              </div>
-            </div>
-          </div>
+        <div class="info-grid reveal">
+          <article class="info-card">
+            <span class="icon-badge">GCN</span>
+            <h3>Đủ điều kiện hoạt động</h3>
+            <p>Doanh nghiệp có giấy chứng nhận đủ điều kiện hoạt động thí nghiệm chuyên ngành xây dựng theo phạm vi được công nhận.</p>
+          </article>
+          <article class="info-card">
+            <span class="icon-badge">LAS</span>
+            <h3>Mã số LAS-XD rõ ràng</h3>
+            <p>Phòng thí nghiệm mang mã số LAS-XD 1469 và đã được chuyển đổi thành LAS-XD 13.004 theo hồ sơ năng lực hiện hành.</p>
+          </article>
+          <article class="info-card">
+            <span class="icon-badge">HS</span>
+            <h3>Hồ sơ công bố đầy đủ</h3>
+            <p>Văn bản, chứng nhận, lý lịch thiết bị và bằng cấp kỹ sư liên quan được công bố để đối tác tham khảo, đối chiếu.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- GALLERY DỰ ÁN THỰC TẾ -->
-    <section id="hinh-anh" class="projects-section section">
+    <!-- GALLERY SECTION -->
+    <section class="section" id="hinh-anh" style="background: var(--bg)">
       <div class="container">
-        <div data-reveal>
+        <div class="reveal">
           <span class="eyebrow">Hình ảnh hiện trường</span>
-          <h2 class="section-title">Hoạt động thí nghiệm & kiểm định thực tế.</h2>
+          <h2>Hoạt động thí nghiệm & kiểm định thực tế.</h2>
           <p class="section-copy">Một số công tác tiêu biểu như khoan lấy mẫu, thử tải cấu kiện, đo độ chặt hiện trường và nén mẫu bê tông trong phòng thí nghiệm.</p>
         </div>
-
-        <div class="project-gallery" data-reveal>
-          <div class="project-shot">
-            <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra cọc BT DUL">
-            <div class="project-caption">
-              <span class="project-label">01. Kiểm tra cấu kiện</span>
+        
+        <div class="lab-gallery">
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-coc-bt-dul.jpg" alt="Kiểm tra cọc BT DUL">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">01</span>
               <h3>Kiểm tra cọc BT DUL</h3>
               <p>Nghiệm thu kích thước hình học và ngoại quan cọc ly tâm.</p>
             </div>
-          </div>
-          <div class="project-shot">
-            <img src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan rút lõi">
-            <div class="project-caption">
-              <span class="project-label">02. Thí nghiệm vật liệu</span>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/khoan-mau-be-tong.jpg" alt="Khoan rút lõi">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">02</span>
               <h3>Khoan rút lõi hiện trường</h3>
               <p>Khoan lấy mẫu trụ bê tông để ép nén kiểm tra mác (R28).</p>
             </div>
-          </div>
-          <div class="project-shot">
-            <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm định cống BTCT">
-            <div class="project-caption">
-              <span class="project-label">03. Đánh giá chất lượng</span>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/kiem-tra-ket-cau-cau-kien-cong-btct.jpg" alt="Kiểm định cống BTCT">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">03</span>
               <h3>Kiểm định cống BTCT</h3>
               <p>Kiểm tra chiều dày, cốt thép và bề mặt cống thoát nước.</p>
             </div>
-          </div>
-          <div class="project-shot">
-            <img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Kéo nén thép cốt">
-            <div class="project-caption">
-              <span class="project-label">04. Thí nghiệm kéo nén</span>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/thi-nghiem-keo-thep.jpg" alt="Kéo nén thép cốt">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">04</span>
               <h3>Kéo nén thép cốt</h3>
               <p>Kiểm tra giới hạn chảy, giới hạn đứt và độ giãn dài của thép.</p>
             </div>
-          </div>
-          <div class="project-shot">
-            <img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Nén mẫu bê tông">
-            <div class="project-caption">
-              <span class="project-label">05. Ép mẫu phá hủy</span>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/thi-nghiem-nen-bt.jpg" alt="Nén mẫu bê tông">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">05</span>
               <h3>Nén mẫu bê tông</h3>
               <p>Thí nghiệm phá hủy xác định cường độ trên máy ngàm thủy lực.</p>
             </div>
-          </div>
-          <div class="project-shot">
-            <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Độ chặt (Rót cát)">
-            <div class="project-caption">
-              <span class="project-label">06. Kiểm tra hiện trường</span>
+          </article>
+
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/thi-nghiem-do-chat-hien-truong.jpg" alt="Độ chặt (Rót cát)">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">06</span>
               <h3>Độ chặt nền (Rót cát)</h3>
               <p>Xác định độ chặt nền đường (K95/K98) tại công trường.</p>
             </div>
-          </div>
+          </article>
+          
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/thi-nghiem-nhua-bitum.jpg" alt="Thí nghiệm nhựa Bitum">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">07</span>
+              <h3>Thí nghiệm nhựa Bitum</h3>
+              <p>Đo độ kim lún, điểm mềm phục vụ thảm bê tông nhựa nóng.</p>
+            </div>
+          </article>
+          
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/thu-tai-cong-btct.jpg" alt="Thử tải cống">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">08</span>
+              <h3>Thử tải cống BTCT</h3>
+              <p>Ép tải 3 cạnh kiểm tra khả năng chịu lực xuyên tâm của ống cống.</p>
+            </div>
+          </article>
+          
+          <article class="visual-card reveal">
+            <div class="visual-media">
+              <img src="./img/ptn/thi-nghiem-vai-dia.jpg" alt="Vải địa kỹ thuật">
+            </div>
+            <div class="visual-copy">
+              <span class="card-index">09</span>
+              <h3>Thí nghiệm Vải địa</h3>
+              <p>Kiểm tra lực kéo giật, độ giãn dài và sức kháng bục.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -570,7 +663,7 @@
     <section class="section bg-dark-gradient section-dark" id="cong-bo">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow eyebrow-light">Tài liệu công bố</span>
+          <span class="eyebrow eyebrow--light">Tài liệu công bố</span>
           <h2>Danh mục hồ sơ phòng thí nghiệm và tra cứu pháp lý.</h2>
           <p class="section-copy" style="color: rgba(255,255,255,0.8);">
             Danh mục dưới đây gồm các văn bản liên quan đến quyết định thành lập, điều kiện hoạt động, biểu mẫu quản lý chất lượng và chứng chỉ kiểm định thiết bị.
@@ -625,7 +718,7 @@
           <div class="document-preview-card reveal" id="document-preview">
             <div class="document-preview-head">
               <div>
-                <h3 id="previewTitle" style="font-family: 'Montserrat', sans-serif;">Công bố năng lực PTN LAS-XD 13.004</h3>
+                <h3 id="previewTitle" style="font-family: 'Be Vietnam Pro', sans-serif;">Công bố năng lực PTN LAS-XD 13.004</h3>
                 <p>Khung xem trước tài liệu. Nhấn tải về nếu trình duyệt không hiển thị.</p>
               </div>
               <a class="doc-link preview-open-link" id="previewOpenLink" href="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf" target="_blank" download>Tải PDF</a>
@@ -642,13 +735,13 @@
       </div>
     </section>
 
-    <!-- LIÊN HỆ -->
-    <section id="lien-he" class="section">
+    <!-- CONTACT SECTION -->
+    <section id="lien-he" class="section" id="contact">
       <div class="container">
         <div class="contact-wrap reveal">
           <div class="contact-info bg-dark-gradient">
-            <span class="eyebrow eyebrow-light">Liên hệ trao đổi dự án</span>
-            <h2>Bạn cần tư vấn cấp phối hoặc báo giá thí nghiệm hiện trường?</h2>
+            <span class="eyebrow eyebrow--light">Liên hệ trao đổi dự án</span>
+            <h2 style="color: #fff;">Bạn cần tư vấn cấp phối hoặc báo giá thí nghiệm hiện trường?</h2>
             <p class="desc">Gửi yêu cầu loại vật liệu hoặc hạng mục cần thử tải, phòng kỹ thuật LAS-XD của Trung An sẽ phản hồi bảng chi phí chi tiết.</p>
             
             <div style="margin-top: 40px;">
@@ -664,7 +757,7 @@
           </div>
 
           <div class="contact-form">
-            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 24px; color: var(--text);">Gửi yêu cầu thử tải</h3>
+            <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 24px; color: var(--text); font-family: 'Playfair Display', serif;">Gửi yêu cầu thử tải</h3>
             <form onsubmit="event.preventDefault(); alert('Đây là giao diện web mẫu.');">
               <div class="form-group">
                 <label>Tên Đơn vị / Chủ đầu tư</label>
@@ -688,7 +781,7 @@
 
   <footer class="footer bg-dark-gradient" style="background-image: none;">
     <div class="container footer-grid">
-      <div>
+      <div class="footer-col">
         <h2 style="font-family: 'Montserrat', sans-serif;">TRUNG AN CO., LTD</h2>
         <p>Công ty CP Đầu tư Xây dựng Thương mại Dịch vụ Trung An. Doanh nghiệp chuyên sâu trong lĩnh vực thi công, khảo sát, giám sát và kiểm định công trình tại miền Tây.</p>
       </div>
