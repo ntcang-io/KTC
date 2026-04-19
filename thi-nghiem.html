@@ -31,6 +31,11 @@
       --shadow: 0 18px 50px rgba(16, 61, 115, 0.08);
       --shadow-strong: 0 30px 70px rgba(16, 61, 115, 0.14);
       --radius: 20px;
+      --header-height: 84px;
+      --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      --primary: var(--accent);
+      --primary-strong: var(--accent-strong);
+      --primary-soft: var(--accent-soft);
     }
 
     * { box-sizing: border-box; }
@@ -56,21 +61,26 @@
       margin: 0 auto;
     }
 
-    /* ================= MENU XẾP CHỒNG (STACKED NAV) CHUẨN AB&C ================= */
-    .site-header {
+    /* HEADER */
+    .topbar {
       position: sticky;
       top: 0;
+      left: 0;
+      right: 0;
       z-index: 100;
-      backdrop-filter: blur(18px);
-      background: rgba(248, 251, 255, 0.9);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--line);
+      transition: box-shadow 0.3s ease;
     }
 
-    .nav {
+    .topbar.is-scrolled { box-shadow: var(--shadow); }
+
+    .topbar__inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 84px;
+      min-height: var(--header-height);
       gap: 1rem;
       padding: 10px 0;
     }
@@ -79,6 +89,8 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      position: relative;
+      z-index: 101;
     }
 
     .brand-logo-frame {
@@ -88,9 +100,6 @@
       border-radius: 14px;
       background: linear-gradient(180deg, #cf2027 0%, #af161f 100%);
       flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .brand-logo {
@@ -98,8 +107,8 @@
       height: 100%;
       object-fit: contain;
       padding: 6px;
+      border-radius: 10px;
       background: #fff;
-      border-radius: 11px;
     }
 
     .brand-copy {
@@ -114,31 +123,34 @@
       color: var(--accent);
       letter-spacing: 0.05em;
       line-height: 1.2;
+      text-align: left;
     }
 
     .brand-text {
       font-size: 0.8rem;
       color: var(--muted);
+      margin-top: 4px;
+      text-align: left;
       max-width: 380px;
     }
 
-    .nav-links {
+    .nav {
       display: flex;
-      gap: 20px;
-      align-items: center;
+      gap: 24px;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .nav-links a {
-      font-weight: 600;
+    .nav a {
+      font-weight: 700;
       color: var(--muted);
       font-size: 0.95rem;
       transition: color 0.2s;
     }
 
-    .nav-links a:hover, .nav-links a.is-active {
+    .nav a:hover,
+    .nav a.is-active {
       color: var(--accent);
-      font-weight: 700;
     }
 
     /* ================= TYPOGRAPHY & GENERAL ================= */
@@ -428,8 +440,8 @@
       .document-preview-frame { height: 600px; }
 
       /* Mobile Menu Stacked AB&C */
-      .nav { flex-direction: column; justify-content: center; padding: 16px 0; }
-      .nav-links { flex-wrap: wrap; justify-content: center; gap: 12px 20px; }
+      .topbar__inner { flex-direction: column; justify-content: center; padding: 16px 0; }
+      .nav { gap: 12px 20px; }
       h1 { max-width: 100%; }
       .document-preview-head { flex-direction: column; }
     }
@@ -451,27 +463,28 @@
 </head>
 <body>
 
-  <!-- HEADER STACKED CHUẨN AB&C -->
+  <!-- HEADER -->
   <header class="topbar" id="header">
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Trung An">
-        <span class="brand-logo-frame">
-          <img class="brand-logo" src="./img/logo-kto.png" alt="Logo Trung An">
-        </span>
-        <span class="brand-text">
-          <strong>TRUNG AN CO., LTD</strong><br>
-          <small>Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</small>
-        </span>
-      </a>
-      <nav class="nav-links">
-        <a href="index.html#gioi-thieu">Giới thiệu</a>
-        <a href="index.html#dich-vu">Giải pháp</a>
-        <a href="thi-nghiem.html" class="is-active" style="color: var(--primary);">Phòng LAS-XD</a>
-        <a href="thi-nghiem.html#cong-bo">Công bố Năng lực</a>
-        <a href="index.html#nang-luc">Năng lực</a>
-        <a href="index.html#du-an">Dự án</a>
-        <a href="index.html#lien-he">Liên hệ</a>
-      </nav>
+    <div class="container">
+      <div class="topbar__inner">
+        <a class="brand" href="index.html" aria-label="Trung An">
+          <span class="brand-logo-frame">
+            <img class="brand-logo" src="https://www.trungan-build.com.vn/img/logo-kto.png" alt="Logo Trung An" />
+          </span>
+          <div class="brand-copy">
+            <div class="brand-mark">CÔNG TY CP ĐTXD TMDV TRUNG AN</div>
+            <div class="brand-text">Xây dựng, khảo sát, thí nghiệm và kiểm định công trình</div>
+          </div>
+        </a>
+        <nav class="nav">
+          <a href="index.html#gioi-thieu">Giới thiệu</a>
+          <a href="index.html#nang-luc">Năng lực</a>
+          <a href="index.html#dich-vu">Giải pháp</a>
+          <a href="thi-nghiem.html" class="is-active">Phòng LAS-XD</a>
+          <a href="thi-nghiem.html#cong-bo">Công bố năng lực</a>
+          <a href="index.html#lien-he">Liên hệ</a>
+        </nav>
+      </div>
     </div>
   </header>
 
@@ -663,7 +676,7 @@
     <section class="section bg-dark-gradient section-dark" id="cong-bo">
       <div class="container">
         <div class="reveal">
-          <span class="eyebrow eyebrow--light">Tài liệu công bố</span>
+          <span class="eyebrow eyebrow-light">Tài liệu công bố</span>
           <h2>Danh mục hồ sơ phòng thí nghiệm và tra cứu pháp lý.</h2>
           <p class="section-copy" style="color: rgba(255,255,255,0.8);">
             Danh mục dưới đây gồm các văn bản liên quan đến quyết định thành lập, điều kiện hoạt động, biểu mẫu quản lý chất lượng và chứng chỉ kiểm định thiết bị.
@@ -736,11 +749,11 @@
     </section>
 
     <!-- CONTACT SECTION -->
-    <section id="lien-he" class="section" id="contact">
+    <section id="lien-he" class="section">
       <div class="container">
         <div class="contact-wrap reveal">
           <div class="contact-info bg-dark-gradient">
-            <span class="eyebrow eyebrow--light">Liên hệ trao đổi dự án</span>
+            <span class="eyebrow eyebrow-light">Liên hệ trao đổi dự án</span>
             <h2 style="color: #fff;">Bạn cần tư vấn cấp phối hoặc báo giá thí nghiệm hiện trường?</h2>
             <p class="desc">Gửi yêu cầu loại vật liệu hoặc hạng mục cần thử tải, phòng kỹ thuật LAS-XD của Trung An sẽ phản hồi bảng chi phí chi tiết.</p>
             
