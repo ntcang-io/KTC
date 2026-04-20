@@ -12,6 +12,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/css/dflip.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/css/themify-icons.min.css">
   
   <style>
     :root {
@@ -359,7 +361,7 @@
     .section-dark h2 { color: #fff; }
     .section-dark .section-copy { color: rgba(255,255,255,0.8); }
 
-    .docs-layout { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 40px; margin-top: 40px; align-items: start; }
+    .docs-layout { display: grid; grid-template-columns: 1fr; gap: 32px; margin-top: 40px; align-items: start; }
     
     .accordion-list { display: flex; flex-direction: column; gap: 16px; }
     .accordion-item {
@@ -379,9 +381,14 @@
     .accordion-panel { display: none; padding: 0 24px 24px; }
     .accordion-item.is-open .accordion-panel { display: block; }
     
-    .doc-list { display: flex; flex-direction: column; gap: 12px; }
+    .doc-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 12px;
+    }
     .doc-list a {
       display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      min-height: 58px;
       padding: 16px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.05);
       border-radius: 12px; color: rgba(255,255,255,0.9); font-size: 0.95rem; transition: all 0.2s;
     }
@@ -392,16 +399,28 @@
       background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
       border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-strong);
     }
-    .document-preview-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; margin-bottom: 24px; }
-    .document-preview-head h3 { font-size: 1.3rem; color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700; margin-bottom: 8px;}
-    .document-preview-head p { color: rgba(255,255,255,0.7); margin: 0; font-size: 0.95rem; }
+    .document-preview-head { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 24px; }
+    .document-preview-head h3 { font-size: 1.3rem; color: #fff; font-family: "Be Vietnam Pro", sans-serif; font-weight: 700; margin: 0;}
     .preview-open-link { border-color: rgba(255,255,255,0.3); color: #fff; background: transparent; }
     .preview-open-link:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
     
     .document-preview-frame {
-      border-radius: 16px; overflow: hidden; background: #fff; height: 760px;
+      border-radius: 16px; overflow: hidden; background: #edf3fa; min-height: 860px;
     }
-    .document-preview-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+    .document-preview-frame .df-ui-wrapper,
+    .document-preview-frame .df-container,
+    .document-preview-frame .df-book-wrapper,
+    .document-preview-frame .df-book-stage {
+      border-radius: 16px;
+    }
+    .dearflip-viewer {
+      width: 100%;
+      min-height: 860px;
+      height: 860px;
+    }
+    .dearflip-viewer .df-container {
+      background: #edf3fa;
+    }
 
     /* ================= LIÊN HỆ & FOOTER ================= */
     .contact-wrap {
@@ -437,7 +456,8 @@
       .hero-grid, .docs-layout, .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
       .info-grid, .lab-gallery, .hero-card-grid { grid-template-columns: repeat(2, 1fr); }
       .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-      .document-preview-frame { height: 600px; }
+      .document-preview-frame { min-height: 680px; }
+      .dearflip-viewer { min-height: 680px; height: 680px; }
 
       /* Mobile Menu Stacked AB&C */
       .topbar__inner { flex-direction: column; justify-content: center; padding: 16px 0; }
@@ -456,8 +476,11 @@
 
       .hero h1 { font-size: 2.2rem; }
       .info-grid, .lab-gallery, .hero-card-grid { grid-template-columns: 1fr; }
+      .doc-list { grid-template-columns: 1fr; }
       .contact-info, .contact-form { padding: 32px 24px; }
-      .document-preview-frame iframe { height: 520px; }
+      .document-preview-card { padding: 24px; }
+      .document-preview-frame { min-height: 560px; }
+      .dearflip-viewer { min-height: 560px; height: 560px; }
     }
   </style>
 </head>
@@ -691,10 +714,10 @@
               <button class="accordion-trigger" type="button">Chứng chỉ và quyết định hoạt động</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="javascript:void(0)" class="preview-link is-active" data-preview-title="Công bố năng lực PTN LAS-XD 13.004" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf">Công bố năng lực phòng thí nghiệm <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ NLHD Xây dựng (Bản hiện hành)" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/5.%20CHỨNG%20CHỈ%20NLHD%20LẦN%204.pdf">Chứng chỉ năng lực HĐXD <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Quyết định thành lập phòng thí nghiệm" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/6.%20Quyết%20định%20thành%20lập%20phòng%20TN.pdf">Quyết định thành lập phòng TN <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Giấy chứng nhận hoạt động và danh mục phép thử" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/7.%20GIAY%20CHUNG%20NHAN%20HOAT%20DONG%20TN%202123.pdf">Giấy chứng nhận HĐ thí nghiệm <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link is-active" data-preview-title="Công bố năng lực PTN LAS-XD 13.004" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf">Công bố năng lực phòng thí nghiệm <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ NLHD Xây dựng (Bản hiện hành)" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/5.%20CHỨNG%20CHỈ%20NLHD%20LẦN%204.pdf">Chứng chỉ năng lực HĐXD <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Quyết định thành lập phòng thí nghiệm" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/6.%20Quyết%20định%20thành%20lập%20phòng%20TN.pdf">Quyết định thành lập phòng TN <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Giấy chứng nhận hoạt động và danh mục phép thử" data-pdf="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/7.%20GIAY%20CHUNG%20NHAN%20HOAT%20DONG%20TN%202123.pdf">Giấy chứng nhận HĐ thí nghiệm <span>Xem tài liệu</span></a>
                 </div>
               </div>
             </div>
@@ -704,11 +727,11 @@
               <button class="accordion-trigger" type="button">Tiêu chuẩn và thiết bị</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Tiêu chuẩn quản lý chất lượng ISO/IEC 17025:2017" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/1.%20TIEU%20CHUAN%20QLCL%20THEO%20SOIEC%2017025-2017.pdf">Tiêu chuẩn ISO/IEC 17025:2017 <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Sơ đồ tổ chức phòng thí nghiệm" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/3.%20BAN%20VE%20SO%20DO%20TO%20CHUC%20PTN.pdf">Sơ đồ tổ chức nhân sự <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Danh mục thiết bị thí nghiệm" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/2.%20THIẾT%20BỊ%20THÍ%20NGHIỆM.pdf">Danh mục máy móc, thiết bị <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Danh mục máy thi công" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/MAY%20THI%20CONG/2.1%20DS%20MÁY%20THI%20CÔNG.pdf">Danh sách thiết bị thi công <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Giấy chứng nhận hiệu chuẩn thiết bị" data-pdf="./tai-lieu/DANH%20MUC%20TAI%20LIEU%20THAM%20CHIEU/2.%20HIEU%20CHUAN%20THIET%20BI/GIẤY%20CNHC%20THIẾT%20BỊ%202025-2026.pdf">Giấy chứng nhận hiệu chuẩn <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Tiêu chuẩn quản lý chất lượng ISO/IEC 17025:2017" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/1.%20TIEU%20CHUAN%20QLCL%20THEO%20SOIEC%2017025-2017.pdf">Tiêu chuẩn ISO/IEC 17025:2017 <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Sơ đồ tổ chức phòng thí nghiệm" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/3.%20BAN%20VE%20SO%20DO%20TO%20CHUC%20PTN.pdf">Sơ đồ tổ chức nhân sự <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Danh mục thiết bị thí nghiệm" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/2.%20THIẾT%20BỊ%20THÍ%20NGHIỆM.pdf">Danh mục máy móc, thiết bị <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Danh mục máy thi công" data-pdf="./tai-lieu/BIEU%20MAU%20VA%20QUY%20TRINH%20TIEP%20NHAN/MAY%20THI%20CONG/2.1%20DS%20MÁY%20THI%20CÔNG.pdf">Danh sách thiết bị thi công <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Giấy chứng nhận hiệu chuẩn thiết bị" data-pdf="./tai-lieu/DANH%20MUC%20TAI%20LIEU%20THAM%20CHIEU/2.%20HIEU%20CHUAN%20THIET%20BI/GIẤY%20CNHC%20THIẾT%20BỊ%202025-2026.pdf">Giấy chứng nhận hiệu chuẩn <span>Xem tài liệu</span></a>
                 </div>
               </div>
             </div>
@@ -718,10 +741,10 @@
               <button class="accordion-trigger" type="button">Năng lực nhân sự</button>
               <div class="accordion-panel">
                 <div class="doc-list">
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Quyết định bổ nhiệm trưởng phòng thí nghiệm" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/1.%20QD%20bổ%20nhiệm%20truong%20PTN.pdf">Bổ nhiệm trưởng phòng TN <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Bằng Đại Học - Trưởng phòng" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20Bằng%20Đại%20Học.pdf">Văn bằng chuyên môn kỹ sư <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ ISO 17025 - Nguyễn Duy Thanh" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20ISO%2017025-2017.pdf">Chứng chỉ ISO 17025 <span>Xem</span></a>
-                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ Quản lý phòng thí nghiệm - Nguyễn Duy Thanh" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20QL%20PTN.pdf">Chứng chỉ Quản lý phòng TN <span>Xem</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Quyết định bổ nhiệm trưởng phòng thí nghiệm" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/1.%20QD%20bổ%20nhiệm%20truong%20PTN.pdf">Bổ nhiệm trưởng phòng TN <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Bằng Đại Học - Trưởng phòng" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20Bằng%20Đại%20Học.pdf">Văn bằng chuyên môn kỹ sư <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ ISO 17025 - Nguyễn Duy Thanh" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20ISO%2017025-2017.pdf">Chứng chỉ ISO 17025 <span>Xem tài liệu</span></a>
+                  <a href="javascript:void(0)" class="preview-link" data-preview-title="Chứng chỉ Quản lý phòng thí nghiệm - Nguyễn Duy Thanh" data-pdf="./tai-lieu/THONG%20BAO%20VA%20CAP%20NHAT%20VAN%20HANH/2.%20DS%20NHAN%20SU-VAN%20BANG-CHUNG%20CHI/1%20TN%20NGUYEN%20DUY%20THANH/Nguyễn%20Duy%20Thanh%20-%20QL%20PTN.pdf">Chứng chỉ Quản lý phòng TN <span>Xem tài liệu</span></a>
                 </div>
               </div>
             </div>
@@ -732,16 +755,11 @@
             <div class="document-preview-head">
               <div>
                 <h3 id="previewTitle" style="font-family: 'Be Vietnam Pro', sans-serif;">Công bố năng lực PTN LAS-XD 13.004</h3>
-                <p>Khung xem trước tài liệu. Nhấn tải về nếu trình duyệt không hiển thị.</p>
               </div>
               <a class="doc-link preview-open-link" id="previewOpenLink" href="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf" target="_blank" download>Tải PDF</a>
             </div>
             <div class="document-preview-frame">
-              <iframe
-                id="documentFrame"
-                src="./tai-lieu/CHUNG%20CHI%20VA%20QUYET%20DINH%20HOAT%20DONG/1.%20CONG%20BO%20NANG%20LUC%20PTN%20LAS-XD%2013.004.pdf"
-                title="Khung xem PDF tài liệu thí nghiệm"
-              ></iframe>
+              <div id="dearflip-viewer" class="dearflip-viewer" aria-label="Khung xem tài liệu DearFlip"></div>
             </div>
           </div>
         </div>
@@ -817,6 +835,11 @@
   </footer>
 
   <script>
+    window.dFlipLocation = "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/";
+  </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/dflip.min.js"></script>
+  <script>
     // Header Scroll Effect
     const header = document.getElementById('header');
     if (header) {
@@ -885,13 +908,69 @@
       });
     });
 
-    // Document PDF Viewer logic
-    const documentFrame = document.getElementById("documentFrame");
+    // DearFlip embedded viewer logic
+    const viewerElement = document.getElementById("dearflip-viewer");
     const previewTitle = document.getElementById("previewTitle");
     const previewOpenLink = document.getElementById("previewOpenLink");
     const previewLinks = document.querySelectorAll(".preview-link");
+    let dearFlipInstance = null;
 
-    if (documentFrame && previewTitle && previewOpenLink && previewLinks.length) {
+    function decodePathSegment(segment) {
+      try {
+        return decodeURIComponent(segment);
+      } catch (error) {
+        return segment;
+      }
+    }
+
+    function normalizePdfPath(rawPath) {
+      if (!rawPath) return "";
+
+      return rawPath
+        .split("/")
+        .map((segment, index) => {
+          if (!segment || (index === 0 && segment === ".")) {
+            return segment;
+          }
+
+          return encodeURIComponent(decodePathSegment(segment));
+        })
+        .join("/");
+    }
+
+    function renderDearFlip(pdfPath) {
+      if (!viewerElement || !window.jQuery || !window.DFLIP) {
+        return;
+      }
+
+      if (dearFlipInstance && typeof dearFlipInstance.dispose === "function") {
+        dearFlipInstance.dispose();
+      }
+
+      viewerElement.innerHTML = "";
+
+      dearFlipInstance = window.jQuery(viewerElement).flipBook(pdfPath, {
+        webgl: true,
+        backgroundColor: "#edf3fa",
+        autoEnableOutline: false,
+        autoEnableThumbnail: false,
+        controlsPosition: DFLIP.CONTROLSPOSITION.BOTTOM,
+        paddingLeft: 20,
+        paddingRight: 20,
+        paddingTop: 20,
+        paddingBottom: 20,
+        showDownloadControl: true,
+        showSearchControl: true,
+        showPrintControl: false,
+        height: "100%"
+      });
+    }
+
+    if (viewerElement && previewTitle && previewOpenLink && previewLinks.length) {
+      const defaultPath = normalizePdfPath(previewOpenLink.getAttribute("href"));
+      previewOpenLink.setAttribute("href", defaultPath);
+      renderDearFlip(defaultPath);
+
       previewLinks.forEach((link) => {
         link.addEventListener("click", (event) => {
           event.preventDefault();
@@ -900,21 +979,18 @@
           previewLinks.forEach(l => l.classList.remove('is-active'));
           link.classList.add('is-active');
 
-          const nextSrc = link.getAttribute("data-pdf");
+          const nextSrc = normalizePdfPath(link.getAttribute("data-pdf"));
           const nextTitle = link.getAttribute("data-preview-title") || "Tài liệu phòng thí nghiệm";
 
-          documentFrame.setAttribute("src", nextSrc);
           previewTitle.textContent = nextTitle;
           previewOpenLink.setAttribute("href", nextSrc);
+          renderDearFlip(nextSrc);
 
           const previewCard = document.getElementById("document-preview");
           if (previewCard) {
-            // Scroll focus to viewer on mobile
-            if(window.innerWidth <= 1024) {
-               const yOffset = -100; 
-               const y = previewCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
-               window.scrollTo({top: y, behavior: 'smooth'});
-            }
+            const yOffset = -96;
+            const y = previewCard.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
           }
         });
       });
