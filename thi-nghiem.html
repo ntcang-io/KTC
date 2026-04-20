@@ -950,10 +950,12 @@
       viewerElement.innerHTML = "";
 
       dearFlipInstance = window.jQuery(viewerElement).flipBook(pdfPath, {
-        webgl: true,
+        webgl: false,
         backgroundColor: "#edf3fa",
         autoEnableOutline: false,
         autoEnableThumbnail: false,
+        pageMode: DFLIP.PAGE_MODE.AUTO,
+        singlePageMode: DFLIP.SINGLE_PAGE_MODE.AUTO,
         controlsPosition: DFLIP.CONTROLSPOSITION.BOTTOM,
         paddingLeft: 20,
         paddingRight: 20,
