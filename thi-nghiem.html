@@ -836,8 +836,22 @@
 
   <script>
     window.dFlipLocation = "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/";
+    window.__dearflipAssets = {
+      pdfjsSrc: "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/pdf.min.js",
+      pdfjsWorkerSrc: "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/pdf.worker.min.js",
+      pdfjsCompatibilitySrc: "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/compatibility.js",
+      threejsSrc: "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/three.min.js",
+      mockupjsSrc: "https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/mockup.min.js"
+    };
   </script>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/compatibility.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/libs/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib && window.__dearflipAssets) {
+      window.pdfjsLib.GlobalWorkerOptions.workerSrc = window.__dearflipAssets.pdfjsWorkerSrc;
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@dearhive/dearflip-jquery-flipbook@1.7.3/dflip/js/dflip.min.js"></script>
   <script>
     // Header Scroll Effect
@@ -915,6 +929,14 @@
     const previewLinks = document.querySelectorAll(".preview-link");
     let dearFlipInstance = null;
 
+    if (window.DFLIP && window.__dearflipAssets) {
+      window.DFLIP.defaults.pdfjsSrc = window.__dearflipAssets.pdfjsSrc;
+      window.DFLIP.defaults.pdfjsWorkerSrc = window.__dearflipAssets.pdfjsWorkerSrc;
+      window.DFLIP.defaults.pdfjsCompatibilitySrc = window.__dearflipAssets.pdfjsCompatibilitySrc;
+      window.DFLIP.defaults.threejsSrc = window.__dearflipAssets.threejsSrc;
+      window.DFLIP.defaults.mockupjsSrc = window.__dearflipAssets.mockupjsSrc;
+    }
+
     function decodePathSegment(segment) {
       try {
         return decodeURIComponent(segment);
@@ -964,7 +986,12 @@
         showDownloadControl: true,
         showSearchControl: true,
         showPrintControl: false,
-        height: "100%"
+        height: "100%",
+        pdfjsSrc: window.__dearflipAssets ? window.__dearflipAssets.pdfjsSrc : undefined,
+        pdfjsWorkerSrc: window.__dearflipAssets ? window.__dearflipAssets.pdfjsWorkerSrc : undefined,
+        pdfjsCompatibilitySrc: window.__dearflipAssets ? window.__dearflipAssets.pdfjsCompatibilitySrc : undefined,
+        threejsSrc: window.__dearflipAssets ? window.__dearflipAssets.threejsSrc : undefined,
+        mockupjsSrc: window.__dearflipAssets ? window.__dearflipAssets.mockupjsSrc : undefined
       });
     }
 
